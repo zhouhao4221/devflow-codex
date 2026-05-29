@@ -11,3 +11,8 @@ Thumbs.db
 # Temp files
 *.tmp
 *.bak
+
+# Generated adaptor output
+.agents/skills/
+skills.json
+agents/openai.yaml
