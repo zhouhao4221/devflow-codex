@@ -72,12 +72,23 @@ function downloadBinary(url, dest) {
   });
 }
 
+function getPackageDir() {
+  return path.dirname(require.resolve('./package.json'));
+}
+
 async function getBinary() {
   const cacheDir = getCacheDir();
   const binaryPath = path.join(cacheDir, BINARY_NAME);
 
   if (fs.existsSync(binaryPath)) {
     return binaryPath;
+  }
+
+  const pkgDir = getPackageDir();
+  const localBinary = path.join(pkgDir, BINARY_NAME);
+  if (fs.existsSync(localBinary)) {
+    process.stderr.write('使用本地构建的二进制。\n');
+    return localBinary;
   }
 
   const platform = getPlatform();
@@ -90,7 +101,18 @@ async function getBinary() {
     await downloadBinary(url, binaryPath);
     process.stderr.write('下载完成。\n');
   } catch (e) {
-    process.stderr.write('下载失败，尝试使用 go install...\n');
+    process.stderr.write('下载失败，尝试本地构建...\n');
+    try {
+      const goBuild = spawnSync('go', ['build', '-o', binaryPath, pkgDir], {
+        cwd: pkgDir,
+        stdio: 'inherit',
+      });
+      if (goBuild.status === 0 && fs.existsSync(binaryPath)) {
+        return binaryPath;
+      }
+    } catch (_) {}
+
+    process.stderr.write('本地构建失败，尝试使用 go install...\n');
     try {
       const goInstall = spawnSync('go', ['install', `github.com/zhouhao4221/devflow-skills@v${VERSION}`], {
         stdio: 'inherit',
