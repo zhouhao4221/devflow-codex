@@ -1,0 +1,116 @@
+{
+  "version": "1.0",
+  "description": "命令-技能映射关系。声明每个插件命令引用的技能名称，供 CI 校验名称一致性。",
+  "plugins": {
+    "req": {
+      "commands": {
+        "branch":        { "primarySkill": "branch",                   "additionalSkills": [] },
+        "cache":         { "primarySkill": "cache",                    "additionalSkills": [] },
+        "changelog":     { "primarySkill": "changelog",                "additionalSkills": ["changelog-generator"] },
+        "commit":        { "primarySkill": "commit",                   "additionalSkills": [] },
+        "dev":           { "primarySkill": "dev",                      "additionalSkills": ["dev-guide"] },
+        "do":            { "primarySkill": "do",                       "additionalSkills": ["code-impact-analyzer"] },
+        "done":          { "primarySkill": "done",                     "additionalSkills": [] },
+        "edit":          { "primarySkill": "edit",                     "additionalSkills": ["requirement-analyzer"] },
+        "fix":           { "primarySkill": "fix",                      "additionalSkills": ["quick-fix-guide"] },
+        "help":          { "primarySkill": "help",                     "additionalSkills": [] },
+        "init":          { "primarySkill": "init",                     "additionalSkills": [] },
+        "issue":         { "primarySkill": "issue",                    "additionalSkills": ["issue-guide"] },
+        "migrate":       { "primarySkill": "migrate",                  "additionalSkills": [] },
+        "modules":       { "primarySkill": "modules",                  "additionalSkills": [] },
+        "new":           { "primarySkill": "new",                      "additionalSkills": ["requirement-analyzer"] },
+        "new-quick":     { "primarySkill": "new-quick",                "additionalSkills": ["quick-fix-guide", "dev-guide"] },
+        "pr":            { "primarySkill": "pr",                       "additionalSkills": [] },
+        "prd":           { "primarySkill": "prd",                      "additionalSkills": [] },
+        "prd-edit":      { "primarySkill": "prd-edit",                 "additionalSkills": ["prd-analyzer"] },
+        "projects":      { "primarySkill": "projects",                 "additionalSkills": [] },
+        "release":       { "primarySkill": "release",                  "additionalSkills": ["version-bumper", "changelog-generator", "release-rationale"] },
+        "req":           { "primarySkill": "req",                      "additionalSkills": [] },
+        "review":        { "primarySkill": "review",                   "additionalSkills": [] },
+        "review-pr":     { "primarySkill": "review-pr",                "additionalSkills": ["natural-language-dispatcher"] },
+        "show":          { "primarySkill": "show",                     "additionalSkills": [] },
+        "specs":         { "primarySkill": "specs",                    "additionalSkills": [] },
+        "split":         { "primarySkill": "split",                    "additionalSkills": [] },
+        "status":        { "primarySkill": "status",                   "additionalSkills": [] },
+        "test":          { "primarySkill": "test",                     "additionalSkills": ["test-guide", "test_new", "test_regression"] },
+        "test_new":      { "primarySkill": "test_new",                 "additionalSkills": ["test-guide"] },
+        "test_regression": { "primarySkill": "test_regression",        "additionalSkills": ["test-guide"] },
+        "update":        { "primarySkill": "update",                   "additionalSkills": [] },
+        "update-template": { "primarySkill": "update-template",        "additionalSkills": [] },
+        "upgrade":       { "primarySkill": "upgrade",                  "additionalSkills": ["requirement-analyzer"] },
+        "use":           { "primarySkill": "use",                      "additionalSkills": [] }
+      }
+    },
+    "api": {
+      "commands": {
+        "api":           { "primarySkill": "api",                      "additionalSkills": [] },
+        "config":        { "primarySkill": "config",                   "additionalSkills": [] },
+        "gen":           { "primarySkill": "gen",                      "additionalSkills": [] },
+        "help":          { "primarySkill": "help",                     "additionalSkills": [] },
+        "import":        { "primarySkill": "import",                   "additionalSkills": [] },
+        "map":           { "primarySkill": "map",                      "additionalSkills": ["api-field-mapper"] },
+        "search":        { "primarySkill": "search",                   "additionalSkills": [] }
+      }
+    },
+    "pm": {
+      "commands": {
+        "ask":           { "primarySkill": "ask",                      "additionalSkills": [] },
+        "brief":         { "primarySkill": "brief",                    "additionalSkills": [] },
+        "export":        { "primarySkill": "export",                   "additionalSkills": [] },
+        "help":          { "primarySkill": "help",                     "additionalSkills": [] },
+        "milestone":     { "primarySkill": "milestone",                "additionalSkills": [] },
+        "monthly":       { "primarySkill": "monthly",                  "additionalSkills": [] },
+        "plan":          { "primarySkill": "plan",                     "additionalSkills": ["report-generator"] },
+        "pm":            { "primarySkill": "pm",                       "additionalSkills": [] },
+        "progress":      { "primarySkill": "progress",                 "additionalSkills": [] },
+        "risk":          { "primarySkill": "risk",                     "additionalSkills": [] },
+        "standup":       { "primarySkill": "standup",                  "additionalSkills": [] },
+        "stats":         { "primarySkill": "stats",                    "additionalSkills": [] },
+        "weekly":        { "primarySkill": "weekly",                   "additionalSkills": [] }
+      }
+    },
+    "diag": {
+      "commands": {
+        "audit":         { "primarySkill": "audit",                    "additionalSkills": [] },
+        "diag":          { "primarySkill": "diag",                     "additionalSkills": [] },
+        "diagnose":      { "primarySkill": "diagnose",                 "additionalSkills": ["stack-analyzer"] },
+        "init":          { "primarySkill": "init",                     "additionalSkills": [] }
+      }
+    },
+    "uat": {
+      "commands": {
+        "bug":           { "primarySkill": "bug",                      "additionalSkills": [] },
+        "init":          { "primarySkill": "init",                     "additionalSkills": ["uat-executor"] },
+        "new":           { "primarySkill": "new",                      "additionalSkills": [] },
+        "report":        { "primarySkill": "report",                   "additionalSkills": [] },
+        "run":           { "primarySkill": "run",                      "additionalSkills": ["uat-executor"] },
+        "uat":           { "primarySkill": "uat",                      "additionalSkills": [] }
+      }
+    }
+  },
+  "allSkills": {
+    "req": [
+      "branch", "cache", "changelog", "changelog-generator", "code-impact-analyzer",
+      "commit", "dev", "dev-guide", "do", "done", "edit", "fix", "help", "init",
+      "issue", "issue-guide", "migrate", "modules", "natural-language-dispatcher",
+      "new", "new-quick", "pr", "prd", "prd-analyzer", "prd-edit", "projects",
+      "quick-fix-guide", "release", "release-rationale", "req",
+      "requirement-analyzer", "review", "review-pr", "show", "specs", "split",
+      "status", "test", "test-guide", "test_new", "test_regression", "update",
+      "update-template", "upgrade", "use", "version-bumper"
+    ],
+    "api": [
+      "api", "api-field-mapper", "config", "gen", "help", "import", "map", "search"
+    ],
+    "pm": [
+      "ask", "brief", "export", "help", "milestone", "monthly", "plan",
+      "pm", "progress", "report-generator", "risk", "standup", "stats", "weekly"
+    ],
+    "diag": [
+      "audit", "diag", "diagnose", "init", "stack-analyzer"
+    ],
+    "uat": [
+      "bug", "init", "new", "report", "run", "uat", "uat-executor"
+    ]
+  }
+}
