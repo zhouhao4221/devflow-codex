@@ -255,7 +255,7 @@ function installAll(selected, cfg, dir, global, symlink, sourceLabel) {
     }
   }
   const label = sourceLabel ? `从 ${sourceLabel} ` : '';
-  console.log(`\n已${label}安装 ${installed} 个技能到 ${targetBase(cfg, dir, global)}/`);
+  console.log(`\n已${label}安装 ${installed} 个技能到 ${path.resolve(targetBase(cfg, dir, global))}/`);
   console.log('下一步: 重启 AI 工具或刷新技能列表即可使用。');
 }
 
