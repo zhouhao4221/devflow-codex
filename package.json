@@ -12,6 +12,7 @@
   },
   "files": [
     "install.js",
+    "plugins/",
     "package.json"
   ]
 }
