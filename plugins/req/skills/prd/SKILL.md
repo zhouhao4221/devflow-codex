@@ -8,7 +8,7 @@ description: 查看 PRD 状态 - 产品需求文档概览和章节填充分析
 查看产品需求文档（PRD）的填充情况、各章节完成度、需求追踪统计。
 
 > **Audience:** Product Manager
-> 存储路径规则见 [_storage.md](./_storage.md)
+> 存储路径规则见 `_storage.md`
 
 ## 命令格式
 

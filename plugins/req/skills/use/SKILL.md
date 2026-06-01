@@ -48,7 +48,7 @@ description: 切换需求项目 - 将当前仓库绑定到不同的项目
 
 ### 4. 更新仓库绑定
 
-> 写入规范见 [_storage.md](./_storage.md#settings-文件写入规范)。
+> 写入规范见 `_storage.md`。
 
 读取已有 `.claude/settings.json`，合并以下字段后写回（不覆盖已有的 `branchStrategy` 等字段）：
 

@@ -76,7 +76,7 @@ REQ-000-初始化项目.md
 
 ### 6. 绑定当前仓库
 
-> 写入规范见 [_storage.md](./_storage.md#settingslocaljson-写入规范)。
+> 写入规范见 `_storage.md`。
 
 读取已有 `.claude/settings.local.json`，合并以下字段后写回（不覆盖已有的 `branchStrategy` 等字段）：
 

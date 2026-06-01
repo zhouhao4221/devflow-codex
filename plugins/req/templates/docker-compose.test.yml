@@ -1,0 +1,84 @@
+# 测试环境 Docker 配置模板
+# 复制到项目根目录并根据需要修改
+
+version: '3.8'
+
+services:
+  # MySQL 测试数据库
+  mysql-test:
+    image: ${MYSQL_TEST_IMAGE:-mysql:8.0}  # 可替换为预先创建的测试镜像
+    container_name: mysql-test
+    ports:
+      - "3307:3306"  # 使用不同端口避免与开发环境冲突
+    environment:
+      MYSQL_ROOT_PASSWORD: test123
+      MYSQL_DATABASE: test_db
+      MYSQL_USER: test_user
+      MYSQL_PASSWORD: test123
+    volumes:
+      - mysql-test-data:/var/lib/mysql
+      # 可挂载初始化脚本
+      # - ./tests/fixtures/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - test-network
+
+  # Redis 测试缓存
+  redis-test:
+    image: ${REDIS_TEST_IMAGE:-redis:7-alpine}  # 可替换为预先创建的测试镜像
+    container_name: redis-test
+    ports:
+      - "6380:6379"  # 使用不同端口避免与开发环境冲突
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - test-network
+
+volumes:
+  mysql-test-data:
+
+networks:
+  test-network:
+    driver: bridge
+
+# ===========================================
+# 使用说明
+# ===========================================
+#
+# 1. 启动测试环境：
+#    docker-compose -f docker-compose.test.yml up -d
+#
+# 2. 等待服务就绪：
+#    docker-compose -f docker-compose.test.yml ps
+#
+# 3. 查看日志：
+#    docker-compose -f docker-compose.test.yml logs -f
+#
+# 4. 停止并清理：
+#    docker-compose -f docker-compose.test.yml down -v
+#
+# 5. 使用自定义镜像：
+#    MYSQL_TEST_IMAGE=my-mysql-test:latest docker-compose -f docker-compose.test.yml up -d
+#
+# ===========================================
+# 测试数据库连接信息
+# ===========================================
+#
+# MySQL:
+#   Host: localhost
+#   Port: 3307
+#   Database: test_db
+#   User: test_user / root
+#   Password: test123
+#
+# Redis:
+#   Host: localhost
+#   Port: 6380
+#

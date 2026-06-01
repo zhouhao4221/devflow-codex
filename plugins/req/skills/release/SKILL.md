@@ -9,7 +9,7 @@ description: 颁布版本 - 合并 SQL、生成回滚、打 tag、创建 Release
 
 > **Audience:** Engineer
 > readonly 仓库可用。不触发缓存同步。
-> CLI 优先：GitHub → `gh`；Gitea → 检测 `tea`，不支持的接口回退 curl。详见 [`_gitea_cli.md`](./_gitea_cli.md)。
+> CLI 优先：GitHub → `gh`；Gitea → 检测 `tea`，不支持的接口回退 curl。详见 `_gitea_cli.md`。
 > 设计原理和边界情况详见 [`release-rationale.md`](./release-rationale.md)。
 
 ## 参数

@@ -9,7 +9,7 @@ description: Issue 工作流 - 创建/编辑/关闭/列表/查看/评论 issue
 
 > 不受仓库角色限制，readonly 也可执行。不触发缓存同步。
 >
-> **CLI 优先级**：GitHub 走 `gh`；Gitea 按 [`_gitea_cli.md`](./_gitea_cli.md) 检测 `tea`，可用即走 `tea`，否则回退 curl。`tea` 不支持的操作（评论列表、标签增删等）始终走 curl。
+> **CLI 优先级**：GitHub 走 `gh`；Gitea 按 `_gitea_cli.md` 检测 `tea`，可用即走 `tea`，否则回退 curl。`tea` 不支持的操作（评论列表、标签增删等）始终走 curl。
 
 ---
 

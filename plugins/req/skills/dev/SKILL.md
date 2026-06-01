@@ -8,7 +8,7 @@ description: 需求开发 - 启动或继续开发
 启动或继续需求开发，先生成实现方案，确认后逐步实现。
 
 > **Audience:** Engineer
-> 存储路径规则见 [_storage.md](./_storage.md)
+> 存储路径规则见 `_storage.md`
 
 ## 命令格式
 

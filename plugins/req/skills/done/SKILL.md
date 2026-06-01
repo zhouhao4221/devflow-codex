@@ -7,9 +7,9 @@ description: 完成需求 - 标记完成并归档
 
 标记需求为已完成，归档文档。
 
-> 存储路径和缓存同步规则见 [_storage.md](./_storage.md)
+> 存储路径和缓存同步规则见 `_storage.md`
 >
-> **CLI 优先级**：GitHub 走 `gh`；Gitea 按 [`_gitea_cli.md`](./_gitea_cli.md) 检测 `tea`，可用即走 `tea pulls create` / `tea issues close`，否则回退本文 curl 示例。
+> **CLI 优先级**：GitHub 走 `gh`；Gitea 按 `_gitea_cli.md` 检测 `tea`，可用即走 `tea pulls create` / `tea issues close`，否则回退本文 curl 示例。
 
 ## 命令格式
 

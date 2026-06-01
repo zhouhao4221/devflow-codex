@@ -8,7 +8,7 @@ description: 创建新需求 - 基于模板创建需求文档
 基于模板创建新的需求文档，引导用户完成需求分析。
 
 > **Audience:** Product Manager
-> 存储路径规则见 [_storage.md](./_storage.md)
+> 存储路径规则见 `_storage.md`
 
 ## 命令格式
 

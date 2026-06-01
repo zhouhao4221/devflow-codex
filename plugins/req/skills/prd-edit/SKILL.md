@@ -8,7 +8,7 @@ description: 编辑 PRD - 修改和完善产品需求文档
 AI 辅助分析和修改产品需求文档（PRD），支持按章节编辑和从现有需求反推内容。
 
 > **Audience:** Product Manager
-> 存储路径和缓存同步规则见 [_storage.md](./_storage.md)
+> 存储路径和缓存同步规则见 `_storage.md`
 
 ## 命令格式
 

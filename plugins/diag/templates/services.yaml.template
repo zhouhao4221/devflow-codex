@@ -1,0 +1,31 @@
+# services.yaml - Diag 插件服务清单
+# 位置：~/.claude-diag/config/services.yaml
+#
+# 本文件是 **唯一** 的主机白名单源：
+# - SSH 目标主机必须在本文件 host 字段中登记，否则 Hook 直接拒绝
+# - 每次 /diag:diagnose 都会从本文件读取服务列表让用户选择
+#
+# 校验规则：
+# - 每个 service 必填 name / host / log_paths
+# - name 必须唯一（作为服务标识）
+# - host 对应 ~/.ssh/config 中的 Host 名，或 user@ip 形式
+# - log_paths 至少 1 条，绝对路径
+# - language_hint 可选，枚举：java / node / python / go / ruby / php（仅作 AI 识别提示）
+# - tags 可选，用于筛选
+
+services:
+  # ------ 示例条目（修改为真实服务后保留并增删） ------
+  - name: example-api
+    host: example-prod-01
+    log_paths:
+      - /var/log/app/example.log
+    language_hint: java
+    tags: [backend]
+
+  # - name: user-service
+  #   host: example-prod-02
+  #   log_paths:
+  #     - /var/log/user-service/app.log
+  #     - /var/log/user-service/error.log
+  #   language_hint: node
+  #   tags: [backend, user]
