@@ -1,7 +1,6 @@
 ---
 name: audit
-description: |
-  查询 Diag 审计日志 - 按主机/服务/时间过滤
+description: 查询 Diag 审计日志 - 按主机/服务/时间过滤
 ---
 
 # /diag:audit - 审计查询

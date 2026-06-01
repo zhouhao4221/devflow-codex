@@ -1,7 +1,6 @@
 ---
 name: done
-description: |
-  完成需求 - 标记完成并归档
+description: 完成需求 - 标记完成并归档
 ---
 
 # 完成需求

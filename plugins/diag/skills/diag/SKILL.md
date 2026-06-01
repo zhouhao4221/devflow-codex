@@ -1,7 +1,6 @@
 ---
 name: diag
-description: |
-  生产诊断插件 - 列出 init / diagnose / audit 子命令
+description: 生产诊断插件 - 列出 init / diagnose / audit 子命令
 ---
 
 # Diag - 生产诊断插件

@@ -1,7 +1,6 @@
 ---
 name: review-pr
-description: |
-  PR 审查与合并 - AI 代码审查、提交评论、合并 PR
+description: PR 审查与合并 - AI 代码审查、提交评论、合并 PR
 ---
 
 # PR 审查与合并

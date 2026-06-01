@@ -1,10 +1,6 @@
 ---
 name: uat-executor
-description: |
-  UAT 测试执行引导。在 /uat:run 命令时激活。
-  读取自然语言测试流程文档，理解每步操作意图，
-  根据当前环境选择最合适的工具和元素定位方式执行。
-  不依赖选择器前置，testid/aria-label 为可选加速提示。
+description: UAT 测试执行引导。在 /uat:run 命令时激活。 读取自然语言测试流程文档，理解每步操作意图， 根据当前环境选择最合适的工具和元素定位方式执行。 不依赖选择器前置，testid/aria-label 为可选加速提示。
 ---
 
 # UAT 执行引导

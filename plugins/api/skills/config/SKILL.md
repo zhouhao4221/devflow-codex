@@ -1,7 +1,6 @@
 ---
 name: config
-description: |
-  API 配置管理 - 初始化和管理 Swagger 数据源配置
+description: API 配置管理 - 初始化和管理 Swagger 数据源配置
 ---
 
 # API 配置管理

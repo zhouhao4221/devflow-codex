@@ -1,7 +1,6 @@
 ---
 name: update-template
-description: |
-  更新模板 - 将插件最新模板同步到项目本地
+description: 更新模板 - 将插件最新模板同步到项目本地
 ---
 
 # 更新模板文件

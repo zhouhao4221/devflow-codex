@@ -1,7 +1,6 @@
 ---
 name: projects
-description: |
-  列出所有需求项目 - 查看全局缓存中的所有项目
+description: 列出所有需求项目 - 查看全局缓存中的所有项目
 ---
 
 # 列出所有需求项目

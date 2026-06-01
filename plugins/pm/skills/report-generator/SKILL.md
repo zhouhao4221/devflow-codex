@@ -1,9 +1,6 @@
 ---
 name: report-generator
-description: |
-  项目汇报生成助手。在执行 /pm:weekly、/pm:monthly、/pm:milestone、/pm:progress、
-  /pm:brief、/pm:standup 等生成类命令时触发。
-  负责将原始数据整合为结构化、可读性强的汇报文档。
+description: 项目汇报生成助手。在执行 /pm:weekly、/pm:monthly、/pm:milestone、/pm:progress、 /pm:brief、/pm:standup 等生成类命令时触发。 负责将原始数据整合为结构化、可读性强的汇报文档。
 ---
 
 # 项目汇报生成助手

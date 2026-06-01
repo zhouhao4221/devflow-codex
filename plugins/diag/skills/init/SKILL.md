@@ -1,7 +1,6 @@
 ---
 name: init
-description: |
-  初始化 Diag 插件 - 创建 ~/.claude-diag/ 配置目录 + 服务清单模板 + 依赖检查
+description: 初始化 Diag 插件 - 创建 ~/.claude-diag/ 配置目录 + 服务清单模板 + 依赖检查
 ---
 
 # /diag:init - 初始化 Diag 插件

@@ -1,7 +1,6 @@
 ---
 name: test
-description: |
-  需求测试 - 综合测试验证（回归 + 新建 + 交互验证）
+description: 需求测试 - 综合测试验证（回归 + 新建 + 交互验证）
 ---
 
 > **重要**：本命令的测试文件位置、运行命令、环境启动命令均从项目 `docs/prompt/testing.md` 读取，不内置任何项目细节。文件不存在时打印创建提示（非阻塞），并回退到 `docs/prompt/architecture.md` 的「测试规范」章节。

@@ -1,7 +1,6 @@
 ---
 name: milestone
-description: |
-  里程碑总结 - 版本发布总结报告
+description: 里程碑总结 - 版本发布总结报告
 ---
 
 # 里程碑总结

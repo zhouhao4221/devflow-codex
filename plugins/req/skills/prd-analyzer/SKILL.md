@@ -1,7 +1,6 @@
 ---
 name: prd-analyzer
-description: |
-  PRD 分析助手。仅在执行 /req:prd-edit 命令时触发。帮助完善产品需求文档。
+description: PRD 分析助手。仅在执行 /req:prd-edit 命令时触发。帮助完善产品需求文档。
 ---
 
 # PRD 分析助手

@@ -1,7 +1,6 @@
 ---
 name: changelog
-description: |
-  生成版本说明 - 基于 Git 记录生成 Changelog
+description: 生成版本说明 - 基于 Git 记录生成 Changelog
 ---
 
 # 生成版本说明

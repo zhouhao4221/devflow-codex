@@ -1,8 +1,6 @@
 ---
 name: issue-guide
-description: |
-  Issue 操作引导助手。在执行 /req:issue 命令，或需要创建/查看/关闭 GitHub/Gitea
-  issue 时触发。提供平台检测、标签匹配、JSON 安全处理等关键约束。
+description: Issue 操作引导助手。在执行 /req:issue 命令，或需要创建/查看/关闭 GitHub/Gitea issue 时触发。提供平台检测、标签匹配、JSON 安全处理等关键约束。
 ---
 
 # Issue 操作引导助手

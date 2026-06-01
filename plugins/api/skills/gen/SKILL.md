@@ -1,7 +1,6 @@
 ---
 name: gen
-description: |
-  代码生成 - 根据接口定义生成 TypeScript 类型和请求函数
+description: 代码生成 - 根据接口定义生成 TypeScript 类型和请求函数
 ---
 
 # 代码生成

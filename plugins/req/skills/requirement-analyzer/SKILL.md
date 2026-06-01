@@ -1,7 +1,6 @@
 ---
 name: requirement-analyzer
-description: |
-  需求分析助手。仅在执行 /req:new 或 /req:edit 命令时触发。帮助完善需求文档。
+description: 需求分析助手。仅在执行 /req:new 或 /req:edit 命令时触发。帮助完善需求文档。
 ---
 
 # 需求分析助手

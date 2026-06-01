@@ -1,7 +1,6 @@
 ---
 name: diagnose
-description: |
-  生产报错定位 - SSH 拉日志 → AI 解析堆栈 → 本地代码关联 → 修复建议
+description: 生产报错定位 - SSH 拉日志 → AI 解析堆栈 → 本地代码关联 → 修复建议
 ---
 
 # /diag:diagnose - 报错定位

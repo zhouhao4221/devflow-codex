@@ -1,7 +1,6 @@
 ---
 name: import
-description: |
-  导入 Swagger - 解析 OpenAPI 文档并展示接口概览
+description: 导入 Swagger - 解析 OpenAPI 文档并展示接口概览
 ---
 
 # 导入 Swagger

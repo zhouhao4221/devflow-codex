@@ -1,7 +1,6 @@
 ---
 name: new-quick
-description: |
-  快速修复 - 创建小bug修复或小功能的快速需求
+description: 快速修复 - 创建小bug修复或小功能的快速需求
 ---
 
 # 快速修复需求

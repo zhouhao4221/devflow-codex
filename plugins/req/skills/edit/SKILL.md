@@ -1,7 +1,6 @@
 ---
 name: edit
-description: |
-  编辑需求 - 修改已有需求文档
+description: 编辑需求 - 修改已有需求文档
 ---
 
 # 编辑需求

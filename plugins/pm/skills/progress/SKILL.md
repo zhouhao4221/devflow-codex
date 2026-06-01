@@ -1,7 +1,6 @@
 ---
 name: progress
-description: |
-  项目总进度 - 全局视角展示需求进度和里程碑
+description: 项目总进度 - 全局视角展示需求进度和里程碑
 ---
 
 # 项目总进度

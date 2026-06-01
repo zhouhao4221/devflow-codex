@@ -1,7 +1,6 @@
 ---
 name: new
-description: |
-  创建新需求 - 基于模板创建需求文档
+description: 创建新需求 - 基于模板创建需求文档
 ---
 
 # 创建新需求

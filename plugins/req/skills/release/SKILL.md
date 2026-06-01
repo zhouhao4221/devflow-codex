@@ -1,7 +1,6 @@
 ---
 name: release
-description: |
-  颁布版本 - 合并 SQL、生成回滚、打 tag、创建 Release
+description: 颁布版本 - 合并 SQL、生成回滚、打 tag、创建 Release
 ---
 
 # 颁布版本

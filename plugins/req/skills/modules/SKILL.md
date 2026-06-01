@@ -1,7 +1,6 @@
 ---
 name: modules
-description: |
-  模块管理 - 列出所有模块及其需求概览
+description: 模块管理 - 列出所有模块及其需求概览
 ---
 
 # 模块管理

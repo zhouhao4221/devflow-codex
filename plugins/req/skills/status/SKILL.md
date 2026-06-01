@@ -1,7 +1,6 @@
 ---
 name: status
-description: |
-  查看需求状态 - 详细状态和进度
+description: 查看需求状态 - 详细状态和进度
 ---
 
 # 查看需求状态

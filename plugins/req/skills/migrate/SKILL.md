@@ -1,7 +1,6 @@
 ---
 name: migrate
-description: |
-  迁移需求 - 将本地需求迁移到全局缓存
+description: 迁移需求 - 将本地需求迁移到全局缓存
 ---
 
 # 迁移需求

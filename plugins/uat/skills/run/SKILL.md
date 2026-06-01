@@ -1,7 +1,6 @@
 ---
 name: run
-description: |
-  执行 UAT 测试 - 按流程文档逐场景验收
+description: 执行 UAT 测试 - 按流程文档逐场景验收
 ---
 
 # 执行 UAT 测试

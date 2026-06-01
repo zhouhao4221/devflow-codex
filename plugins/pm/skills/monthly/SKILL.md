@@ -1,7 +1,6 @@
 ---
 name: monthly
-description: |
-  月报 - 月度工作总结与统计分析
+description: 月报 - 月度工作总结与统计分析
 ---
 
 # 生成月报

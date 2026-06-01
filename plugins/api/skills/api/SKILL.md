@@ -1,7 +1,6 @@
 ---
 name: api
-description: |
-  API 对接工具 - 列出接口概览和子命令帮助
+description: API 对接工具 - 列出接口概览和子命令帮助
 ---
 
 # API 对接工具

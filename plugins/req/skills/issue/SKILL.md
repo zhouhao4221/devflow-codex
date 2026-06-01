@@ -1,7 +1,6 @@
 ---
 name: issue
-description: |
-  Issue 工作流 - 创建/编辑/关闭/列表/查看/评论 issue
+description: Issue 工作流 - 创建/编辑/关闭/列表/查看/评论 issue
 ---
 
 # Issue 工作流

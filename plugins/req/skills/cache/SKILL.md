@@ -1,7 +1,6 @@
 ---
 name: cache
-description: |
-  缓存管理 - 查看、清理全局需求缓存
+description: 缓存管理 - 查看、清理全局需求缓存
 ---
 
 # 缓存管理

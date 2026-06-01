@@ -1,8 +1,6 @@
 ---
 name: test-guide
-description: |
-  测试引导助手。在执行 /req:test、/req:test_regression 或 /req:test_new 命令时触发。
-  支持运行已有自动化测试和创建新测试用例。
+description: 测试引导助手。在执行 /req:test、/req:test_regression 或 /req:test_new 命令时触发。 支持运行已有自动化测试和创建新测试用例。
 ---
 
 # 测试引导助手

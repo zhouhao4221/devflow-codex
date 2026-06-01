@@ -1,7 +1,6 @@
 ---
 name: review
-description: |
-  需求评审 - 提交或记录评审结果
+description: 需求评审 - 提交或记录评审结果
 ---
 
 # 需求评审

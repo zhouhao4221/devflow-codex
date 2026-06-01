@@ -1,9 +1,6 @@
 ---
 name: stack-analyzer
-description: |
-  生产报错堆栈识别助手。仅在执行 /diag:diagnose 命令期间触发。
-  根据日志片段识别多语言栈的异常格式（Java / Node / Python / Go / Ruby / PHP 等），
-  抽取异常类型、错误消息、堆栈帧（文件/行号/方法），为下一步本地代码关联提供结构化输入。
+description: 生产报错堆栈识别助手。仅在执行 /diag:diagnose 命令期间触发。 根据日志片段识别多语言栈的异常格式（Java / Node / Python / Go / Ruby / PHP 等）， 抽取异常类型、错误消息、堆栈帧（文件/行号/方法），为下一步本地代码关联提供结构化输入。
 ---
 
 # 生产报错堆栈识别助手

@@ -1,7 +1,6 @@
 ---
 name: upgrade
-description: |
-  升级需求 - 将快速修复升级为正式需求
+description: 升级需求 - 将快速修复升级为正式需求
 ---
 
 # 升级快速修复为正式需求

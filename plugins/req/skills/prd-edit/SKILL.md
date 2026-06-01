@@ -1,7 +1,6 @@
 ---
 name: prd-edit
-description: |
-  编辑 PRD - 修改和完善产品需求文档
+description: 编辑 PRD - 修改和完善产品需求文档
 ---
 
 # 编辑 PRD

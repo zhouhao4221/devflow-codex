@@ -1,7 +1,6 @@
 ---
 name: help
-description: |
-  使用教程 - 查看插件完整使用指南
+description: 使用教程 - 查看插件完整使用指南
 ---
 
 # 使用教程

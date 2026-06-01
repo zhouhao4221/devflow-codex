@@ -1,7 +1,6 @@
 ---
 name: search
-description: |
-  搜索接口 - 按关键词搜索 Swagger 中的 API 接口
+description: 搜索接口 - 按关键词搜索 Swagger 中的 API 接口
 ---
 
 # 搜索接口

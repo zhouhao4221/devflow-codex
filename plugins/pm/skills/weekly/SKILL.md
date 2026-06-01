@@ -1,7 +1,6 @@
 ---
 name: weekly
-description: |
-  周报 - 基于项目数据自动生成本周工作汇报
+description: 周报 - 基于项目数据自动生成本周工作汇报
 ---
 
 # 生成周报

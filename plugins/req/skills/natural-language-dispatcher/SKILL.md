@@ -1,20 +1,6 @@
 ---
 name: natural-language-dispatcher
-description: |
-  自然语言需求调度器。当用户用自然语言描述下列意图时自动触发并映射到对应命令：
-  - 需求文档：新增/新建/创建需求、修改/编辑/变更需求（带编号）
-  - 修复与开发：修 bug、修复报错、优化/重构/升级/统一代码、快速修复、小功能
-  - 状态流转：开发/测试/评审通过/评审驳回/完成/归档需求（必须带编号）
-  - 版本 PR：规范提交、创建 PR、审查 PR、合并 PR、拉 PR 评论
-  - Issue 操作：提/建/开 issue、评论讨论、关闭/重开/查看/列出 issue
-  - URL 识别：识别 issue/PR 链接并映射到对应命令（如 owner/repo/issues/169、
-    owner/repo/pulls/158、https://github.com/owner/repo/pull/1）
-  - 确认偏好：开启/关闭/查询 git commit 前的原生确认弹框（直接维护 marker + memory，不走命令）
-  示例："新增需求 用户积分管理"、"修改025需求"、"修个登录超时的 bug"、
-  "优化订单查询性能"、"开始开发025"、"025 评审通过"、"完成 025"、"创建 PR"、"审查 PR"、
-  "提个 issue 登录超时"、"给 #42 回复 已修复"、"关闭 issue 42"、
-  "修 pipexerp/diciai/issues/169"、"审查 pipexerp/diciai/pulls/158"、
-  "开启提交确认"、"不用确认了"。
+description: 自然语言需求调度器。当用户用自然语言描述下列意图时自动触发并映射到对应命令： - 需求文档：新增/新建/创建需求、修改/编辑/变更需求（带编号） - 修复与开发：修 bug、修复报错、优化/重构/升级/统一代码、快速修复、小功能 - 状态流转：开发/测试/评审通过/评审驳回/完成/归档需求（必须带编号） - 版本 PR：规范提交、创建 PR、审查 PR、合并 PR、拉 PR 评论 - Issue 操作：提/建/开 issue、评论讨论、关闭/重开/查看/列出 issue - URL 识别：识别 issue/PR 链接并映射到对应命令（如 owner/repo/issues/169、 owner/repo/pulls/158、https://github.com/owner/repo/pull/1） - 确认偏好：开启/关闭/查询 git commit 前的原生确认弹框（直接维护 marker + memory，不走命令） 示例："新增需求 用户积分管理"、"修改025需求"、"修个登录超时的 bug"、 "优化订单查询性能"、"开始开发025"、"025 评审通过"、"完成 025"、"创建 PR"、"审查 PR"、 "提个 issue 登录超时"、"给 #42 回复 已修复"、"关闭 issue 42"、 "修 pipexerp/diciai/issues/169"、"审查 pipexerp/diciai/pulls/158"、 "开启提交确认"、"不用确认了"。
 ---
 
 # 自然语言需求调度器

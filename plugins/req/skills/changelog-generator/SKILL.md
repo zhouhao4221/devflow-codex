@@ -1,8 +1,6 @@
 ---
 name: changelog-generator
-description: |
-  版本说明生成助手。仅在执行 /req:changelog 命令时触发。
-  根据 Git 提交记录自动分类并生成结构化的版本升级说明。
+description: 版本说明生成助手。仅在执行 /req:changelog 命令时触发。 根据 Git 提交记录自动分类并生成结构化的版本升级说明。
 ---
 
 # 版本说明生成助手

@@ -1,8 +1,6 @@
 ---
 name: version-bumper
-description: |
-  版本号管理助手。仅在执行 /req:release 命令时触发。
-  自动检测各插件变更范围，按 semver 规则推导并更新插件版本号和整体版本号。
+description: 版本号管理助手。仅在执行 /req:release 命令时触发。 自动检测各插件变更范围，按 semver 规则推导并更新插件版本号和整体版本号。
 ---
 
 # 版本号管理助手

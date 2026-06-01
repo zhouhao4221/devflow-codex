@@ -1,7 +1,6 @@
 ---
 name: fix
-description: |
-  轻量修复 - 无文档的 bug 修复流程，AI 辅助定位问题
+description: 轻量修复 - 无文档的 bug 修复流程，AI 辅助定位问题
 ---
 
 # 轻量修复

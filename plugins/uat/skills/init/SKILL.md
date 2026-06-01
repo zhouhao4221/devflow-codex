@@ -1,7 +1,6 @@
 ---
 name: init
-description: |
-  初始化 UAT 插件 - 创建目录结构并安装 skill 到项目
+description: 初始化 UAT 插件 - 创建目录结构并安装 skill 到项目
 ---
 
 # 初始化 UAT 插件

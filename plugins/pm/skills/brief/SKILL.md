@@ -1,7 +1,6 @@
 ---
 name: brief
-description: |
-  项目简介 - 生成面向新人或客户的项目概述
+description: 项目简介 - 生成面向新人或客户的项目概述
 ---
 
 # 项目简介

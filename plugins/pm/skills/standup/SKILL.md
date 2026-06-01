@@ -1,7 +1,6 @@
 ---
 name: standup
-description: |
-  站会摘要 - 昨天完成、今天计划、阻塞项
+description: 站会摘要 - 昨天完成、今天计划、阻塞项
 ---
 
 # 站会摘要

@@ -1,7 +1,6 @@
 ---
 name: show
-description: |
-  查看需求详情 - 阅读需求完整内容
+description: 查看需求详情 - 阅读需求完整内容
 ---
 
 # 查看需求详情

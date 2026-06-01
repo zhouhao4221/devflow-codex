@@ -1,7 +1,6 @@
 ---
 name: uat
-description: |
-  UAT 测试工作流 - 列出测试模块和上次执行状态
+description: UAT 测试工作流 - 列出测试模块和上次执行状态
 ---
 
 # UAT 测试工作流

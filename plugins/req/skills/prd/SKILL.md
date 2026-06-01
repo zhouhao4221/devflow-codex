@@ -1,7 +1,6 @@
 ---
 name: prd
-description: |
-  查看 PRD 状态 - 产品需求文档概览和章节填充分析
+description: 查看 PRD 状态 - 产品需求文档概览和章节填充分析
 ---
 
 # 查看 PRD 状态

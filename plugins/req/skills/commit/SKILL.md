@@ -1,7 +1,6 @@
 ---
 name: commit
-description: |
-  规范提交 - 生成 Conventional Commits 格式的 Git 提交
+description: 规范提交 - 生成 Conventional Commits 格式的 Git 提交
 ---
 
 # 规范提交

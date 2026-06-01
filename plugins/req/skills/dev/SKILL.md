@@ -1,7 +1,6 @@
 ---
 name: dev
-description: |
-  需求开发 - 启动或继续开发
+description: 需求开发 - 启动或继续开发
 ---
 
 # 需求开发

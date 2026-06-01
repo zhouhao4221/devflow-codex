@@ -1,7 +1,6 @@
 ---
 name: report
-description: |
-  查看测试报告 - 展示最近一次执行结果
+description: 查看测试报告 - 展示最近一次执行结果
 ---
 
 # 查看测试报告

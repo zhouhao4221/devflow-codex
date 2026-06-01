@@ -1,7 +1,6 @@
 ---
 name: export
-description: |
-  导出内容 - 将 pm 生成的内容保存到 docs/reports/
+description: 导出内容 - 将 pm 生成的内容保存到 docs/reports/
 ---
 
 # 导出内容

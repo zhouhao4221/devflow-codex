@@ -1,7 +1,6 @@
 ---
 name: dev-guide
-description: |
-  开发引导助手。仅在执行 /req:dev 命令时触发。按项目分层架构引导开发。
+description: 开发引导助手。仅在执行 /req:dev 命令时触发。按项目分层架构引导开发。
 ---
 
 # 开发引导助手

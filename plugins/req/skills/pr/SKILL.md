@@ -1,7 +1,6 @@
 ---
 name: pr
-description: |
-  创建 PR - 根据仓库类型自动创建 Pull Request
+description: 创建 PR - 根据仓库类型自动创建 Pull Request
 ---
 
 # 创建 Pull Request
