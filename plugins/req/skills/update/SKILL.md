@@ -57,7 +57,7 @@ git -C "$SOURCE_PATH" fetch origin --quiet
 
 LOCAL=$(git -C "$SOURCE_PATH" rev-parse HEAD)
 REMOTE=$(git -C "$SOURCE_PATH" rev-parse "@{u}" 2>/dev/null)
-CURRENT_VER=$(jq -r '.version // "unknown"' "$SOURCE_PATH/plugins/req/.claude-plugin/plugin.json" 2>/dev/null)
+CURRENT_VER=$(jq -r '.version // "unknown"' "$SOURCE_PATH/plugins/req/.codex-plugin/plugin.json" 2>/dev/null)
 ```
 
 已是最新时：
@@ -78,7 +78,7 @@ CURRENT_VER=$(jq -r '.version // "unknown"' "$SOURCE_PATH/plugins/req/.claude-pl
 
 ```bash
 git -C "$SOURCE_PATH" pull --ff-only origin
-NEW_VER=$(jq -r '.version // "unknown"' "$SOURCE_PATH/plugins/req/.claude-plugin/plugin.json" 2>/dev/null)
+NEW_VER=$(jq -r '.version // "unknown"' "$SOURCE_PATH/plugins/req/.codex-plugin/plugin.json" 2>/dev/null)
 ```
 
 成功：

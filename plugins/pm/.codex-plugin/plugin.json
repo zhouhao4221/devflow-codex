@@ -1,0 +1,40 @@
+{
+  "name": "pm",
+  "version": "0.5.0",
+  "description": "项目管理助手 - 从 PRD、需求文档和 Git 记录生成汇报、统计、方案",
+  "author": {
+    "name": "zhouhao4221",
+    "url": "https://github.com/zhouhao4221"
+  },
+  "homepage": "https://github.com/zhouhao4221/devflow-codex",
+  "repository": "https://github.com/zhouhao4221/devflow-codex",
+  "license": "Apache-2.0",
+  "keywords": [
+    "project-management",
+    "weekly-report",
+    "milestone",
+    "risk",
+    "planning"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "DevFlow PM",
+    "shortDescription": "项目周报、月报、风险、进度和里程碑总结",
+    "longDescription": "DevFlow PM turns requirement docs and Git history into project reports, standup notes, risks, progress summaries, milestones, and planning documents.",
+    "developerName": "zhouhao4221",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/zhouhao4221/devflow-codex",
+    "defaultPrompt": [
+      "生成本周项目周报",
+      "扫描项目风险",
+      "总结当前里程碑进展"
+    ],
+    "brandColor": "#7C3AED",
+    "screenshots": []
+  }
+}

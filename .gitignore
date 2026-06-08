@@ -12,7 +12,11 @@ Thumbs.db
 *.tmp
 *.bak
 
+# DevFlow local settings
+.devflow/settings.local.json
+
 # Generated adaptor output
 .agents/skills/
+.codex/commands/
 skills.json
 agents/openai.yaml

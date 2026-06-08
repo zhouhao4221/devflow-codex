@@ -3,13 +3,13 @@ set -euo pipefail
 
 usage() {
   cat <<EOF
-用法: $0 [devflow-skills路径] [输出路径]
+用法: $0 [devflow-codex路径] [输出路径]
 
-从 devflow-skills 源头生成 OpenCode .agents/skills/ 技能目录。
+从 devflow-codex 源头生成 OpenCode .agents/skills/ 技能目录。
 命名规则: <plugin>-<name> 扁平化，复制时自动更新 frontmatter name 字段。
 
 参数:
-  devflow-skills路径      默认当前目录
+  devflow-codex路径      默认当前目录
   输出路径                  默认当前目录下的 .agents/skills/
 EOF
 }
@@ -18,7 +18,7 @@ SKILLS_DIR="${1:-$(pwd)}"
 OUTPUT_DIR="${2:-${SKILLS_DIR}/.agents/skills}"
 
 if [ ! -d "$SKILLS_DIR/plugins" ]; then
-  echo "错误: 未找到 plugins/ 目录，请确认 devflow-skills 路径: $SKILLS_DIR"
+  echo "错误: 未找到 plugins/ 目录，请确认 devflow-codex 路径: $SKILLS_DIR"
   exit 1
 fi
 

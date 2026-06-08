@@ -14,7 +14,7 @@ description: 使用教程 - 查看插件完整使用指南
 按以下优先级决定语言：
 
 1. 命令参数 `--lang=zh|en|ko`（显式覆盖）
-2. `.claude/settings.local.json` 的 `language` 字段
+2. `.devflow/settings.local.json` 的 `language` 字段（legacy fallback: `.claude/settings.local.json`）
 3. 默认 `zh`
 
 ### 2. 读取教程文件
@@ -111,7 +111,7 @@ Enter a section number to view details, or read the full tutorial.
 ```
 
 示例：
-- `/req:help` → 中文章节索引（或 settings.local.json 中设定的语言）
+- `/req:help` → 中文章节索引（或 `.devflow/settings.local.json` 中设定的语言）
 - `/req:help --lang=en` → English section index
 - `/req:help --lang=ko` → 한국어 섹션 인덱스
 - `/req:help 4` → 第四章「开发阶段」
@@ -120,7 +120,7 @@ Enter a section number to view details, or read the full tutorial.
 
 ## 持久化语言偏好（可选）
 
-如果想省去每次加 `--lang` 参数，在 `.claude/settings.local.json` 中设置：
+如果想省去每次加 `--lang` 参数，在 `.devflow/settings.local.json` 中设置：
 
 ```json
 {

@@ -31,7 +31,7 @@ description: 快速修复 - 创建小bug修复或小功能的快速需求
 
 ### 0. 解析存储路径
 
-本地主存储为 `docs/requirements/active/` 和 `docs/requirements/completed/`，确保目录存在。读取 `settings.local.json` 的 `requirementProject`；有绑定则同时准备缓存路径 `~/.claude-requirements/projects/$PROJECT/`。
+本地主存储为 `docs/requirements/active/` 和 `docs/requirements/completed/`，确保目录存在。读取 `.devflow/settings.local.json` / `.devflow/settings.json` 的 `requirementProject`；primary 直接写当前仓库，readonly 不允许创建需求并提示到主仓执行。旧项目仅 fallback 读取 `.claude/settings.local.json`。
 
 ### 1. 生成需求编号
 
@@ -95,9 +95,9 @@ description: 快速修复 - 创建小bug修复或小功能的快速需求
 - `issue` 字段：从 issue 导入时填 `#N`，否则填 `-`
 - 生命周期勾选「草稿」
 
-**步骤 4.2：同步到全局缓存**
+**步骤 4.2：保存文档**
 
-若已绑定项目，将新建文档同步复制到 `$CACHE_ACTIVE/`。
+将新建文档保存到当前主仓 `docs/requirements/active/`。readonly 仓库不创建快速修复文档，应提示到主仓执行；legacy 缓存同步仅在旧项目需要时执行。
 
 ### 5. 快速分析并生成方案
 

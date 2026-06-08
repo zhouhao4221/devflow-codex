@@ -47,7 +47,7 @@ description: 创建 PR - 根据仓库类型自动创建 Pull Request
 
 ### 3. 读取策略配置 + 推导合并目标
 
-读取 `.claude/settings.local.json.branchStrategy`：
+读取 `.devflow/settings.local.json` / `.devflow/settings.json` 的 `branchStrategy`，legacy fallback 到 `.claude/settings.local.json.branchStrategy`：
 - `model`（`git-flow` / `github-flow` / `trunk-based`，缺省 `github-flow`）
 - `mainBranch`（缺省 `main`）
 - `developBranch`（缺省 `develop`，git-flow 专用）

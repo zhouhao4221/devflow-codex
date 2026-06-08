@@ -26,7 +26,7 @@ description: 执行 UAT 测试 - 按流程文档逐场景验收
 
 ### 0. 前置检查：skill 是否已安装
 
-检查 `.claude/skills/uat-executor/SKILL.md` 是否存在：
+检查 `.agents/skills/uat-executor/SKILL.md` 是否存在，legacy fallback 到 `.claude/skills/uat-executor/SKILL.md`：
 
 - 存在 → 继续
 - 不存在 → 终止并提示：
@@ -51,7 +51,7 @@ description: 执行 UAT 测试 - 按流程文档逐场景验收
 
 ### 2. 激活 uat-executor skill
 
-读取 flow 文档后，按 `.claude/skills/uat-executor/SKILL.md` 的指导执行：
+读取 flow 文档后，按 `.agents/skills/uat-executor/SKILL.md` 的指导执行：
 
 - 检查运行环境（browser 模式下确认浏览器工具可用）
 - 逐场景执行并记录结果

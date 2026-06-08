@@ -60,7 +60,7 @@ REQ-XXX <标题> 已完成
 
 ### 7. 分支合并提醒
 
-读取 `.claude/settings.local.json.branchStrategy` 和需求文档的 `branch` 字段。无 `branchStrategy` 或 `branch` 为空 → 跳过本步。
+读取 `.devflow/settings.local.json` / `.devflow/settings.json` 的 `branchStrategy`（legacy fallback 到 `.claude/settings.local.json.branchStrategy`）和需求文档的 `branch` 字段。无 `branchStrategy` 或 `branch` 为空 → 跳过本步。
 
 按 `repoType` 创建 PR，逻辑同 [pr.md](./pr.md)（push + 创建 PR + 提示 review-pr）。
 

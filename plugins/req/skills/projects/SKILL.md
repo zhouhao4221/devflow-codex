@@ -1,11 +1,11 @@
 ---
 name: projects
-description: 列出所有需求项目 - 查看全局缓存中的所有项目
+description: 查看需求项目绑定 - 展示当前 DevFlow 项目配置
 ---
 
-# 列出所有需求项目
+# 查看需求项目绑定
 
-显示全局缓存中所有项目的概览。
+显示当前仓库的 DevFlow 需求项目配置，以及 readonly 绑定的主仓状态。
 
 ## 命令格式
 
@@ -17,51 +17,53 @@ description: 列出所有需求项目 - 查看全局缓存中的所有项目
 
 ## 执行流程
 
-### 1. 检查全局缓存
+### 1. 读取 DevFlow 配置
 
-检查 `~/.claude-requirements/projects/` 是否存在且非空。
+按优先级读取：
 
-**如果缓存不存在或为空**：
-```
-暂无需求项目
+- `.devflow/settings.local.json`
+- `.devflow/settings.json`
+- `.claude/settings.local.json`（legacy fallback）
 
-使用 /req:init <project-name> 创建第一个项目
-```
+如果没有绑定项目，提示执行 `/req:init <project-name>`。
 
-### 2. 读取全局索引
+### 2. 解析需求根目录
 
-读取 `~/.claude-requirements/index.json` 获取各项目的元信息和关联仓库列表。
+按角色解析：
 
-### 3. 扫描每个项目
+- `primary`：当前仓库 `requirementsDir`，默认 `docs/requirements`
+- `readonly`：`requirementSource.path` + `requirementSource.requirementsDir`
+- legacy：仅 `.devflow` 未配置时可回退 `~/.claude-requirements/projects/<project>`
 
-对每个项目收集：
+### 3. 扫描当前项目
+
+对解析出的需求根目录收集：
 - 活跃需求数量
 - 已完成需求数量
-- 关联的仓库列表
-- 创建时间
+- 模块数量
+- PRD 是否存在
+- 主仓路径（readonly）
 
-### 4. 获取当前仓库绑定
-
-读取当前仓库的 `.claude/settings.local.json` 中的 `requirementProject`
-
-### 5. 输出项目列表
+### 4. 输出项目状态
 
 ```
-需求项目列表
+需求项目状态
 
-| 项目 | 活跃 | 已完成 | 关联仓库 | 创建时间 |
-|------|------|--------|---------|---------|
-| my-saas-product | 3 | 12 | 2 | 2026-01-01 |
-| internal-tools | 1 | 5 | 1 | 2026-01-05 |
-| client-portal | 0 | 0 | 0 | 2026-01-08 |
+项目: devflow-codex
+角色: primary
+需求目录: docs/requirements
+配置: .devflow/settings.json
 
-= 当前仓库绑定的项目
-
-缓存路径: ~/.claude-requirements/
+统计:
+   - 活跃需求: X
+   - 已完成需求: Y
+   - 模块: Z
+   - PRD: 已存在 / 未创建
 
 可用命令:
-   - /req:use <project>   切换到指定项目
-   - /req:init <project>  创建新项目
+   - /req                 查看需求列表
+   - /req:use <主仓路径>   将当前仓绑定到主仓
+   - /req:init <项目名>    初始化当前仓为主仓
 ```
 
 ---
@@ -72,32 +74,20 @@ description: 列出所有需求项目 - 查看全局缓存中的所有项目
 /req:projects --detail
 ```
 
-显示每个项目的详细信息：
+显示配置来源和 legacy fallback 信息：
 
 ```
-需求项目列表
+配置详情
 
+   配置来源:
+      - .devflow/settings.local.json: 存在 / 不存在
+      - .devflow/settings.json: 存在 / 不存在
+      - .claude/settings.local.json: legacy 存在 / 不存在
 
-my-saas-product (当前项目)
-
-   创建时间: 2026-01-01
-   路径: ~/.claude-requirements/projects/my-saas-product/
-
-   需求统计:
-      - 开发中: 1
-      - 待评审: 1
-      - 草稿: 1
-      - ✅ 已完成: 12
-
-   关联仓库:
-      - /Users/xxx/backend
-      - /Users/xxx/frontend
-
-
-internal-tools
-
-   创建时间: 2026-01-05
-   路径: ~/.claude-requirements/projects/internal-tools/
+   requirementSource:
+      - type: local
+      - path: /Users/xxx/primary-repo
+      - requirementsDir: docs/requirements
 
    需求统计:
       - 开发中: 1

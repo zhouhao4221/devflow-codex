@@ -1,0 +1,39 @@
+{
+  "name": "diag",
+  "version": "0.2.0",
+  "description": "生产诊断 - 只读拉日志、AI 解析堆栈、关联代码、给修复建议",
+  "author": {
+    "name": "zhouhao4221",
+    "url": "https://github.com/zhouhao4221"
+  },
+  "homepage": "https://github.com/zhouhao4221/devflow-codex",
+  "repository": "https://github.com/zhouhao4221/devflow-codex",
+  "license": "Apache-2.0",
+  "keywords": [
+    "diagnostics",
+    "logs",
+    "stack-trace",
+    "production",
+    "debugging"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "DevFlow Diag",
+    "shortDescription": "生产日志诊断、堆栈分析和代码关联",
+    "longDescription": "DevFlow Diag guides read-only production diagnostics, log collection, stack trace analysis, local code correlation, and remediation suggestions.",
+    "developerName": "zhouhao4221",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "websiteURL": "https://github.com/zhouhao4221/devflow-codex",
+    "defaultPrompt": [
+      "初始化生产诊断配置",
+      "分析最近一次生产报错",
+      "查看诊断审计日志"
+    ],
+    "brandColor": "#DC2626",
+    "screenshots": []
+  }
+}

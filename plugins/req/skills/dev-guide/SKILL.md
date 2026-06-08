@@ -41,7 +41,7 @@ description: 开发引导助手。仅在执行 /req:dev 命令时触发。按项
 ### 5. 加载项目知识
 
 - **架构文件**：Read `docs/prompt/architecture.md`（不存在时打印非阻塞警告，建议 `/req:init --reinit`）
-- **项目 Skills**：扫描 `.claude/skills/` 下所有 `.md` 文件，静默注入
+- **项目 Skills**：扫描 `.agents/skills/` 下所有 `.md` 文件，legacy fallback 到 `.claude/skills/`，静默注入
 
 ---
 

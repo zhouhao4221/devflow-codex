@@ -3,20 +3,20 @@ set -euo pipefail
 
 usage() {
   cat <<EOF
-用法: $0 [devflow-skills路径]
+用法: $0 [devflow-codex路径]
 
-从 devflow-skills 的 plugins/ 目录自动生成 skills.json 清单，
+从 devflow-codex 的 plugins/ 目录自动生成 skills.json 清单，
 包含全部技能的名称、插件、描述和 agentskills.io 扁平化名称。
 
 参数:
-  devflow-skills路径      默认当前目录
+  devflow-codex路径      默认当前目录
 EOF
 }
 
 SKILLS_DIR="${1:-$(pwd)}"
 
 if [ ! -d "$SKILLS_DIR/plugins" ]; then
-  echo "错误: 未找到 plugins/ 目录，请确认 devflow-skills 路径: $SKILLS_DIR"
+  echo "错误: 未找到 plugins/ 目录，请确认 devflow-codex 路径: $SKILLS_DIR"
   exit 1
 fi
 

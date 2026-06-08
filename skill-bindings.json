@@ -5,7 +5,6 @@
     "req": {
       "commands": {
         "branch":        { "primarySkill": "branch",                   "additionalSkills": [] },
-        "cache":         { "primarySkill": "cache",                    "additionalSkills": [] },
         "changelog":     { "primarySkill": "changelog",                "additionalSkills": ["changelog-generator"] },
         "commit":        { "primarySkill": "commit",                   "additionalSkills": [] },
         "dev":           { "primarySkill": "dev",                      "additionalSkills": ["dev-guide"] },
@@ -32,9 +31,9 @@
         "specs":         { "primarySkill": "specs",                    "additionalSkills": [] },
         "split":         { "primarySkill": "split",                    "additionalSkills": [] },
         "status":        { "primarySkill": "status",                   "additionalSkills": [] },
-        "test":          { "primarySkill": "test",                     "additionalSkills": ["test-guide", "test_new", "test_regression"] },
-        "test_new":      { "primarySkill": "test_new",                 "additionalSkills": ["test-guide"] },
-        "test_regression": { "primarySkill": "test_regression",        "additionalSkills": ["test-guide"] },
+        "test":          { "primarySkill": "test",                     "additionalSkills": ["test-guide", "test-new", "test-regression"] },
+        "test-new":      { "primarySkill": "test-new",                 "additionalSkills": ["test-guide"] },
+        "test-regression": { "primarySkill": "test-regression",        "additionalSkills": ["test-guide"] },
         "update":        { "primarySkill": "update",                   "additionalSkills": [] },
         "update-template": { "primarySkill": "update-template",        "additionalSkills": [] },
         "upgrade":       { "primarySkill": "upgrade",                  "additionalSkills": ["requirement-analyzer"] },
@@ -90,13 +89,13 @@
   },
   "allSkills": {
     "req": [
-      "branch", "cache", "changelog", "changelog-generator", "code-impact-analyzer",
+      "branch", "changelog", "changelog-generator", "code-impact-analyzer",
       "commit", "dev", "dev-guide", "do", "done", "edit", "fix", "help", "init",
       "issue", "issue-guide", "migrate", "modules", "natural-language-dispatcher",
       "new", "new-quick", "pr", "prd", "prd-analyzer", "prd-edit", "projects",
       "quick-fix-guide", "release", "release-rationale", "req",
       "requirement-analyzer", "review", "review-pr", "show", "specs", "split",
-      "status", "test", "test-guide", "test_new", "test_regression", "update",
+      "status", "test", "test-guide", "test-new", "test-regression", "update",
       "update-template", "upgrade", "use", "version-bumper"
     ],
     "api": [

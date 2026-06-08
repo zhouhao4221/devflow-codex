@@ -1,110 +1,127 @@
-# DevFlow Skills
+# DevFlow Codex Plugins
 
-DevFlow 技能包 —— 80 个 AI 技能指令，一键安装到 7 种 AI 工具。
+DevFlow 是面向 Codex marketplace 的工作流插件集合，包含 79 个 skills 和 64 个 plugin-scoped slash commands。
 
-## 快速开始
+## 安装手册
 
-```bash
-# 安装全部技能
-npx @zhouhao4221/devflow-skills install --tool opencode --all
+### 前置条件
 
-# 安装指定插件
-npx @zhouhao4221/devflow-skills install --tool cursor --plugin req
+- 已安装 Codex CLI。
+- 已登录可访问 GitHub 的网络环境。
+- 本仓库按 Codex marketplace 结构提供插件，不再提供 `devflow-codex` npm CLI。
 
-# 安装单个技能
-npx @zhouhao4221/devflow-skills install --tool claude --skill req-dev
+### 安装全部插件
 
-# 查看所有技能
-npx @zhouhao4221/devflow-skills list
-```
-
-首次运行 `npx` 即用，无需安装任何依赖。
-
-## 支持的工具
-
-| 工具 | --tool 值 | 安装路径 |
-|------|-----------|----------|
-| Claude Code | `claude` | `plugins/<plugin>/skills/<name>/` |
-| OpenCode | `opencode` | `.agents/skills/<plugin>-<name>/` |
-| Codex | `codex` | `.agents/skills/<plugin>-<name>/` |
-| Cursor | `cursor` | `.agents/skills/<plugin>-<name>/` |
-| GitHub Copilot | `copilot` | `.agents/skills/<plugin>-<name>/` |
-| CodeBuddy | `codebuddy` | `.agents/skills/<plugin>-<name>/` |
-| Windsurf | `windsurf` | `.agents/skills/<plugin>-<name>/` |
-
-Claude Code 使用分层目录保留插件作用域；其余工具采用 `插件-名称` 扁平命名，保证全局唯一。
-
-## 命令参考
-
-### install — 安装技能
+从 GitHub 安装全部 DevFlow 插件：
 
 ```bash
-npx @zhouhao4221/devflow-skills install --tool <工具名> [--all | --plugin <插件> | --skill <名>] [--dir <路径>] [-g] [--symlink]
+npx codex-marketplace add zhouhao4221/devflow-codex --plugins
 ```
 
-| 参数 | 说明 |
-|------|------|
-| `--tool` | 目标 AI 工具（必填） |
-| `--all` | 安装全部 80 个技能 |
-| `--plugin` | 按插件安装（`req` / `api` / `pm` / `diag` / `uat`） |
-| `--skill` | 安装指定技能，可重复使用 |
-| `--dir` | 目标项目目录，默认当前目录 |
-| `-g`, `--global` | 安装到全局目录（`~/` 下） |
-| `--symlink` | 符号链接模式，多工具共享同一份文件 |
+安装内容：
 
-### list — 列出技能
+- `.agents/plugins/marketplace.json`
+- `req / api / pm / diag / uat` 五个 Codex plugins
+- 每个插件的 `.codex-plugin/plugin.json`
+- 每个插件的 `commands/*.md` 和 `skills/*/SKILL.md`
+
+### 只安装一个插件
+
+例如只安装需求工作流：
 
 ```bash
-npx @zhouhao4221/devflow-skills list [--plugin <插件>] [--filter <关键词>] [--format json]
+npx codex-marketplace add zhouhao4221/devflow-codex/plugins/req --plugin
 ```
 
-### uninstall — 卸载技能
+其他插件路径：
+
+```text
+zhouhao4221/devflow-codex/plugins/api
+zhouhao4221/devflow-codex/plugins/pm
+zhouhao4221/devflow-codex/plugins/diag
+zhouhao4221/devflow-codex/plugins/uat
+```
+
+### 使用命令
+
+安装后重启 Codex，使用 plugin-scoped slash commands：
+
+```text
+/req:init my-project
+/req:new 登录流程优化
+/req:status
+/api:import
+/pm:weekly
+```
+
+### 从旧版迁移
+
+旧版 npm CLI 和本地生成目录已废弃。如果机器上曾安装过旧版，可以清理：
 
 ```bash
-npx @zhouhao4221/devflow-skills uninstall --tool <工具名> [--all | --skill <名>] [--dir <路径>] [-g]
+npm uninstall -g @zhouhao4221/devflow-skills
+rm -rf .agents/skills .codex/commands
 ```
 
-### add — 从 GitHub 仓库安装
+本仓库的项目说明已迁移到 `AGENTS.md`。根目录不再保留工具专属说明文件。
+
+### 更新插件
+
+重新执行安装命令即可拉取最新插件内容。更新后重启 Codex，让 marketplace 缓存和 slash command 列表刷新。
+
+## 插件
+
+| 插件 | Skills | Commands | 用途 |
+|------|--------|----------|------|
+| `req` | 45 | 34 | 需求全生命周期：PRD、需求、开发、测试、发布 |
+| `api` | 8 | 7 | Swagger/OpenAPI 解析、字段映射、代码生成 |
+| `pm` | 14 | 13 | 周报、月报、风险、进度、里程碑 |
+| `diag` | 5 | 4 | 生产日志诊断、堆栈分析、代码关联 |
+| `uat` | 7 | 6 | 用户验收测试、失败上报、测试报告 |
+
+## 仓库结构
+
+```text
+plugins/<plugin>/
+  .codex-plugin/plugin.json   # Codex plugin manifest
+  commands/*.md               # Codex marketplace slash commands
+  skills/<skill>/SKILL.md     # Codex skills
+  templates/                  # 插件模板资源，可选
+
+.agents/plugins/marketplace.json
+skill-bindings.json
+scripts/
+```
+
+`skill-bindings.json` 是 commands 与 skills 的映射表。新增、删除或重命名 skill 时，必须同步更新映射表并重新生成 marketplace 文件。
+
+## 本地开发
+
+重新生成 Codex plugin manifest 和 command 文件：
 
 ```bash
-npx @zhouhao4221/devflow-skills add <owner/repo> --list              # 浏览仓库中的技能
-npx @zhouhao4221/devflow-skills add <owner/repo> --tool cursor --all  # 安装全部
+python3 scripts/generate-codex-marketplace.py
 ```
 
-## 技能分类
-
-| 插件 | 数量 | 用途 |
-|------|------|------|
-| `req` | 46 | 需求全生命周期：创建、评审、开发、测试、发布 |
-| `api` | 8 | Swagger/OpenAPI 解析、字段映射、代码生成 |
-| `pm` | 14 | 项目管理：周报、站会、风险跟踪、里程碑 |
-| `diag` | 5 | 生产诊断：日志审计、堆栈分析 |
-| `uat` | 7 | UI 验收测试：用例执行、Bug 上报、报告生成 |
-
-## 与 devflow-claude 的关系
-
-本仓库是技能的唯一事实来源，[devflow-claude](https://github.com/zhouhao4221/devflow-claude)（Claude Code 专属插件）通过 `scripts/setup-claude.sh` 从此仓库同步技能文件。
-
-## 手动安装（适配器脚本）
-
-如果不想用 CLI，也可以通过脚本直接生成：
-
-```bash
-# Claude Code（分层目录）
-./scripts/setup-claude.sh . ../devflow-claude
-
-# OpenCode / Codex / Cursor 等（扁平目录）
-./scripts/setup-opencode.sh . ~/.agents/skills
-./scripts/setup-codex.sh . ~/.agents/skills --gen-openai-yaml
-```
-
-## 校验
+校验 skills、commands、plugin manifest 和 marketplace 清单：
 
 ```bash
 ./scripts/validate-skills.sh --ci
 ```
 
-检查项：SKILL.md frontmatter 完整性、name 字段合规、skill-bindings.json 交叉引用一致性。
+为非 Codex 工具生成扁平 skills 目录仍保留为兼容能力，但不是主分发路径：
+
+```bash
+./scripts/setup-opencode.sh . ~/.agents/skills
+./scripts/setup-claude.sh . ../devflow-claude
+```
+
+## Codex 行为约定
+
+- 不安装默认 `SessionStart` hook。
+- 初始化提示只在用户主动执行 `/req:init` 或 `/req:help` 等命令时出现。
+- hooks 如果未来需要，必须作为显式 opt-in 插件或命令开启。
+- DevFlow 项目状态使用 `.devflow/settings.json` 和 `.devflow/settings.local.json`，不再依赖 Claude 专属目录。
 
 ## 许可证
 

@@ -27,26 +27,25 @@ description: 查看需求详情 - 阅读需求完整内容
 
 如果未提供编号：
 
-按修改时间排序扫描角色对应的 active 目录（readonly 用缓存，primary 优先本地不存在时用缓存，未绑定只用本地）。无结果时提示创建；唯一时自动选中；多个时列表让用户输入序号选择。
+按修改时间排序扫描角色对应的 active 目录（primary 用当前仓库，readonly 用主仓 `requirementSource`，未绑定只用本地）。无结果时提示创建；唯一时自动选中；多个时列表让用户输入序号选择。
 
 ### 1. 解析存储路径（按角色）
 
-读取 `.claude/settings.local.json` 的 `requirementProject` 和 `requirementRole`，按角色确定路径：
-- `readonly`：根目录为 `~/.claude-requirements/projects/$PROJECT`
-- `primary`：本地根目录为 `docs/requirements`，缓存为备用
-- 未绑定：仅使用 `docs/requirements`
+按配置优先级读取 `.devflow/settings.local.json`、`.devflow/settings.json`，legacy fallback 到 `.claude/settings.local.json`：
+- `primary`：根目录为当前仓库 `requirementsDir`，默认 `docs/requirements`
+- `readonly`：根目录为 `requirementSource.path` + `requirementSource.requirementsDir`
+- 未绑定：仅使用当前仓库 `docs/requirements`
+- legacy：仅 `.devflow` 未配置时可回退 `~/.claude-requirements/projects/$PROJECT`
 
 ### 2. 查找需求文档（按角色）
 
 **`primary` 角色**搜索位置（按优先级）：
 1. `$ACTIVE/REQ-XXX-*.md`（本地）
 2. `$COMPLETED/REQ-XXX-*.md`（本地）
-3. `$CACHE_ACTIVE/REQ-XXX-*.md`（本地不存在时）
-4. `$CACHE_COMPLETED/REQ-XXX-*.md`（本地不存在时）
 
 **`readonly` 角色**搜索位置：
-1. `$ACTIVE/REQ-XXX-*.md`（缓存）
-2. `$COMPLETED/REQ-XXX-*.md`（缓存）
+1. `$ACTIVE/REQ-XXX-*.md`（主仓）
+2. `$COMPLETED/REQ-XXX-*.md`（主仓）
 
 如果未找到：
 ```

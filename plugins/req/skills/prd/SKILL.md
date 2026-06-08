@@ -27,10 +27,11 @@ description: 查看 PRD 状态 - 产品需求文档概览和章节填充分析
 
 ### 1. 解析存储路径（按角色）
 
-读取 `.claude/settings.local.json` 的 `requirementProject` 和 `requirementRole`，按角色确定 PRD 路径：
-- `readonly`：`~/.claude-requirements/projects/$PROJECT/PRD.md`
-- `primary`：`docs/requirements/PRD.md`，本地不存在时回退到缓存
+按配置优先级读取 `.devflow/settings.local.json`、`.devflow/settings.json`，legacy fallback 到 `.claude/settings.local.json`，按角色确定 PRD 路径：
+- `primary`：当前仓库 `<requirementsDir>/PRD.md`，默认 `docs/requirements/PRD.md`
+- `readonly`：`<requirementSource.path>/<requirementSource.requirementsDir>/PRD.md`
 - 未绑定：`docs/requirements/PRD.md`
+- legacy：仅 `.devflow` 未配置时可回退 `~/.claude-requirements/projects/$PROJECT/PRD.md`
 
 ### 2. 检查 PRD 存在性
 

@@ -1,0 +1,68 @@
+{
+  "name": "devflow",
+  "interface": {
+    "displayName": "DevFlow"
+  },
+  "plugins": [
+    {
+      "name": "req",
+      "source": {
+        "source": "local",
+        "path": "./plugins/req"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "api",
+      "source": {
+        "source": "local",
+        "path": "./plugins/api"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "pm",
+      "source": {
+        "source": "local",
+        "path": "./plugins/pm"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "diag",
+      "source": {
+        "source": "local",
+        "path": "./plugins/diag"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    },
+    {
+      "name": "uat",
+      "source": {
+        "source": "local",
+        "path": "./plugins/uat"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Testing"
+    }
+  ]
+}

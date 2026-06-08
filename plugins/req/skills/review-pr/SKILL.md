@@ -48,7 +48,7 @@ description: PR 审查与合并 - AI 代码审查、提交评论、合并 PR
 
 ### 2. 读取审查依据
 
-按优先级：项目 CLAUDE.md 开发规范 → 测试规范 → 需求文档功能清单和业务规则。
+按优先级：项目 AGENTS.md 开发规范 → 测试规范 → 需求文档功能清单和业务规则。
 
 ### 3. 对比需求文档与实际实现
 
@@ -65,7 +65,7 @@ description: PR 审查与合并 - AI 代码审查、提交评论、合并 PR
 | 业务规则 | 关键规则是否在代码中体现 |
 | 关联需求 | 文档「关联」字段引用 |
 
-> primary 读 `docs/requirements/active/`，readonly 读 `~/.claude-requirements/projects/<project>/active/`。未找到需求文档时跳过此步。
+> primary 读当前仓库 `docs/requirements/active/`，readonly 读 `.devflow` 中 `requirementSource.path` 指向主仓的 `docs/requirements/active/`。旧项目仅 fallback 到 `~/.claude-requirements/projects/<project>/active/`。未找到需求文档时跳过此步。
 
 ### 4. AI 逐文件审查
 

@@ -61,7 +61,7 @@ git = collect_git_stats(from_date=thirty_days_ago)
 modules = collect_modules()
 
 # 插件版本
-version = read_plugin_json("version")  # <plugin-path>/.claude-plugin/plugin.json
+version = read_plugin_json("version")  # <plugin-path>/.codex-plugin/plugin.json
 ```
 
 ### 3. 计算统计指标

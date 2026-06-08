@@ -48,7 +48,7 @@ description: 更新模板 - 将插件最新模板同步到项目本地
 模板目录:   <插件根目录>/templates/
 ```
 
-**定位方式**：读取 `.claude/settings.local.json` 中的 `extraKnownMarketplaces` 配置，或通过当前项目的 `.claude/settings.local.json` 找到插件注册信息。如果找不到，使用以下回退策略：
+**定位方式**：优先读取 `.devflow/settings.local.json` 和 `.devflow/settings.json`；Claude Code marketplace 场景再读取 `.claude/settings.local.json` 中的 `extraKnownMarketplaces` 配置。如果找不到，使用以下回退策略：
 
 ```
 1. 读取 ~/.claude/settings.json 的 extraKnownMarketplaces 字段
@@ -70,7 +70,7 @@ if [ ! -d "$LOCAL_ROOT" ]; then
 fi
 
 # 检查仓库角色
-ROLE=$(cat .claude/settings.local.json 2>/dev/null | jq -r '.requirementRole // "primary"')
+ROLE=$(cat .devflow/settings.local.json .devflow/settings.json .claude/settings.local.json 2>/dev/null | jq -s -r 'reduce .[] as $i ({}; . * $i) | .requirementRole // "primary"')
 if [ "$ROLE" = "readonly" ]; then
     echo "只读仓库不支持更新模板"
     exit 1
@@ -145,13 +145,13 @@ a. all         - 更新全部模板
 
 **注意**：PRD 模板更新时保留原始模板变量（`{{PROJECT_NAME}}`、`{{DATE}}`），不做变量替换。已有的 `PRD.md` 是项目文档，不会被覆盖。PRD 模板更新到 `prd-template.md`，仅影响后续新建项目时使用。
 
-### 6. 同步到全局缓存
+### 6. Legacy 缓存同步（可选）
 
-更新后自动同步模板到全局缓存：
+新版 DevFlow 不再默认同步全局缓存。仅当 legacy `~/.claude-requirements` 已存在且用户明确需要兼容旧项目时，才同步模板：
 
 ```bash
-PROJECT=$(cat .claude/settings.local.json 2>/dev/null | jq -r '.requirementProject // empty')
-if [ -n "$PROJECT" ]; then
+PROJECT=$(cat .devflow/settings.local.json .devflow/settings.json .claude/settings.local.json 2>/dev/null | jq -s -r 'reduce .[] as $i ({}; . * $i) | .requirementProject // empty')
+if [ -n "$PROJECT" ] && [ -d ~/.claude-requirements/projects/$PROJECT ]; then
     CACHE_ROOT=~/.claude-requirements/projects/$PROJECT
     mkdir -p $CACHE_ROOT/templates
     cp $LOCAL_ROOT/templates/*.md $CACHE_ROOT/templates/ 2>/dev/null

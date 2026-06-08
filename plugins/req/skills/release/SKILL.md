@@ -55,10 +55,10 @@ description: 颁布版本 - 合并 SQL、生成回滚、打 tag、创建 Release
 
 文件不存在时三个变量均为空，跳过对应行为，不打印任何提示。
 
-读取 `.claude/settings.local.json` 中的 `requirementRole`：
+读取 `.devflow/settings.local.json` / `.devflow/settings.json` 中的 `requirementRole`，legacy fallback 到 `.claude/settings.local.json`：
 
 - **readonly**：
-  - 从全局缓存 `~/.claude-requirements/projects/<requirementProject>/` 读取需求文档
+  - 从 `requirementSource.path` 指向的主仓读取需求文档
   - **禁止修改任何 `docs/requirements/` 下的文件**（包括状态更新、关联信息追加等）
   - SQL 合并（`<MIGRATIONS_DIR>/released/`）和 changelog（`docs/changelogs/`）的写入**不受此限**——这些是版本产物，不是需求文档；目录不存在时自动创建
   - 其余步骤（git commit、PR、tag）照常执行
@@ -71,7 +71,7 @@ description: 颁布版本 - 合并 SQL、生成回滚、打 tag、创建 Release
 
 | 优先级 | 来源 | 方式 |
 |--------|------|------|
-| 1 | 项目内配置 | Read `.claude/skills/migration.md`，解析其中的 `MIGRATIONS_DIR` 行 |
+| 1 | 项目内配置 | Read `.agents/skills/migration.md`，legacy fallback 到 `.claude/skills/migration.md`，解析其中的 `MIGRATIONS_DIR` 行 |
 | 2 | 自动检测 | 扫描 `db/migrations`、`database/migrations`、`migrations`、`src/migrations`，取第一个存在的 |
 | 3 | 兜底默认 | `docs/migrations` |
 
@@ -80,8 +80,8 @@ description: 颁布版本 - 合并 SQL、生成回滚、打 tag、创建 Release
 > 后端项目判断依据：存在 `.sql` 文件或 migration 相关目录。
 
 ```
-⚠️  未找到 .claude/skills/migration.md，当前使用 MIGRATIONS_DIR=<auto-detected or default>
-    如需固定路径，创建 .claude/skills/migration.md 并写入：
+⚠️  未找到 .agents/skills/migration.md，当前使用 MIGRATIONS_DIR=<auto-detected or default>
+    如需固定路径，创建 .agents/skills/migration.md 并写入：
     - **MIGRATIONS_DIR**: `<路径>`
 ```
 
@@ -145,7 +145,7 @@ description: 颁布版本 - 合并 SQL、生成回滚、打 tag、创建 Release
 
 扫描 `$FROM_REF..$TO_REF` 范围内（不含 merge commit）的 commit subject + body，提取所有 `REQ-XXX` / `QUICK-XXX` 编号（去重）。读取每个需求文档，提取标题/类型/状态/关联 SQL 文件数。
 - **primary**：从 `docs/requirements/` 读取
-- **readonly**：从 `~/.claude-requirements/projects/<requirementProject>/` 读取；不存在则跳过该需求，继续纯 commit changelog 流程
+- **readonly**：从 `requirementSource.path` 指向的主仓读取；不存在则跳过该需求，继续纯 commit changelog 流程
 
 ### 步骤 4：扫描 migration SQL
 

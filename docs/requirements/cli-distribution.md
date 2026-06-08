@@ -1,116 +1,65 @@
-# devflow-skills CLI 分发工具 — 需求文档
+# Codex Marketplace 分发需求
 
-## 1. 背景
+## 背景
 
-Phase 1-3 完成了多 AI 工具适配（Claude Code / OpenCode / Codex），技能定义已抽取为平台无关的 `devflow-skills` 独立仓库（80 个 SKILL.md）。但当前用户仍需手动运行 shell 脚本来安装技能，缺乏统一、便捷的分发机制。
+DevFlow 之前尝试通过 npm CLI 将 skills 安装到多个 AI 工具目录。该方案会把 Codex 原生插件能力降级成通用文件复制流程，也会引入 npm 发布、全局命令冲突和本地 hook 迁移问题。
 
-## 2. 目标
+当前决策：停止维护 npm package 分发，改为 Codex marketplace-first。
 
-提供一个 CLI 工具 `devflow-skills`，用户在任何 AI 工具环境下都能一键安装/管理 devflow-skills，无需手动操作。
+## 目标
 
-## 3. 用户故事
+- 用户通过 Codex marketplace 安装 DevFlow 插件。
+- 插件自带 Codex 原生 commands 和 skills。
+- 不默认启用 SessionStart hook。
+- `skill-bindings.json` 继续作为命令到 skill 的事实来源。
+- 非 Codex 工具适配保留为脚本能力，但不作为主要用户路径。
 
-- 作为工程师，我希望能用 `npx devflow-skills install --tool opencode --all` 一键安装所有技能到我的 opencode 项目
-- 作为工程师，我希望能按需安装特定技能：`npx devflow-skills install --tool opencode --skill req-dev`
-- 作为工程师，我希望能查看所有可用技能及其描述
-- 作为工程师，我希望能卸载已安装的技能
+## 用户故事
 
-## 4. CLI 命令规范
+- 作为 Codex 用户，我希望通过 marketplace 一次安装全部 DevFlow 插件。
+- 作为 Codex 用户，我希望只安装 `req`、`api` 等单个插件。
+- 作为 Codex 用户，我希望用 `/req:init`、`/req:new`、`/pm:weekly` 这样的原生命令启动工作流。
+- 作为维护者，我希望 command 文件由映射表生成，避免手工维护 64 个命令入口。
 
-### 4.1 `install` — 安装技能
+## 安装方式
 
-```
-devflow-skills install --tool <TOOL> [--skill <NAME>...] [--all] [--dir <PATH>]
-```
+安装全部插件：
 
-| 参数 | 必需 | 说明 |
-|------|------|------|
-| `--tool` | 是 | 目标 AI 工具：`opencode` / `claude` / `codex` |
-| `--skill` | 否 | 要安装的技能名（可重复指定多个）。格式为 `<plugin>-<name>`（扁平命名）或 `<name>`（技能原名） |
-| `--all` | 否 | 安装所有技能。与 `--skill` 互斥 |
-| `--dir` | 否 | 目标项目根目录，默认当前目录 |
-
-**行为**：
-
-| 工具 | 安装路径 | 命名规则 |
-|------|---------|---------|
-| `opencode` | `<dir>/.agents/skills/<plugin>-<name>/SKILL.md` | 扁平 `{plugin}-{name}`，更新 frontmatter 的 `name` 字段 |
-| `codex` | `<dir>/.agents/skills/<plugin>-<name>/SKILL.md` | 同 opencode，扁平命名。可选生成 `agents/openai.yaml` |
-| `claude` | `<dir>/plugins/<plugin>/skills/<name>/SKILL.md` | 保持原有分层结构，不修改 frontmatter |
-
-**错误处理**：
-- 目标目录不存在 → 提示并退出
-- 指定技能名不存在 → 列出可用技能并退出
-- `--skill` 与 `--all` 同时使用 → 提示互斥
-
-**安装后的提示**：
-```
-已安装 3 个技能到 .agents/skills/：
-  req-dev (需求开发 - 启动或继续开发)
-  req-review (需求评审)
-  pm-weekly (生成周报)
-下一步：重启 AI 工具或刷新技能列表即可使用。
+```bash
+npx codex-marketplace add zhouhao4221/devflow-codex --plugins
 ```
 
-### 4.2 `list` — 列出可用技能
+安装单个插件：
 
-```
-devflow-skills list [--plugin <NAME>] [--format text|json]
-```
-
-| 参数 | 必需 | 说明 |
-|------|------|------|
-| `--plugin` | 否 | 按插件过滤：`req` / `api` / `pm` / `diag` / `uat` |
-| `--format` | 否 | 输出格式，默认 `text` |
-
-**输出示例（text 格式）**：
-```
-req 插件 (46 个技能)：
-  req                    需求管理 - 初始化/配置需求管理环境
-  dev                    需求开发 - 启动或继续开发
-  review                 需求评审 - 评审需求文档
-  ...
-
-api 插件 (8 个技能)：
-  api                    API 对接 - 初始化 API 对接工作区
-  ...
+```bash
+npx codex-marketplace add zhouhao4221/devflow-codex/plugins/req --plugin
 ```
 
-**输出示例（json 格式）**：
-```json
-{
-  "plugins": {
-    "req": [
-      {"name": "req", "description": "需求管理 - 初始化/配置需求管理环境"},
-      {"name": "dev", "description": "需求开发 - 启动或继续开发"}
-    ]
-  }
-}
+## 插件结构
+
+每个插件必须包含：
+
+```text
+plugins/<plugin>/
+  .codex-plugin/plugin.json
+  commands/*.md
+  skills/<skill>/SKILL.md
 ```
 
-### 4.3 `uninstall` — 卸载技能
+仓库级 marketplace 清单：
 
+```text
+.agents/plugins/marketplace.json
 ```
-devflow-skills uninstall --tool <TOOL> [--skill <NAME>...] [--all] [--dir <PATH>]
+
+## 非功能需求
+
+- 不需要 npm package metadata。
+- 不需要全局 `devflow-codex` CLI。
+- 不默认安装 hooks。
+- 修改命令或 skill 后必须运行：
+
+```bash
+python3 scripts/generate-codex-marketplace.py
+./scripts/validate-skills.sh --ci
 ```
-
-参数与 `install` 相同。删除对应工具目录下的技能文件。
-
-**行为**：
-- 技能不存在 → 提示「技能未安装，无需卸载」
-- `--all` → 删除该工具下所有 devflow 技能目录
-- 卸载后提示已删除的技能列表
-
-## 5. 分发方式
-
-| 方式 | 命令 | 说明 |
-|------|------|------|
-| npm（推荐） | `npx devflow-skills install --tool opencode --all` | 薄层包装，自动下载对应平台的 Go 二进制 |
-| go install | `go install github.com/zhouhao4221/devflow-skills@latest` | 直接安装 Go 二进制 |
-
-## 6. 非功能需求
-
-- Go 二进制不依赖外部运行时，单一可执行文件
-- 技能内容通过 `embed.FS` 编译进二进制，离线可用
-- 支持 macOS / Linux / Windows（通过交叉编译）
-- npm 包体积 < 2KB（仅含 wrapper 脚本，实际二进制从 GitHub Releases 下载）

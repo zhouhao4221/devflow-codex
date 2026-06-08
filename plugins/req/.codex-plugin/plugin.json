@@ -1,0 +1,40 @@
+{
+  "name": "req",
+  "version": "3.24.0",
+  "description": "需求全流程工作流管理 - 从需求分析到测试的完整生命周期管理",
+  "author": {
+    "name": "zhouhao4221",
+    "url": "https://github.com/zhouhao4221"
+  },
+  "homepage": "https://github.com/zhouhao4221/devflow-codex",
+  "repository": "https://github.com/zhouhao4221/devflow-codex",
+  "license": "Apache-2.0",
+  "keywords": [
+    "requirements",
+    "prd",
+    "workflow",
+    "release",
+    "project-management"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "DevFlow Req",
+    "shortDescription": "需求分析、PRD、开发、测试和发布工作流",
+    "longDescription": "DevFlow Req provides Codex-native requirement workflows for PRDs, branching, requirement docs, development, testing, review, release notes, and project status tracking.",
+    "developerName": "zhouhao4221",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/zhouhao4221/devflow-codex",
+    "defaultPrompt": [
+      "初始化当前仓库的需求工作流",
+      "创建一个新需求并拆分开发步骤",
+      "查看当前需求状态和下一步"
+    ],
+    "brandColor": "#10A37F",
+    "screenshots": []
+  }
+}

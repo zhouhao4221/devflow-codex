@@ -21,7 +21,7 @@ description: 上报测试失败项 - 将失败场景创建为 Gitea issue
 
 ### 1. 读取配置
 
-从 `settings.local.json` 读取：
+从 `.devflow/settings.local.json` 读取：
 - `branchStrategy.repoType`：仓库类型（github / gitea）
 - `branchStrategy.giteaUrl`：Gitea 地址（gitea 时必填）
 - `branchStrategy.giteaToken`：Gitea token（gitea 时必填）
@@ -67,7 +67,7 @@ description: 上报测试失败项 - 将失败场景创建为 Gitea issue
 - `giteaUrl` 和 `giteaToken` 非空，否则提示：
   ```
   ❌ 未配置 giteaUrl / giteaToken
-  在 settings.local.json 中配置后重试
+  在 .devflow/settings.local.json 中配置后重试
   ```
 
 **CLI 优先**（与 req 插件保持一致）：

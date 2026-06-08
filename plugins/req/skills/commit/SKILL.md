@@ -39,7 +39,7 @@ description: 规范提交 - 生成 Conventional Commits 格式的 Git 提交
 
 ### 1. 分支检查（在任何 git 操作之前）
 
-读取 `.claude/settings.local.json` 的 `branchStrategy`，未配置时跳过。获取当前分支名，判断是否等于 `mainBranch` 或 `developBranch`：
+读取 `.devflow/settings.local.json` / `.devflow/settings.json` 的 `branchStrategy`，legacy fallback 到 `.claude/settings.local.json`；未配置时跳过。获取当前分支名，判断是否等于 `mainBranch` 或 `developBranch`：
 
 - **否（feat/*、fix/*、hotfix/* 等）** → 当前分支是安全的，直接跳到步骤 2 正常提交。
 - **是** → 当前在保护分支，**禁止提交**，执行以下操作：

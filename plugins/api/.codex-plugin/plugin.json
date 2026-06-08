@@ -1,0 +1,40 @@
+{
+  "name": "api",
+  "version": "0.4.0",
+  "description": "前端 API 对接工具 - Swagger 解析、字段映射、代码生成",
+  "author": {
+    "name": "zhouhao4221",
+    "url": "https://github.com/zhouhao4221"
+  },
+  "homepage": "https://github.com/zhouhao4221/devflow-codex",
+  "repository": "https://github.com/zhouhao4221/devflow-codex",
+  "license": "Apache-2.0",
+  "keywords": [
+    "api",
+    "swagger",
+    "openapi",
+    "typescript",
+    "frontend"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "DevFlow API",
+    "shortDescription": "Swagger/OpenAPI 搜索、映射和前端代码生成",
+    "longDescription": "DevFlow API helps Codex import Swagger/OpenAPI definitions, search endpoints, map request and response fields, and generate TypeScript API integration code.",
+    "developerName": "zhouhao4221",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/zhouhao4221/devflow-codex",
+    "defaultPrompt": [
+      "导入 Swagger 并列出接口",
+      "搜索用户相关接口",
+      "为接口生成 TypeScript 请求代码"
+    ],
+    "brandColor": "#2563EB",
+    "screenshots": []
+  }
+}

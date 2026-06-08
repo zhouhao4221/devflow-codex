@@ -1,0 +1,40 @@
+{
+  "name": "uat",
+  "version": "1.3.0",
+  "description": "用户验收测试（UAT）- AI 驱动的 UI 验收测试",
+  "author": {
+    "name": "zhouhao4221",
+    "url": "https://github.com/zhouhao4221"
+  },
+  "homepage": "https://github.com/zhouhao4221/devflow-codex",
+  "repository": "https://github.com/zhouhao4221/devflow-codex",
+  "license": "Apache-2.0",
+  "keywords": [
+    "uat",
+    "testing",
+    "acceptance",
+    "qa",
+    "playwright"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "DevFlow UAT",
+    "shortDescription": "创建、执行和上报用户验收测试流程",
+    "longDescription": "DevFlow UAT helps Codex create natural-language UAT flows, execute acceptance scenarios, report failures, and summarize test results.",
+    "developerName": "zhouhao4221",
+    "category": "Testing",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/zhouhao4221/devflow-codex",
+    "defaultPrompt": [
+      "创建一个 UAT 测试流程",
+      "执行当前模块的验收测试",
+      "查看最近一次测试报告"
+    ],
+    "brandColor": "#F59E0B",
+    "screenshots": []
+  }
+}

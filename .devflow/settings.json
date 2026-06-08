@@ -1,0 +1,9 @@
+{
+  "requirementProject": "devflow-codex",
+  "requirementRole": "primary",
+  "requirementsDir": "docs/requirements",
+  "branchStrategy": {
+    "type": "github-flow",
+    "mainBranch": "main"
+  }
+}

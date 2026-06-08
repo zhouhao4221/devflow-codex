@@ -63,7 +63,7 @@ git = collect_git_stats()   # 代码规模
 
 ## 技术架构
 
-（从 CLAUDE.md 和 PRD 技术选型提取）
+（从 AGENTS.md 和 PRD 技术选型提取）
 
 ## 项目规模
 

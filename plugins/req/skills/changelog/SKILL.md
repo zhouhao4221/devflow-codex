@@ -77,7 +77,7 @@ description: 生成版本说明 - 基于 Git 记录生成 Changelog
 
 ### 5. 关联已完成需求
 
-按 `requirementRole` 确定需求目录（readonly → 全局缓存；primary → 本地，不存在时回退缓存）。从 commit messages 中提取 `REQ-XXX` / `QUICK-XXX` 编号，读取对应需求文档的标题和类型。同时扫描 active/ 目录（需求可能尚未完成但已有 commit）。
+按 `requirementRole` 确定需求目录（primary → 当前仓库 `docs/requirements`；readonly → `.devflow.requirementSource.path` 指向的主仓）。旧项目仅 fallback 到 legacy 缓存。从 commit messages 中提取 `REQ-XXX` / `QUICK-XXX` 编号，读取对应需求文档的标题和类型。同时扫描 active/ 目录（需求可能尚未完成但已有 commit）。
 
 ### 6. 检查目标文件
 

@@ -19,7 +19,7 @@ description: 升级需求 - 将快速修复升级为正式需求
 
 ### 0. 解析存储路径
 
-从 `settings.local.json` 读取 `requirementProject`，确定本地路径（`docs/requirements/active|completed`）和全局缓存路径。
+从 `.devflow/settings.local.json` / `.devflow/settings.json` 读取 `requirementProject` 和 `requirementRole`，确定需求路径。primary 使用当前仓库 `docs/requirements/active|completed`；readonly 提示到 `requirementSource.path` 主仓执行。旧项目仅 fallback 到 `.claude/settings.local.json` 和 legacy 缓存。
 
 ### 1. 定位源文件
 

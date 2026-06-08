@@ -67,7 +67,7 @@ description: API 配置管理 - 初始化和管理 Swagger 数据源配置
 
    ## 触发方式
 
-   <!-- 如何在 prompt 中引用本文档，或写入 CLAUDE.md 的推荐做法 -->
+   <!-- 如何在 prompt 中引用本文档，或写入 AGENTS.md 的推荐做法；旧项目请迁移到 AGENTS.md -->
 
    ## 优质输出标准
 
