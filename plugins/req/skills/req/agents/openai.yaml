@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Req"
+  short_description: "需求工作流管理"
+  default_prompt: "使用 $req 处理：需求工作流管理。"

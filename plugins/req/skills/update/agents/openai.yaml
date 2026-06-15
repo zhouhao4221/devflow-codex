@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Update"
+  short_description: "热更新插件"
+  default_prompt: "使用 $update 处理：热更新插件。"

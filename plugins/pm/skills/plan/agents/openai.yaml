@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow PM: Plan"
+  short_description: "生成方案文档"
+  default_prompt: "使用 $plan 处理：生成方案文档。"

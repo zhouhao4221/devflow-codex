@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Release Rationale"
+  short_description: "发布设计原理与边界情况"
+  default_prompt: "使用 $release-rationale 处理：发布设计原理与边界情况。"

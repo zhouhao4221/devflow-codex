@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Done"
+  short_description: "完成需求"
+  default_prompt: "使用 $done 处理：完成需求。"

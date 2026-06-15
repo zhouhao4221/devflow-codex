@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Changelog"
+  short_description: "生成版本说明"
+  default_prompt: "使用 $changelog 处理：生成版本说明。"

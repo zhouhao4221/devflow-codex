@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: New Quick"
+  short_description: "快速修复"
+  default_prompt: "使用 $new-quick 处理：快速修复。"

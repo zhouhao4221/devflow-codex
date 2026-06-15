@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow PM: Milestone"
+  short_description: "里程碑总结"
+  default_prompt: "使用 $milestone 处理：里程碑总结。"

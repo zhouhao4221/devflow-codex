@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Diag: Diagnose"
+  short_description: "生产报错定位"
+  default_prompt: "使用 $diagnose 处理：生产报错定位。"

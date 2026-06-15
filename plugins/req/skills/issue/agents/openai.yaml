@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Issue"
+  short_description: "Issue 工作流"
+  default_prompt: "使用 $issue 处理：Issue 工作流。"

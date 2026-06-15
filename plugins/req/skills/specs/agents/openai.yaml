@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Specs"
+  short_description: "规范文档管理"
+  default_prompt: "使用 $specs 处理：规范文档管理。"

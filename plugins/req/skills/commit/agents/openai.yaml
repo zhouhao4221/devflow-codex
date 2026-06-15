@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Commit"
+  short_description: "规范提交"
+  default_prompt: "使用 $commit 处理：规范提交。"

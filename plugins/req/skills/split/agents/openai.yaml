@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Split"
+  short_description: "需求拆分分析"
+  default_prompt: "使用 $split 处理：需求拆分分析。"

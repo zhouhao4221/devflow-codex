@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow PM: Monthly"
+  short_description: "月报"
+  default_prompt: "使用 $monthly 处理：月报。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow API: Search"
+  short_description: "搜索接口"
+  default_prompt: "使用 $search 处理：搜索接口。"

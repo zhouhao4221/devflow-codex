@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Generate Codex plugin manifests and plugin-scoped slash commands."""
+"""Generate Codex plugin manifests, commands, and skill UI metadata."""
 
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 
@@ -103,6 +104,32 @@ def skill_description(plugin: str, skill: str) -> str:
     return f"{plugin} {skill}"
 
 
+def titleize_skill(name: str) -> str:
+    acronyms = {"api", "pm", "pr", "prd", "uat"}
+    return " ".join(part.upper() if part in acronyms else part.title() for part in name.split("-"))
+
+
+def compact_summary(description: str, max_length: int = 58) -> str:
+    summary = re.split(r"[。.!?；;]", description, maxsplit=1)[0]
+    summary = re.split(r"\s+-\s+", summary, maxsplit=1)[0].strip()
+    if len(summary) > max_length:
+        summary = summary[: max_length - 1].rstrip() + "…"
+    return summary
+
+
+def skill_openai_yaml(plugin: str, skill: str, meta: dict) -> str:
+    description = skill_description(plugin, skill)
+    display_name = f"{meta['displayName']}: {titleize_skill(skill)}"
+    short_description = compact_summary(description)
+    default_prompt = f"使用 ${skill} 处理：{short_description}。"
+    return (
+        "interface:\n"
+        f"  display_name: {json.dumps(display_name, ensure_ascii=False)}\n"
+        f"  short_description: {json.dumps(short_description, ensure_ascii=False)}\n"
+        f"  default_prompt: {json.dumps(default_prompt, ensure_ascii=False)}\n"
+    )
+
+
 def write_json(path: Path, data: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
@@ -178,6 +205,12 @@ def main() -> None:
             primary = data["primarySkill"]
             extras = data.get("additionalSkills", [])
             (commands_dir / f"{command}.md").write_text(command_body(plugin, command, primary, extras))
+
+        for skill in bindings["allSkills"][plugin]:
+            skill_dir = plugin_root / "skills" / skill
+            agents_dir = skill_dir / "agents"
+            agents_dir.mkdir(parents=True, exist_ok=True)
+            (agents_dir / "openai.yaml").write_text(skill_openai_yaml(plugin, skill, meta))
 
         marketplace["plugins"].append(
             {

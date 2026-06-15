@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Issue Guide"
+  short_description: "Issue 操作引导助手"
+  default_prompt: "使用 $issue-guide 处理：Issue 操作引导助手。"

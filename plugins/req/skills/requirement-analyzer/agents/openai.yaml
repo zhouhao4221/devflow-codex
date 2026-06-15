@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Requirement Analyzer"
+  short_description: "需求分析助手"
+  default_prompt: "使用 $requirement-analyzer 处理：需求分析助手。"

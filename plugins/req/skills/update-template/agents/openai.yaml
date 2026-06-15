@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Update Template"
+  short_description: "更新模板"
+  default_prompt: "使用 $update-template 处理：更新模板。"

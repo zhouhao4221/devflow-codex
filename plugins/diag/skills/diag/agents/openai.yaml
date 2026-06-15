@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Diag: Diag"
+  short_description: "生产诊断插件"
+  default_prompt: "使用 $diag 处理：生产诊断插件。"

@@ -86,6 +86,7 @@ plugins/<plugin>/
   .codex-plugin/plugin.json   # Codex plugin manifest
   commands/*.md               # Codex marketplace slash commands
   skills/<skill>/SKILL.md     # Codex skills
+  skills/<skill>/agents/openai.yaml # Codex App UI metadata
   templates/                  # 插件模板资源，可选
 
 .agents/plugins/marketplace.json
@@ -97,7 +98,7 @@ scripts/
 
 ## 本地开发
 
-重新生成 Codex plugin manifest 和 command 文件：
+重新生成 Codex plugin manifest、command 文件和 skill UI 元数据：
 
 ```bash
 python3 scripts/generate-codex-marketplace.py
@@ -122,6 +123,7 @@ python3 scripts/generate-codex-marketplace.py
 - 初始化提示只在用户主动执行 `/req:init` 或 `/req:help` 等命令时出现。
 - hooks 如果未来需要，必须作为显式 opt-in 插件或命令开启。
 - DevFlow 项目状态使用 `.devflow/settings.json` 和 `.devflow/settings.local.json`，不再依赖 Claude 专属目录。
+- Skill 规范见 `docs/codex-skill-spec.md`。不要在 `SKILL.md` 或 `agents/openai.yaml` 中写 model 选择；需要不同模型时使用 Codex config/profile/custom agent。
 
 ## 许可证
 

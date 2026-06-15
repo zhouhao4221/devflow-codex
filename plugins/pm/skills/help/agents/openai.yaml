@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow PM: Help"
+  short_description: "使用帮助"
+  default_prompt: "使用 $help 处理：使用帮助。"

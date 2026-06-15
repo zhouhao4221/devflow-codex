@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Do"
+  short_description: "智能开发"
+  default_prompt: "使用 $do 处理：智能开发。"

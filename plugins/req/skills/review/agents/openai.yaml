@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Review"
+  short_description: "需求评审"
+  default_prompt: "使用 $review 处理：需求评审。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Natural Language Dispatcher"
+  short_description: "自然语言需求调度器"
+  default_prompt: "使用 $natural-language-dispatcher 处理：自然语言需求调度器。"

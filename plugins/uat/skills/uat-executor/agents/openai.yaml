@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow UAT: UAT Executor"
+  short_description: "UAT 测试执行引导"
+  default_prompt: "使用 $uat-executor 处理：UAT 测试执行引导。"

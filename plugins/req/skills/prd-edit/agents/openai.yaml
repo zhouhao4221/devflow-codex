@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: PRD Edit"
+  short_description: "编辑 PRD"
+  default_prompt: "使用 $prd-edit 处理：编辑 PRD。"

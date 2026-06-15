@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow PM: Stats"
+  short_description: "项目数据统计"
+  default_prompt: "使用 $stats 处理：项目数据统计。"

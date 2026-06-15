@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Status"
+  short_description: "查看需求状态"
+  default_prompt: "使用 $status 处理：查看需求状态。"

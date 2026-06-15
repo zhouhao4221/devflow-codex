@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Diag: Stack Analyzer"
+  short_description: "生产报错堆栈识别助手"
+  default_prompt: "使用 $stack-analyzer 处理：生产报错堆栈识别助手。"

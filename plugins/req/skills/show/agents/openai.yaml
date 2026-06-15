@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Show"
+  short_description: "查看需求详情"
+  default_prompt: "使用 $show 处理：查看需求详情。"

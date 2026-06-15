@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow PM: Standup"
+  short_description: "站会摘要"
+  default_prompt: "使用 $standup 处理：站会摘要。"

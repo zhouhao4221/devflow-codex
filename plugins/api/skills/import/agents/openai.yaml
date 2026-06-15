@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow API: Import"
+  short_description: "导入 Swagger"
+  default_prompt: "使用 $import 处理：导入 Swagger。"

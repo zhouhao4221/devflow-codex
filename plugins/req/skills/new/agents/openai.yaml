@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: New"
+  short_description: "创建新需求"
+  default_prompt: "使用 $new 处理：创建新需求。"

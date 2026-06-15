@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow PM: Risk"
+  short_description: "风险扫描"
+  default_prompt: "使用 $risk 处理：风险扫描。"

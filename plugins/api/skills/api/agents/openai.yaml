@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow API: API"
+  short_description: "API 对接工具"
+  default_prompt: "使用 $api 处理：API 对接工具。"

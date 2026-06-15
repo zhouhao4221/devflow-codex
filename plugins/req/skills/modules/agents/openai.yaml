@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Modules"
+  short_description: "模块管理"
+  default_prompt: "使用 $modules 处理：模块管理。"

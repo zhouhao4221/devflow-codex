@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Diag: Audit"
+  short_description: "查询 Diag 审计日志"
+  default_prompt: "使用 $audit 处理：查询 Diag 审计日志。"

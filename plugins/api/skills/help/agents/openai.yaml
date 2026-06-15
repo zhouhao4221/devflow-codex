@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow API: Help"
+  short_description: "使用教程"
+  default_prompt: "使用 $help 处理：使用教程。"

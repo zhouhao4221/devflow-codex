@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Fix"
+  short_description: "轻量修复"
+  default_prompt: "使用 $fix 处理：轻量修复。"

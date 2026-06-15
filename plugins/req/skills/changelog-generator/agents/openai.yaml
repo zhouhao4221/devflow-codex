@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Changelog Generator"
+  short_description: "版本说明生成助手"
+  default_prompt: "使用 $changelog-generator 处理：版本说明生成助手。"

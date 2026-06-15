@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Edit"
+  short_description: "编辑需求"
+  default_prompt: "使用 $edit 处理：编辑需求。"

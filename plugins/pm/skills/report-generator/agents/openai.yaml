@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow PM: Report Generator"
+  short_description: "项目汇报生成助手"
+  default_prompt: "使用 $report-generator 处理：项目汇报生成助手。"

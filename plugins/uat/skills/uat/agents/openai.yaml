@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow UAT: UAT"
+  short_description: "UAT 测试工作流"
+  default_prompt: "使用 $uat 处理：UAT 测试工作流。"

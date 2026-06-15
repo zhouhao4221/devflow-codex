@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Test Guide"
+  short_description: "测试引导助手"
+  default_prompt: "使用 $test-guide 处理：测试引导助手。"

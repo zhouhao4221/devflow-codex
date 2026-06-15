@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow PM: Ask"
+  short_description: "自由提问"
+  default_prompt: "使用 $ask 处理：自由提问。"

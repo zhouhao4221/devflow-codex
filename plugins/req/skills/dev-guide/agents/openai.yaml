@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Dev Guide"
+  short_description: "开发引导助手"
+  default_prompt: "使用 $dev-guide 处理：开发引导助手。"

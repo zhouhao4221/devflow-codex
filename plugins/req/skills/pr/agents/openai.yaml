@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: PR"
+  short_description: "创建 PR"
+  default_prompt: "使用 $pr 处理：创建 PR。"

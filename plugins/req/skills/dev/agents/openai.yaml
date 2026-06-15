@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Dev"
+  short_description: "需求开发"
+  default_prompt: "使用 $dev 处理：需求开发。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Release"
+  short_description: "颁布版本"
+  default_prompt: "使用 $release 处理：颁布版本。"

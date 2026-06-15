@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow UAT: Init"
+  short_description: "初始化 UAT 插件"
+  default_prompt: "使用 $init 处理：初始化 UAT 插件。"

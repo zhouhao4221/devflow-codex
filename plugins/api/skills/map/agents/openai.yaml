@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow API: Map"
+  short_description: "字段映射"
+  default_prompt: "使用 $map 处理：字段映射。"

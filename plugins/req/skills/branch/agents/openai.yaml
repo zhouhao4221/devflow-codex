@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Branch"
+  short_description: "分支管理"
+  default_prompt: "使用 $branch 处理：分支管理。"

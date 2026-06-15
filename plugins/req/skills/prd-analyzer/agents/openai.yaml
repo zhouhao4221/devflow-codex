@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: PRD Analyzer"
+  short_description: "PRD 分析助手"
+  default_prompt: "使用 $prd-analyzer 处理：PRD 分析助手。"

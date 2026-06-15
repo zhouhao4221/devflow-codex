@@ -25,9 +25,9 @@ else
   green "OK: found"
 fi
 
-# 2. Frontmatter name == directory name
+# 2. Frontmatter name == directory name and uses Codex-supported keys
 echo ""
-echo "=== 2. Frontmatter name == directory name ==="
+echo "=== 2. SKILL.md frontmatter ==="
 while IFS= read -r -d '' f; do
   dir="$(basename "$(dirname "$f")")"
   fm="$(head -10 "$f" | grep "^name:" | head -1 | sed 's/^name: *//' | tr -d '"'"'" | xargs)"
@@ -39,7 +39,45 @@ while IFS= read -r -d '' f; do
     errors=$((errors + 1))
   fi
 done < <(find plugins -name 'SKILL.md' -not -path '*/.git/*' -print0)
-ok "all frontmatter names match"
+
+TMP_ERR="$(mktemp)"
+python3 -c "
+from pathlib import Path
+import sys
+
+errs = 0
+allowed = {'name', 'description'}
+for path in sorted(Path('plugins').glob('*/skills/*/SKILL.md')):
+    text = path.read_text()
+    if not text.startswith('---'):
+        print(f'ERROR: {path} — missing YAML frontmatter')
+        errs += 1
+        continue
+    parts = text.split('---', 2)
+    if len(parts) < 3:
+        print(f'ERROR: {path} — malformed YAML frontmatter')
+        errs += 1
+        continue
+    keys = []
+    for line in parts[1].splitlines():
+        if line and not line.startswith((' ', '\\t')) and ':' in line:
+            keys.append(line.split(':', 1)[0].strip())
+    for key in keys:
+        if key not in allowed:
+            print(f'ERROR: {path} — unsupported frontmatter key {key!r}; Codex skills use only name and description')
+            errs += 1
+    for key in ('name', 'description'):
+        if key not in keys:
+            print(f'ERROR: {path} — missing frontmatter key {key!r}')
+            errs += 1
+sys.exit(errs)
+" > "$TMP_ERR" 2>&1 || true
+while IFS= read -r line; do
+  red "$line"
+  errors=$((errors + 1))
+done < "$TMP_ERR"
+rm -f "$TMP_ERR"
+ok "all frontmatter names and keys are valid"
 
 # 3. Parse bindings
 echo ""
@@ -192,9 +230,53 @@ sys.exit(errs)
   done < "$TMP_ERR"
   ok "Codex plugin commands consistent"
 
-  # 9. Repo marketplace
+  # 9. Codex skill UI metadata
   echo ""
-  echo "=== 9. Codex marketplace ==="
+  echo "=== 9. Codex skill agents/openai.yaml ==="
+  TMP_ERR="$(mktemp)"
+  python3 -c "
+import sys
+from pathlib import Path
+
+errs = 0
+for skill_file in sorted(Path('plugins').glob('*/skills/*/SKILL.md')):
+    skill_dir = skill_file.parent
+    skill_name = skill_dir.name
+    metadata_file = skill_dir / 'agents' / 'openai.yaml'
+    if not metadata_file.exists():
+        print(f'ERROR: {skill_dir} — missing agents/openai.yaml')
+        errs += 1
+        continue
+    text = metadata_file.read_text()
+    required = [
+        'interface:',
+        '  display_name:',
+        '  short_description:',
+        '  default_prompt:',
+    ]
+    for marker in required:
+        if marker not in text:
+            print(f'ERROR: {metadata_file} — missing {marker.strip()}')
+            errs += 1
+    skill_ref = '$' + skill_name
+    if skill_ref not in text:
+        print(f'ERROR: {metadata_file} — default_prompt must mention {skill_ref}')
+        errs += 1
+    for unsupported in ('model:', 'model_reasoning_effort:', 'model_provider:'):
+        if unsupported in text:
+            print(f'ERROR: {metadata_file} — {unsupported[:-1]} belongs in Codex config or custom agents, not skill metadata')
+            errs += 1
+sys.exit(errs)
+" > "$TMP_ERR" 2>&1 || true
+  while IFS= read -r line; do
+    red "$line"
+    errors=$((errors + 1))
+  done < "$TMP_ERR"
+  ok "Codex skill UI metadata valid"
+
+  # 10. Repo marketplace
+  echo ""
+  echo "=== 10. Codex marketplace ==="
   TMP_ERR="$(mktemp)"
   python3 -c "
 import json, sys

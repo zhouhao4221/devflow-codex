@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: PRD"
+  short_description: "查看 PRD 状态"
+  default_prompt: "使用 $prd 处理：查看 PRD 状态。"

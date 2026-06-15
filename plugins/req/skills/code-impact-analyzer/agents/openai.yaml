@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Code Impact Analyzer"
+  short_description: "代码影响分析器"
+  default_prompt: "使用 $code-impact-analyzer 处理：代码影响分析器。"

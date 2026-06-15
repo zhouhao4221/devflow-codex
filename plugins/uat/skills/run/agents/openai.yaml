@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow UAT: Run"
+  short_description: "执行 UAT 测试"
+  default_prompt: "使用 $run 处理：执行 UAT 测试。"

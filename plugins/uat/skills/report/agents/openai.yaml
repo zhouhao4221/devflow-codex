@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow UAT: Report"
+  short_description: "查看测试报告"
+  default_prompt: "使用 $report 处理：查看测试报告。"

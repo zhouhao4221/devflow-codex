@@ -1,13 +1,6 @@
 ---
 name: api-field-mapper
 description: API 字段映射助手。编辑前端 TypeScript/Vue 文件时自动关联 Swagger 接口定义，提示字段映射关系。
-metadata:
-  filePattern:
-    - "src/**/*.ts"
-    - "src/**/*.tsx"
-    - "src/**/*.vue"
-  bashPattern: []
-  priority: 30
 ---
 
 # API 字段映射助手

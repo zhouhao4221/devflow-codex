@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Test New"
+  short_description: "创建测试"
+  default_prompt: "使用 $test-new 处理：创建测试。"

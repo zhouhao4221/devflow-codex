@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Test Regression"
+  short_description: "回归测试"
+  default_prompt: "使用 $test-regression 处理：回归测试。"

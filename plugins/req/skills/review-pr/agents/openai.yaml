@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Review PR"
+  short_description: "PR 审查与合并"
+  default_prompt: "使用 $review-pr 处理：PR 审查与合并。"

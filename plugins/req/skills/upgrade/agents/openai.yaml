@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Upgrade"
+  short_description: "升级需求"
+  default_prompt: "使用 $upgrade 处理：升级需求。"

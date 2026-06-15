@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow PM: Weekly"
+  short_description: "周报"
+  default_prompt: "使用 $weekly 处理：周报。"

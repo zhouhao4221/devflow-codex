@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow UAT: New"
+  short_description: "创建测试流程文档"
+  default_prompt: "使用 $new 处理：创建测试流程文档。"

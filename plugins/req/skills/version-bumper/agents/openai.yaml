@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow Req: Version Bumper"
+  short_description: "版本号管理助手"
+  default_prompt: "使用 $version-bumper 处理：版本号管理助手。"
