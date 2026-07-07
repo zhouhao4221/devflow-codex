@@ -1,5 +1,5 @@
 ---
-description: "Legacy 迁移 - 将旧版缓存需求迁回主仓文档"
+description: "迁移需求 - 调整需求目录位置或从旧布局迁移到 .devflow"
 argument-hint: "[arguments]"
 ---
 

@@ -1,5 +1,5 @@
 ---
-description: "绑定需求主仓 - 将 readonly 仓库指向主仓文档"
+description: "绑定主项目 - 将当前仓库设为只读，直读主项目需求"
 argument-hint: "[arguments]"
 ---
 

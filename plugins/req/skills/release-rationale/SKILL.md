@@ -1,6 +1,6 @@
 ---
 name: release-rationale
-description: 发布设计原理与边界情况 - release 命令的设计决策依据和边界情况速查表
+description: 发布设计原理与边界情况 - release 命令的设计决策依据和边界情况速查
 ---
 
 # /req:release 设计原理与边界情况

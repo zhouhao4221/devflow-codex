@@ -7,7 +7,7 @@ description: 更新模板 - 将插件最新模板同步到项目本地
 
 将插件 `templates/` 目录下的最新模板同步到项目本地 `docs/requirements/`，覆盖旧版本。
 
-> 存储路径规则见 `_storage.md`
+> 存储路径规则见 _storage.md（见附录：_storage.md）
 
 ## 命令格式
 
@@ -48,7 +48,7 @@ description: 更新模板 - 将插件最新模板同步到项目本地
 模板目录:   <插件根目录>/templates/
 ```
 
-**定位方式**：优先读取 `.devflow/settings.local.json` 和 `.devflow/settings.json`；Claude Code marketplace 场景再读取 `.claude/settings.local.json` 中的 `extraKnownMarketplaces` 配置。如果找不到，使用以下回退策略：
+**定位方式**：Codex 场景优先使用当前插件安装目录；Claude Code 兼容场景才读取 `.claude/settings.local.json` 中的 `extraKnownMarketplaces` 配置。如果找不到，使用以下 legacy 回退策略：
 
 ```
 1. 读取 ~/.claude/settings.json 的 extraKnownMarketplaces 字段
@@ -145,14 +145,14 @@ a. all         - 更新全部模板
 
 **注意**：PRD 模板更新时保留原始模板变量（`{{PROJECT_NAME}}`、`{{DATE}}`），不做变量替换。已有的 `PRD.md` 是项目文档，不会被覆盖。PRD 模板更新到 `prd-template.md`，仅影响后续新建项目时使用。
 
-### 6. Legacy 缓存同步（可选）
+### 6. 同步到主仓需求目录
 
-新版 DevFlow 不再默认同步全局缓存。仅当 legacy `~/.claude-requirements` 已存在且用户明确需要兼容旧项目时，才同步模板：
+更新后自动同步模板到主仓需求目录：
 
 ```bash
 PROJECT=$(cat .devflow/settings.local.json .devflow/settings.json .claude/settings.local.json 2>/dev/null | jq -s -r 'reduce .[] as $i ({}; . * $i) | .requirementProject // empty')
-if [ -n "$PROJECT" ] && [ -d ~/.claude-requirements/projects/$PROJECT ]; then
-    CACHE_ROOT=~/.claude-requirements/projects/$PROJECT
+if [ -n "$PROJECT" ]; then
+    CACHE_ROOT=<requirementSource.path>/<requirementsDir>
     mkdir -p $CACHE_ROOT/templates
     cp $LOCAL_ROOT/templates/*.md $CACHE_ROOT/templates/ 2>/dev/null
 fi

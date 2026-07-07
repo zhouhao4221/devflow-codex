@@ -61,7 +61,7 @@ git = collect_git_stats(from_date=thirty_days_ago)
 modules = collect_modules()
 
 # 插件版本
-version = read_plugin_json("version")  # <plugin-path>/.codex-plugin/plugin.json
+version = read_plugin_json("version")  # <plugin-path>/.claude-plugin/plugin.json
 ```
 
 ### 3. 计算统计指标
@@ -165,7 +165,7 @@ Git 仓库数据仍可使用：
 |------|---------|
 | 无需求数据但有 Git 记录 | 仅展示 Git 相关指标，需求部分提示未初始化 |
 | 无 PRD | PRD 完善度显示「未创建」 |
-| readonly 仓库 | 从缓存读取数据，标注数据来源 |
+| readonly 仓库 | 经 requirementSource.path 直读数据，标注数据来源 |
 | 无 Git 仓库 | 跳过 Git 相关指标 |
 
 ## 用户输入

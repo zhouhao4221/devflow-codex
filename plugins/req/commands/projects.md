@@ -1,5 +1,5 @@
 ---
-description: "查看需求项目绑定 - 展示当前 DevFlow 项目配置"
+description: "列出所有需求项目 - 查看主仓需求目录中的所有项目"
 argument-hint: "[arguments]"
 ---
 

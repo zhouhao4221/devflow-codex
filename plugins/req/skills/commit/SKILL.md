@@ -39,7 +39,7 @@ description: 规范提交 - 生成 Conventional Commits 格式的 Git 提交
 
 ### 1. 分支检查（在任何 git 操作之前）
 
-读取 `.devflow/settings.local.json` / `.devflow/settings.json` 的 `branchStrategy`，legacy fallback 到 `.claude/settings.local.json`；未配置时跳过。获取当前分支名，判断是否等于 `mainBranch` 或 `developBranch`：
+读取 `.devflow/settings.local.json` / `.devflow/settings.json` 的 `branchStrategy`，legacy fallback 到 `.claude/settings.local.json`，未配置时跳过。获取当前分支名，判断是否等于 `mainBranch` 或 `developBranch`：
 
 - **否（feat/*、fix/*、hotfix/* 等）** → 当前分支是安全的，直接跳到步骤 2 正常提交。
 - **是** → 当前在保护分支，**禁止提交**，执行以下操作：
@@ -200,7 +200,7 @@ description: 规范提交 - 生成 Conventional Commits 格式的 Git 提交
 | `构建` | 构建/工具/依赖 | 其他变更 (Others) |
 | `样式` | 代码格式 | 其他变更 (Others) |
 
-**Issue 关联：** 按 [_issue.md 的 Issue 读取优先级](./_issue.md#issue-编号的读取优先级) 获取 issue 编号：先查需求文档 `issue` 字段，再查分支名 `-iN` 后缀。检测到 issue 编号时，在 commit message 末尾追加 `closes #N`。
+**Issue 关联：** 按 _issue.md 的 Issue 读取优先级（见附录：_issue.md） 获取 issue 编号：先查需求文档 `issue` 字段，再查分支名 `-iN` 后缀。检测到 issue 编号时，在 commit message 末尾追加 `closes #N`。
 
 **示例：**
 ```

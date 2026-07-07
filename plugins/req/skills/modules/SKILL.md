@@ -42,7 +42,7 @@ INDEX.md          # 需求索引（自动生成）
 
 ### 1. 扫描模块目录
 
-primary 优先使用当前仓库 `docs/requirements/modules/`；readonly 使用 `.devflow` 的 `requirementSource.path` 指向主仓模块目录。仅旧项目可 fallback 到 `~/.claude-requirements/projects/$PROJECT/modules/`。
+优先使用 `docs/requirements/modules/`；若已绑定项目则同时扫描 `<requirementSource.path>/<requirementsDir>/modules/`。
 
 ### 2. 解析模块文档
 

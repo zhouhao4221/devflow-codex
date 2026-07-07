@@ -7,7 +7,7 @@ description: 初始化 UAT 插件 - 创建目录结构并安装 skill 到项目
 
 > **Audience:** Engineer
 
-将 uat-executor skill 安装到项目的 `.agents/skills/`，使 Codex、OpenCode 等工具能在执行测试时自动加载；Claude Code 旧项目可额外同步到 `.claude/skills/`。
+将 uat-executor skill 安装到项目的 `.claude/skills/`，使 Codex 和 Claude 桌面端能在执行测试时自动加载。
 
 ## 命令格式
 
@@ -25,7 +25,7 @@ description: 初始化 UAT 插件 - 创建目录结构并安装 skill 到项目
 mkdir -p docs/uat/flows
 mkdir -p docs/uat/reports
 mkdir -p docs/uat/screenshots
-mkdir -p .agents/skills/uat-executor
+mkdir -p .claude/skills/uat-executor
 ```
 
 ### 2. 生成 testid 命名约定文档
@@ -43,7 +43,7 @@ cp plugins/uat/templates/testid-convention.md docs/uat/testid-convention.md
 将插件源文件复制到项目 skills 目录：
 
 ```bash
-cp plugins/uat/skills/uat-executor/SKILL.md .agents/skills/uat-executor/SKILL.md
+cp plugins/uat/skills/uat-executor/SKILL.md .claude/skills/uat-executor/SKILL.md
 ```
 
 若插件路径不存在（说明插件未通过 Claude Code 安装），输出：
@@ -77,7 +77,7 @@ docs/uat/screenshots/
   docs/uat/screenshots/    截图存储（已加入 .gitignore）
 
 已安装 skill：
-  .agents/skills/uat-executor/SKILL.md
+  .claude/skills/uat-executor/SKILL.md
 
 已生成约定文档：
   docs/uat/testid-convention.md    data-testid 命名约定（提交 git，供前端参考）

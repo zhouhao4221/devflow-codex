@@ -1,4 +1,4 @@
 interface:
   display_name: "DevFlow Req: Projects"
-  short_description: "查看需求项目绑定"
-  default_prompt: "使用 $projects 处理：查看需求项目绑定。"
+  short_description: "列出所有需求项目"
+  default_prompt: "使用 $projects 处理：列出所有需求项目。"

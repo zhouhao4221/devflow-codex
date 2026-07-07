@@ -1,5 +1,5 @@
 ---
-description: "初始化需求项目 - 创建本地需求存储和 DevFlow 配置"
+description: "初始化需求项目 - 创建本地存储和主仓需求目录"
 argument-hint: "[arguments]"
 ---
 

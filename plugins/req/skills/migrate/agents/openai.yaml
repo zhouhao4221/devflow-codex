@@ -1,4 +1,4 @@
 interface:
   display_name: "DevFlow Req: Migrate"
-  short_description: "Legacy 迁移"
-  default_prompt: "使用 $migrate 处理：Legacy 迁移。"
+  short_description: "迁移需求"
+  default_prompt: "使用 $migrate 处理：迁移需求。"

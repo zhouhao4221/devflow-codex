@@ -8,7 +8,7 @@ description: 需求拆分分析 - 判断需求粒度并给出拆分建议
 纯分析命令，帮助用户在创建需求前判断粒度是否合适，给出拆分或合并建议。
 
 > **Audience:** Product Manager
-> 粒度规则参考 [_granularity.md](./_granularity.md)
+> 粒度规则参考 _granularity.md（见附录：_granularity.md）
 
 ## 命令格式
 

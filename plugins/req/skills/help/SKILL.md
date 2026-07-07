@@ -14,7 +14,7 @@ description: 使用教程 - 查看插件完整使用指南
 按以下优先级决定语言：
 
 1. 命令参数 `--lang=zh|en|ko`（显式覆盖）
-2. `.devflow/settings.local.json` 的 `language` 字段（legacy fallback: `.claude/settings.local.json`）
+2. `.claude/settings.local.json` 的 `language` 字段
 3. 默认 `zh`
 
 ### 2. 读取教程文件
@@ -44,7 +44,7 @@ description: 使用教程 - 查看插件完整使用指南
 需求工作流插件 - 使用教程
 
 章节：
- 1. 安装与初始化（含架构描述、分支策略、Gitea Token 配置、reinit、缓存重建）
+ 1. 安装与初始化（含架构描述、分支策略、Gitea Token 配置、reinit）
  2. 创建需求
  3. 评审流程
  4. 开发阶段（含分支管理、PR 创建）
@@ -66,7 +66,7 @@ description: 使用教程 - 查看插件完整使用指南
 Requirements Workflow Plugin — Tutorial
 
 Sections:
- 1. Installation & initialization (architecture, branch strategy, Gitea token, reinit, cache rebuild)
+ 1. Installation & initialization (architecture, branch strategy, Gitea token, reinit)
  2. Creating requirements
  3. Review flow
  4. Development (branch management, PR creation)
@@ -111,7 +111,7 @@ Enter a section number to view details, or read the full tutorial.
 ```
 
 示例：
-- `/req:help` → 中文章节索引（或 `.devflow/settings.local.json` 中设定的语言）
+- `/req:help` → 中文章节索引（或 settings.local.json 中设定的语言）
 - `/req:help --lang=en` → English section index
 - `/req:help --lang=ko` → 한국어 섹션 인덱스
 - `/req:help 4` → 第四章「开发阶段」
@@ -120,7 +120,7 @@ Enter a section number to view details, or read the full tutorial.
 
 ## 持久化语言偏好（可选）
 
-如果想省去每次加 `--lang` 参数，在 `.devflow/settings.local.json` 中设置：
+如果想省去每次加 `--lang` 参数，在 `.claude/settings.local.json` 中设置：
 
 ```json
 {

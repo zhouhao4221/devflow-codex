@@ -1,126 +1,51 @@
 ---
 name: migrate
-description: Legacy 迁移 - 将旧版缓存需求迁回主仓文档
+description: 迁移需求 - 调整需求目录位置或从旧布局迁移到 .devflow
 ---
 
-# Legacy 迁移
+# 迁移需求
 
-将旧版 `~/.claude-requirements` 全局缓存中的需求迁移回主仓 `docs/requirements/`。
-
-> 新版 DevFlow 不再默认使用全局缓存。primary 仓库直接维护 `docs/requirements/`，readonly 仓库通过 `.devflow/settings.json` 的 `requirementSource.path` 读取主仓。
+支持两类迁移：
+1. **配置迁移**：从 v2.x 旧布局（`.claude/` 配置 + `~/.claude-requirements/` 全局缓存）迁到 v3（`.devflow/` + 无缓存）
+2. **目录迁移**：调整需求文档存放目录（`requirementsDir`）
 
 ## 命令格式
 
 ```
-/req:migrate <project-name> [--keep-cache]
+/req:migrate [--to=<new-requirementsDir>]
 ```
 
-## 参数
-
-- `project-name`: legacy 缓存中的项目名称（必填）
-- `--keep-cache`: 保留 legacy 缓存文件（可选，默认不删除，除非用户确认清理）
+- 无参数：执行配置迁移（旧布局 -> `.devflow/`）
+- `--to=<dir>`：把需求目录迁移到新位置并更新 `requirementsDir`
 
 ---
 
 ## 执行流程
 
-### 1. 前置检查
+### 1. 识别当前布局
 
-检查 `~/.claude-requirements/projects/<project-name>/` 是否存在。当前仓库如果没有 `.devflow/settings.json`，先提示执行 `/req:init <project-name>` 初始化主仓配置。
+读 `.devflow/settings.json`（新）或 `.claude/settings.json(.local)`（旧）。检测是否存在旧全局缓存 `~/.claude-requirements/projects/<project>/`。
 
-### 2. 检查目标路径
+### 2A. 配置迁移（检测到 `.claude/` 旧 DevFlow 配置）
 
-源路径为 `~/.claude-requirements/projects/<project-name>/`。目标路径为当前仓库 `.devflow` 配置中的 `requirementsDir`，默认 `docs/requirements/`。目标已存在且有需求文档时，询问合并策略：合并（编号冲突时重新编号）、覆盖、取消。
+> 等价于运行 [`scripts/migrate-config.sh`](../scripts/migrate-config.sh)。
 
-### 3. 显示迁移预览
+- 把 `.claude/settings.json(.local)` 中的 DevFlow 字段搬到 `.devflow/`：
+  - `requirementProject` / `requirementRole` / `requirementsDir` / `branchStrategy` -> `.devflow/settings.json`
+  - `giteaToken` -> `.devflow/settings.local.json`
+- **不搬** Claude Code 自身的 hooks/permissions（留在 `.claude/settings.json`）
+- readonly 仓库：提示改用 `/req:use <primary-repo-path>` 重新绑定（旧缓存寻址已废弃）
 
-```
-需求迁移预览
+> **旧全局缓存的数据**：primary 仓库的需求文档本就在本地 `docs/requirements/`，缓存只是副本。迁移确认本地完整后，可手动删除 `~/.claude-requirements/projects/<project>/`。若出现本地缺失、仅缓存有的异常，先从缓存 `mv` 回本地需求目录再删缓存。
 
-源目录: ~/.claude-requirements/projects/<project-name>/
-目标项目: <project-name>
-目标路径: docs/requirements/
+### 2B. 目录迁移（提供 `--to`）
 
-迁移内容:
-- 活跃需求: X 个
-- 已完成需求: Y 个
-- 模板文件: 1 个
+- 将当前 `requirementsDir` 下全部内容 `mv` 到 `--to` 指定的新目录
+- 更新 `.devflow/settings.json` 的 `requirementsDir` 为新值
 
-文件列表:
-活跃需求:
-REQ-001-部门渠道关联.md
-REQ-002-用户积分系统.md
-REQ-003-订单导出优化.md
+### 3. 输出结果
 
-已完成:
-REQ-000-初始化项目.md
-```
-
-### 4. 执行迁移
-
-将 active/、completed/、modules/、templates/、PRD.md（如存在）分别复制到主仓需求目录。
-
-### 5. 处理编号冲突（合并模式）
-
-如果目标目录已有需求，检查编号冲突：
-
-```
-⚠️ 检测到编号冲突
-
-冲突列表:
-- REQ-001 (本地: 部门渠道关联 vs 远程: 用户管理)
-- REQ-002 (本地: 用户积分系统 vs 远程: 权限配置)
-
-处理方式:
-- REQ-001 → 保留远程，本地重命名为 REQ-004
-- REQ-002 → 保留远程，本地重命名为 REQ-005
-```
-
-### 6. 更新 DevFlow 配置
-
-读取已有 `.devflow/settings.json`，合并以下字段后写回（不覆盖已有的 `branchStrategy` 等字段）：
-
-```json
-{
-  "requirementProject": "<project-name>",
-  "requirementRole": "primary",
-  "requirementsDir": "docs/requirements"
-}
-```
-
-### 7. 清理 legacy 缓存（可选）
-
-默认保留 legacy 缓存。只有用户明确确认时，才手动删除 `~/.claude-requirements/projects/<project-name>/`。
-
-### 8. 输出结果
-
-```
-✅ 迁移完成！
-
-迁移统计:
-- 迁移活跃需求: X 个
-- 迁移已完成需求: Y 个
-- 重新编号: Z 个
-
-新位置: docs/requirements/
-
-当前仓库已初始化为 primary 项目 "<project-name>"
-
-下一步:
-- 查看需求列表: /req
-- 在 readonly 仓绑定此主仓: /req:use <primary-repo-path>
-```
-
----
-
-## 错误处理
-
-| 错误场景 | 处理方式 |
-|---------|---------|
-| 本地无需求 | 提示使用 `/req:init` |
-| 目标项目有冲突 | 提供合并策略选择 |
-| 权限不足 | 提示检查目录权限 |
-| 迁移中断 | 回滚已迁移文件 |
+显示迁移类型、搬运的字段/文件、新配置位置与后续提示（如 readonly 重绑定、删除旧缓存）。
 
 ---
 
