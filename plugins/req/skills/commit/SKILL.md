@@ -156,7 +156,7 @@ description: 规范提交 - 生成 Conventional Commits 格式的 Git 提交
 
 #### 6.1 选择提交类型
 
-**auto 模式**：若项目内存在 `.claude/.req-auto` 且 mtime 在 10 分钟内（由上游 `/req:fix --auto` 等命令创建），**跳过交互式选择**，AI 根据 `git diff --cached` 的变更内容自动推断类型（如上游是 `/req:fix` 则固定为"修复"）。
+**auto 模式**：若项目内存在 `.devflow/.req-auto` 且 mtime 在 10 分钟内（由上游 `/req:fix --auto` 等命令创建），**跳过交互式选择**，AI 根据 `git diff --cached` 的变更内容自动推断类型（如上游是 `/req:fix` 则固定为"修复"）。
 
 非 auto 模式下，如果用户未提供消息，交互式选择：
 
@@ -235,7 +235,7 @@ description: 规范提交 - 生成 Conventional Commits 格式的 Git 提交
 
 ```
 
-展示预览后直接执行提交（默认直通；仅当项目内存在 `.claude/.req-confirm-commit` marker 时，Hook 才会弹出原生确认对话框——该 marker 由 Claude 按用户自然语言意图维护）。
+展示预览后直接执行提交（默认直通；仅当项目内存在 `.devflow/.req-confirm-commit` marker 时，启用确认标记时才会弹出确认提示——该 marker 由 Codex 按用户自然语言意图维护）。
 
 ### 8. 提交结果
 

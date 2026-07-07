@@ -106,7 +106,7 @@ template.md    # 需求模板
 
 **头部信息**（每次 `/req` 都展示）：
 
-从 `<plugin-path>/.claude-plugin/plugin.json` 读取版本号，从 `settings.local.json` 读取 `requirementProject`、`requirementRole`、`branchStrategy`，检查 AGENTS.md 是否含架构描述关键词。
+从 `<plugin-path>/.codex-plugin/plugin.json` 读取版本号，从 `.devflow/settings.local.json` / `.devflow/settings.json` 读取 `requirementProject`、`requirementRole`、`branchStrategy`，检查 AGENTS.md 是否含架构描述关键词。
 
 ```
 需求工作流 v<version> | 项目：<project> (<role>)

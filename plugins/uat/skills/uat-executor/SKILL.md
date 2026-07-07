@@ -35,13 +35,13 @@ docs/uat/flows/<module>.md
 | `browser:browser` skill | web / mobile-web 平台，DOM 操作 |
 | 截图 + 视觉分析 | 任意平台的验证步骤（判断"显示正确"） |
 | Bash | CLI 工具、脚本、文件检查 |
-| 无工具 | 提示用户手动操作，Claude 旁观记录 |
+| 无工具 | 提示用户手动操作，Codex 旁观记录 |
 
 若 `平台=web` 但无 browser 工具：
 ```
 ⚠️  当前环境无浏览器工具，无法自动执行 web 测试
-💡  请在 Codex Chrome 或 Claude 桌面客户端运行 /uat:run
-    或将平台改为 desktop，手动操作后由 Claude 验证截图
+💡  请在 Codex Chrome 运行 /uat:run
+    或将平台改为 desktop，手动操作后由 Codex 验证截图
 ```
 
 ---
@@ -122,7 +122,7 @@ console.error = function(...args) {
    - 「客户名称输入框」→ 查找 label 含「客户名称」的 input
 3. **aria-label / placeholder**：无障碍属性中含目标文字
 4. **上下文位置**：「列表中第一行的删除按钮」→ 定位到列表容器，取第一行，找删除操作
-5. **视觉截图兜底**：以上都找不到 → 截图发给 Claude 分析，识别目标元素位置
+5. **视觉截图兜底**：以上都找不到 → 截图发给 Codex 分析，识别目标元素位置
 
 **不要一开始就抓全页 DOM**。先用语义线索缩小范围，再精确定位。
 
@@ -192,7 +192,7 @@ console.error = function(...args) {
 | 「提示消失」/ 「弹窗关闭」 | 确认对应元素不在 DOM 中 |
 | 「跳转到 XX 页面」/ 「URL 为 XX」 | 检查当前 URL |
 | 「XX 不显示」/ 「不应存在」 | 确认目标元素不存在 |
-| 截图肉眼判断（视觉一致性） | 截图发 Claude 分析 |
+| 截图肉眼判断（视觉一致性） | 截图发 Codex 分析 |
 
 **截图策略**：**仅在步骤失败时截图**，通过步骤不截图。路径：`docs/uat/screenshots/YYYY-MM-DD-S0N-<step>.png`
 

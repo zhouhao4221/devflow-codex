@@ -169,7 +169,7 @@ AI 智能分析完成
 ### 9. 保存并同步缓存
 
 - 写入本地文件 `docs/requirements/PRD.md`
-- **同步到主仓需求目录**（通过 PostToolUse Hook 自动触发）
+- **同步到主仓需求目录**（通过 DevFlow 同步机制自动触发）
 
 ### 10. 输出结果
 
@@ -274,7 +274,7 @@ config = merge(.devflow/settings.json, .devflow/settings.local.json)
 - 运行 `scripts/migrate-config.sh`（搬运 DevFlow 字段到 `.devflow/`，密钥进 `settings.local.json`）
 - 重新运行 `/req:init --reinit` 或 `/req:branch init`
 
-> SessionStart hook 检测到 `.claude/` 存在 DevFlow 字段但 `.devflow/` 缺失时，会打印迁移提示。
+> 会话初始化检查检测到 `.claude/` 存在 DevFlow 字段但 `.devflow/` 缺失时，会打印迁移提示。
 
 ---
 
@@ -528,35 +528,35 @@ Git 平台（GitHub / Gitea）会自动将该 commit 关联到 issue，并在合
 
 ## 确认操作规范
 
-默认**不弹任何原生确认对话框**——命令已通过多轮讨论 / 显式参数 / y/n 完成意图确认，Claude Code 本身也足够稳定，无需再叠加一层打断。用户可按需通过自然语言开启 Bash 侧拦截，**无需手动编辑任何配置文件**。
+默认**不弹任何原生确认对话框**——命令已通过多轮讨论 / 显式参数 / y/n 完成意图确认，Codex 本身也足够稳定，无需再叠加一层打断。用户可按需通过自然语言开启 DevFlow 提交确认，**无需手动编辑任何配置文件**。
 
 ### 开启/关闭拦截（记忆 + marker 文件）
 
-开关由项目内 `.claude/.req-confirm-commit` 标记文件承载。Claude 根据用户自然语言意图维护该文件并在 memory 中落 feedback：
+开关由项目内 `.devflow/.req-confirm-commit` 标记文件承载。Codex 根据用户自然语言意图维护该文件并在 memory 中落 feedback：
 
-| 用户说 | Claude 动作 |
+| 用户说 | Codex 动作 |
 |-------|-------------|
-| "以后 git commit 前帮我确认" / "开启提交确认" / "commit 前弹一下" | `mkdir -p .claude && touch .claude/.req-confirm-commit`，保存/更新 feedback memory 记录偏好 |
-| "不用确认了" / "关闭提交确认" / "别再弹框了" | `rm -f .claude/.req-confirm-commit`，更新 memory |
+| "以后 git commit 前帮我确认" / "开启提交确认" / "commit 前弹一下" | `mkdir -p .devflow && touch .devflow/.req-confirm-commit`，保存/更新 feedback memory 记录偏好 |
+| "不用确认了" / "关闭提交确认" / "别再弹框了" | `rm -f .devflow/.req-confirm-commit`，更新 memory |
 
-标记文件已加入 `.gitignore`（每台机器独立）。Claude 在新会话首次感知到偏好与 marker 状态不一致时，可按 memory 中的 feedback 自动补 `touch`，用户无需重复交代。
+标记文件已加入 `.gitignore`（每台机器独立）。Codex 在新会话首次感知到偏好与 marker 状态不一致时，可按 memory 中的 feedback 自动补 `touch`，用户无需重复交代。
 
-### Hook 原生确认（仅在 marker 存在时生效）
+### DevFlow 确认标记（仅在 marker 存在时生效）
 
-| 操作 | Hook 脚本 | 触发条件 |
+| 操作 | 确认机制 | 触发条件 |
 |------|----------|---------|
-| git commit | confirm-before-commit.sh | Bash 命令包含 git commit |
-| 移动需求文件 | confirm-before-commit.sh | Bash 命令包含 mv ... REQ-/QUICK- |
-| 删除需求文件 | confirm-before-commit.sh | Bash 命令包含 rm ... REQ-/QUICK- |
+| git commit | DevFlow 提交确认 | Bash 命令包含 git commit |
+| 移动需求文件 | DevFlow 提交确认 | Bash 命令包含 mv ... REQ-/QUICK- |
+| 删除需求文件 | DevFlow 提交确认 | Bash 命令包含 rm ... REQ-/QUICK- |
 
-> `--auto` 模式标记（`.claude/.req-auto`）仍由 `/req:fix --auto` 等流程负责建立/清理；在 marker 启用拦截时它负责让 Hook 放行自动化流水线。
+> `--auto` 模式标记（`.devflow/.req-auto`）仍由 `/req:fix --auto` 等流程负责建立/清理；在 marker 启用拦截时它负责让自动化流水线跳过确认。
 
 ### 执行规则
 
 1. **展示预览后直接执行** — 不输出"回车继续"等文本确认提示
-2. **默认直通** — 任何 Write/Edit/Bash 都不走 Hook 原生对话框
+2. **默认直通** — 任何 Write/Edit/Bash 都不走 确认提示
 3. **需要用户输入的场景仍需等待** — 选择章节编号、选择目标需求、描述修改意图等由命令层负责
-4. **`/req:done` 等显式 y/n 场景** — 由命令层提示，不依赖 Hook
+4. **`/req:done` 等显式 y/n 场景** — 由命令层提示，不依赖确认标记
 
 ## 状态流转
 
@@ -853,10 +853,10 @@ fi
 
 ## 与 `_issue.md` 的关系
 
-`_issue.md` 中所有 `repoType="gitea"` 的 curl 示例都视为 **`USE_TEA=0` 时的回退路径**。命令文件不必在每个 curl 块前重复 `USE_TEA` 判断，但必须在 Gitea 操作总入口处引用本文，让 Claude 在执行时按矩阵选 CLI。
+`_issue.md` 中所有 `repoType="gitea"` 的 curl 示例都视为 **`USE_TEA=0` 时的回退路径**。命令文件不必在每个 curl 块前重复 `USE_TEA` 判断，但必须在 Gitea 操作总入口处引用本文，让执行代理按矩阵选 CLI。
 
 ## 不实现的部分
 
 - **不自动 `tea login add`**：理由见上方原则 3
 - **不内置 `tea` 安装**：仅检测，缺失时静默回退到 curl，不打断流程
-- **不为每个 curl 例改写成 if/else 模板**：命令文件是给 Claude 的指令，Claude 按本文矩阵在运行时挑选即可
+- **不为每个 curl 例改写成 if/else 模板**：命令文件是给执行代理的指令，执行时按本文矩阵挑选即可

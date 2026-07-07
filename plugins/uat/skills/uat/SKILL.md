@@ -21,7 +21,7 @@ description: UAT 测试工作流 - 列出测试模块和上次执行状态
 |------|------|
 | `/uat:init` | 初始化 UAT 插件（首次使用必须执行） |
 | `/uat:new [module]` | 创建测试流程文档（对话录入或代码分析） |
-| `/uat:run [module]` | 执行测试（需 Codex Chrome 或 Claude 桌面端） |
+| `/uat:run [module]` | 执行测试（需 Codex Chrome ） |
 | `/uat:report` | 查看最近一次测试报告 |
 | `/uat:bug` | 将失败场景上报为 issue |
 

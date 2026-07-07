@@ -14,7 +14,7 @@ description: 使用教程 - 查看 API 对接插件完整使用指南
 按以下优先级：
 
 1. 命令参数 `--lang=zh|en|ko`（显式覆盖）
-2. `.claude/settings.local.json` 的 `language` 字段
+2. `.devflow/settings.local.json` 的 `language` 字段，legacy fallback 到 `.claude/settings.local.json`
 3. 默认 `zh`
 
 ### 2. 读取教程文件
@@ -105,7 +105,7 @@ API 플러그인 - 튜토리얼
 
 ## 持久化语言偏好
 
-在 `.claude/settings.local.json` 中设置：
+在 `.devflow/settings.local.json` 中设置：
 
 ```json
 {

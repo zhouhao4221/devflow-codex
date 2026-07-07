@@ -27,7 +27,7 @@ description: 查询 Diag 审计日志 - 按主机/服务/时间过滤
 ### 1. 扫描审计文件
 
 ```bash
-ls ~/.claude-diag/audit/command_audit-*.jsonl 2>/dev/null
+ls ~/.devflow-diag/audit/command_audit-*.jsonl 2>/dev/null
 ```
 
 若目录不存在或无文件 → 提示"暂无审计记录，`/diag:init` 初始化后使用 `/diag:diagnose` 会产生记录"。
@@ -41,7 +41,7 @@ ls ~/.claude-diag/audit/command_audit-*.jsonl 2>/dev/null
 ### 3. 读取并过滤记录
 
 ```bash
-cat ~/.claude-diag/audit/command_audit-{dates}.jsonl | jq -c '
+cat ~/.devflow-diag/audit/command_audit-{dates}.jsonl | jq -c '
     select(
         (.host == "<host>" or "<host>" == "") and
         (.service == "<service>" or "<service>" == "")
@@ -49,7 +49,7 @@ cat ~/.claude-diag/audit/command_audit-{dates}.jsonl | jq -c '
 ' | tail -n <limit>
 ```
 
-字段：`timestamp / session_id / diag_session_id / operator / host / service / command / exit_code / stdout_length / log_snippet_hash / tmp_write / hooks_passed`
+字段：`timestamp / session_id / diag_session_id / operator / host / service / command / exit_code / stdout_length / log_snippet_hash / tmp_write / guards_passed`
 
 `--temp-files` 时用 jq 过滤 `tmp_write != null`：
 
@@ -70,7 +70,7 @@ Diag 审计（2026-04-13 至 2026-04-20，共 23 条）
 2026-04-19T22:05:42Z   prod-web-02    user-svc    ssh prod-web-02 tail -n 500 /v/l/user.log    0
 ...
 
-完整记录：cat ~/.claude-diag/audit/command_audit-*.jsonl | jq '.'
+完整记录：cat ~/.devflow-diag/audit/command_audit-*.jsonl | jq '.'
 ```
 
 聚合摘要（若记录 > 20）：

@@ -197,8 +197,8 @@ curl 用 `--data-binary @file` 上传，按二进制流，不做换行/编码转
 | 范围内无候选需求 | 提示后自动继续（仅打 tag + 纯 commit changelog） |
 | git 范围内只有未完成需求 | 询问一次是否纳入；全部跳过则继续纯 commit changelog 流程 |
 | 选中需求都无 SQL | 跳过 SQL 步骤，仅执行 changelog/tag/release |
-| `docs/migrations/released/<version>.sql` 已存在 | Hook 弹确认 |
-| `docs/changelogs/<version>.md` 已存在 | Hook 弹确认 |
+| `docs/migrations/released/<version>.sql` 已存在 | 命令层弹确认 |
+| `docs/changelogs/<version>.md` 已存在 | 命令层弹确认 |
 | git tag 已存在 | 提示已存在，询问是否跳过 tag 步骤继续 |
 | Gitea token 缺失 | 跳过 Release，保留 tag |
 | gh CLI 缺失 | 输出命令让用户手动执行 |

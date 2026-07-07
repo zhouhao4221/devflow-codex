@@ -1,8 +1,8 @@
 # services.yaml - Diag 插件服务清单
-# 位置：~/.claude-diag/config/services.yaml
+# 位置：~/.devflow-diag/config/services.yaml
 #
 # 本文件是 **唯一** 的主机白名单源：
-# - SSH 目标主机必须在本文件 host 字段中登记，否则 Hook 直接拒绝
+# - SSH 目标主机必须在本文件 host 字段中登记，否则 风控直接拒绝
 # - 每次 /diag:diagnose 都会从本文件读取服务列表让用户选择
 #
 # 校验规则：

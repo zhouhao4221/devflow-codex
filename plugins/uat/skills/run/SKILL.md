@@ -9,7 +9,7 @@ description: 执行 UAT 测试 - 按流程文档逐场景验收
 
 读取测试流程文档，调用 uat-executor skill 逐场景执行，输出报告。
 
-> **运行环境要求**：操作方式为 `browser` 时，必须在 **Codex Chrome** 或 **Claude 桌面客户端** 中运行，否则无法调用浏览器工具。
+> **运行环境要求**：操作方式为 `browser` 时，必须在 **Codex Chrome** 或 **Codex 桌面端** 中运行，否则无法调用浏览器工具。
 
 ## 命令格式
 
@@ -26,7 +26,7 @@ description: 执行 UAT 测试 - 按流程文档逐场景验收
 
 ### 0. 前置检查：skill 是否已安装
 
-检查 `.claude/skills/uat-executor/SKILL.md` 是否存在：
+检查 `.agents/skills/uat-executor/SKILL.md` 是否存在：
 
 - 存在 → 继续
 - 不存在 → 终止并提示：
@@ -34,8 +34,8 @@ description: 执行 UAT 测试 - 按流程文档逐场景验收
 ```
 ❌ uat-executor skill 未安装
 
-当前环境（Codex / Claude 桌面端）需要 skill 文件才能执行测试。
-请先在 Claude Code 中运行：/uat:init
+当前环境需要 skill 文件才能执行测试。
+请先在 Codex 中运行：/uat:init
 ```
 
 ### 1. 确定执行范围
@@ -51,7 +51,7 @@ description: 执行 UAT 测试 - 按流程文档逐场景验收
 
 ### 2. 激活 uat-executor skill
 
-读取 flow 文档后，按 `.claude/skills/uat-executor/SKILL.md` 的指导执行：
+读取 flow 文档后，按 `.agents/skills/uat-executor/SKILL.md` 的指导执行：
 
 - 检查运行环境（browser 模式下确认浏览器工具可用）
 - 逐场景执行并记录结果
