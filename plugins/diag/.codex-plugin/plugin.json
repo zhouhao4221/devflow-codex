@@ -1,6 +1,6 @@
 {
   "name": "diag",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "生产诊断 - 只读拉日志、AI 解析堆栈、关联代码、给修复建议",
   "author": {
     "name": "zhouhao4221",

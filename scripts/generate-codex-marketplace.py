@@ -14,7 +14,7 @@ AUTHOR = {"name": "zhouhao4221", "url": "https://github.com/zhouhao4221"}
 
 PLUGIN_META = {
     "req": {
-        "version": "3.24.0",
+        "version": "3.24.1",
         "description": "需求全流程工作流管理 - 从需求分析到测试的完整生命周期管理",
         "displayName": "DevFlow Req",
         "shortDescription": "需求分析、PRD、开发、测试和发布工作流",
@@ -30,7 +30,7 @@ PLUGIN_META = {
         "brandColor": "#10A37F",
     },
     "api": {
-        "version": "0.4.0",
+        "version": "0.4.1",
         "description": "前端 API 对接工具 - Swagger 解析、字段映射、代码生成",
         "displayName": "DevFlow API",
         "shortDescription": "Swagger/OpenAPI 搜索、映射和前端代码生成",
@@ -46,7 +46,7 @@ PLUGIN_META = {
         "brandColor": "#2563EB",
     },
     "pm": {
-        "version": "0.5.0",
+        "version": "0.5.1",
         "description": "项目管理助手 - 从 PRD、需求文档和 Git 记录生成汇报、统计、方案",
         "displayName": "DevFlow PM",
         "shortDescription": "项目周报、月报、风险、进度和里程碑总结",
@@ -62,7 +62,7 @@ PLUGIN_META = {
         "brandColor": "#7C3AED",
     },
     "diag": {
-        "version": "0.2.0",
+        "version": "0.2.1",
         "description": "生产诊断 - 只读拉日志、AI 解析堆栈、关联代码、给修复建议",
         "displayName": "DevFlow Diag",
         "shortDescription": "生产日志诊断、堆栈分析和代码关联",
@@ -78,7 +78,7 @@ PLUGIN_META = {
         "brandColor": "#DC2626",
     },
     "uat": {
-        "version": "1.3.0",
+        "version": "1.3.1",
         "description": "用户验收测试（UAT）- AI 驱动的 UI 验收测试",
         "displayName": "DevFlow UAT",
         "shortDescription": "创建、执行和上报用户验收测试流程",

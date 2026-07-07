@@ -1,6 +1,6 @@
 {
   "name": "api",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "前端 API 对接工具 - Swagger 解析、字段映射、代码生成",
   "author": {
     "name": "zhouhao4221",

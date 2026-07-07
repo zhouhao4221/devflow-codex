@@ -1,6 +1,6 @@
 {
   "name": "pm",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "项目管理助手 - 从 PRD、需求文档和 Git 记录生成汇报、统计、方案",
   "author": {
     "name": "zhouhao4221",
