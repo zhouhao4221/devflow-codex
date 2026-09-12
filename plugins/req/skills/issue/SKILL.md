@@ -78,7 +78,7 @@ OWNER/REPO 从 `git remote get-url origin` 解析，支持 SSH 和 HTTPS 格式�
 
 ### 2.6 `--auto` 模式
 
-检测 `.devflow/.req-auto` 且 mtime < 10 分钟时跳过交互确认。`new` 强制预览，不受影响。
+只复用当前任务中用户对具体 issue 操作的授权，不读取 `.devflow/.req-auto` 或其时间戳推断授权。`--auto` 仅减少已授权操作的交互；各写操作展示具体内容后执行，缺少操作授权时再询问。
 
 ---
 
@@ -92,7 +92,7 @@ OWNER/REPO 从 `git remote get-url origin` 解析，支持 SSH 和 HTTPS 格式�
 
 **防误关闭**：正文含 `closes #N` / `fixes #N` 时警告，确认后再提交。
 
-**强制预览**，不受 `--auto` 影响：
+**写入前预览**：展示具体目标、标题和正文。用户已授权创建时继续执行；只要求草稿时交付草稿，缺少发布授权时在预览后询问：
 
 ```
 Issue 草稿：
@@ -104,10 +104,9 @@ Issue 草稿：
 
   正文（前 10 行）：...
 
-  是否提交？(y/n/e - 编辑某字段)
 ```
 
-`e` 可选择修改字段，改完回到预览。
+需要询问时支持 y/n/e；`e` 修改字段后更新预览。
 
 成功输出：
 
@@ -132,7 +131,7 @@ Issue 草稿：
 
 **Gitea 限制**：labels 必须走独立端点（`POST /labels` 新增、`DELETE /labels/{id}` 逐个删除），不能通过 PATCH body 修改。title/body/assignees 走 PATCH。
 
-预览变更后提交，`--auto` 跳过预览。
+预览变更后在已授权范围内提交，`--auto` 不扩大修改范围。
 
 ---
 

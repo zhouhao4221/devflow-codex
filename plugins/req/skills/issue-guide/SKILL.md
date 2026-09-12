@@ -94,7 +94,7 @@ Gitea 的 labels **不能**通过 PATCH body 修改，必须走独立端点：
 - 问题描述 / 复现步骤 / 预期行为 / 实际行为
 - 环境信息：从 `git branch --show-current` 和 `git rev-parse --short HEAD` 取值
 
-**强制预览**（不受 `--auto` 影响）：展示草稿，等待用户 y/n/e 确认。
+展示具体草稿后按 [issue](../issue/SKILL.md) 的授权规则执行；用户已要求创建时不重复确认，只要求草稿时不发布。
 
 成功后输出：
 ```

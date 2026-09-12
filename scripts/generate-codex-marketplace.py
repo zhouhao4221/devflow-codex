@@ -14,7 +14,7 @@ AUTHOR = {"name": "zhouhao4221", "url": "https://github.com/zhouhao4221"}
 
 PLUGIN_META = {
     "req": {
-        "version": "3.25.0",
+        "version": "3.25.1",
         "description": "需求全流程工作流管理 - 从需求分析到测试的完整生命周期管理",
         "displayName": "DevFlow Req",
         "shortDescription": "需求分析、PRD、开发、测试和发布工作流",
@@ -30,7 +30,7 @@ PLUGIN_META = {
         "brandColor": "#10A37F",
     },
     "api": {
-        "version": "0.4.2",
+        "version": "0.4.3",
         "description": "前端 API 对接工具 - Swagger 解析、字段映射、代码生成",
         "displayName": "DevFlow API",
         "shortDescription": "Swagger/OpenAPI 搜索、映射和前端代码生成",

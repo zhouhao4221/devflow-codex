@@ -1,6 +1,6 @@
 ---
-description: "需求开发 - 启动或继续开发"
-argument-hint: "[arguments]"
+description: "按 DevFlow 需求启动或继续开发，完成实现与相关验证。"
+argument-hint: "[REQ-XXX|QUICK-XXX] [--reset]"
 ---
 
 Use the `req:dev` skill and follow its `SKILL.md` instructions.

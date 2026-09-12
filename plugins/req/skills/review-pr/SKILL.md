@@ -118,7 +118,7 @@ description: PR 审查与合并 - AI 代码审查、提交评论、合并 PR
 
 ### 6. 提交审查评论
 
-默认只展示审查结果。只有用户明确授权「审查并提交评论」、明确使用 `review --auto` 或已有等价授权时才发布；`--auto` 仅涵盖本次审查评论，不授权合并。缺少授权时先展示具体评论内容再询问，零问题同样适用。`repoType=other` 只在本地展示。
+默认只展示审查结果并结束。只有用户明确授权「审查并提交评论」、明确使用 `review --auto` 或已有等价授权时才发布；`--auto` 仅涵盖本次审查评论，不授权 Approved 或合并。用户要求发布但目标或范围仍不清时，先展示具体内容再澄清；纯审查请求不追加发布确认，零问题同样适用。`repoType=other` 只在本地展示。
 
 > 精简规则：保留阻塞（全部）、关键建议、文档同步关键缺失；去除信息级备注、风格命名建议、过程信息。控制在 300 字以内。
 >
@@ -126,9 +126,7 @@ description: PR 审查与合并 - AI 代码审查、提交评论、合并 PR
 
 ### 7. 无阻塞时的后续操作
 
-阻塞=0 且 PR 为 Open 时：
-- **有审核人**（PR reviewers 或 `branchStrategy.reviewers`）→ 提示是否提交 Approved（Gitea `POST /pulls/{N}/reviews` body `{"event":"APPROVED"}`，GitHub `gh pr review --approve`）
-- **无审核人** → 仅展示结果，提示可 `/req:review-pr merge`
+阻塞=0 且 PR 为 Open 时，只继续用户已授权的后续动作。明确要求提交 Approved 才调用 Gitea `POST /pulls/{N}/reviews`（`{"event":"APPROVED"}`）或 GitHub `gh pr review --approve`；明确要求合并才进入 merge 流程。审核人配置不构成授权，纯审查在报告后结束。
 
 ---
 
@@ -145,7 +143,7 @@ Gitea：整体评论 `/issues/{N}/comments`，行内评论先 `GET /pulls/{N}/re
 
 ### 3. 展示 & 分析
 
-分组展示评论清单，逐条读取引用源码位置（±20 行上下文），判断可执行/需讨论，生成修改方案。用户确认后执行。
+分组展示评论清单，逐条读取引用源码上下文，判断可执行/需讨论，生成具体修改方案。用户已要求处理反馈时在其范围内实施并验证；只要求查看评论时交付分析，额外范围或关键选择再澄清。
 
 ---
 

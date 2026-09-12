@@ -1,4 +1,4 @@
 interface:
   display_name: "DevFlow API: API Field Mapper"
-  short_description: "API 字段映射助手"
-  default_prompt: "使用 $api-field-mapper 处理：API 字段映射助手。"
+  short_description: "对照已配置的 Swagger 检查前端 API 字段映射"
+  default_prompt: "使用 $api-field-mapper 处理：对照已配置的 Swagger 检查前端 API 字段映射。"

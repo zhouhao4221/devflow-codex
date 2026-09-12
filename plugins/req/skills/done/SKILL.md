@@ -62,7 +62,7 @@ REQ-XXX <标题> 已完成
 
 读取 `.devflow/settings.local.json` / `.devflow/settings.json` 的 `branchStrategy`，legacy fallback 到 `.claude/settings.local.json.branchStrategy`；同时读取需求文档的 `branch` 字段。无 `branchStrategy` 或 `branch` 为空 → 跳过本步。
 
-按 `repoType` 创建 PR，逻辑同 [pr.md](../pr/SKILL.md)（push + 创建 PR + 提示 review-pr）。
+已有创建 PR 授权时按 [pr](../pr/SKILL.md) 执行；否则仅提示可用操作。归档请求和平台配置不构成推送或 PR 授权；用户要求不创建 PR 时跳过。
 
 **特殊情况**：
 - `giteaToken` 缺失 → 提示手工 compare 链接

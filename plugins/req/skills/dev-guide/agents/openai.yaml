@@ -1,4 +1,4 @@
 interface:
   display_name: "DevFlow Req: Dev Guide"
-  short_description: "开发引导助手"
-  default_prompt: "使用 $dev-guide 处理：开发引导助手。"
+  short_description: "为 DevFlow 需求实现方案提供后端、前端及全栈的专项指导"
+  default_prompt: "使用 $dev-guide 处理：为 DevFlow 需求实现方案提供后端、前端及全栈的专项指导。"

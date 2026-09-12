@@ -1,18 +1,15 @@
 ---
 name: api-field-mapper
-description: API 字段映射助手。编辑前端 TypeScript/Vue 文件时自动关联 Swagger 接口定义，提示字段映射关系。
+description: 对照已配置的 Swagger 检查前端 API 字段映射。用于新增或修改接口调用、请求参数或响应字段。
 ---
 
 # API 字段映射助手
 
-当编辑前端文件时，自动检测是否涉及 API 调用，并关联 Swagger 接口定义提供字段映射辅助。
+在实际调整接口调用或字段契约时，关联 Swagger 定义检查映射。仅修改样式、文案或无关逻辑时不加载本技能。
 
 ## 触发条件
 
-编辑以下类型文件时触发：
-- `src/**/*.ts` — TypeScript 文件
-- `src/**/*.tsx` — React 组件
-- `src/**/*.vue` — Vue 组件
+当前变更涉及前端 API 调用、请求参数或响应字段，且项目已配置 `.api-config.json` 时使用。文件扩展名或存在 API import 本身不足以触发；配置不存在时静默跳过。
 
 ## 工作流程
 
@@ -82,7 +79,7 @@ fetch(`/api/v1/orders/${orderId}`)              → GET /api/v1/orders/{id}
 
 ## 非侵入原则
 
-- 仅在检测到明确的 API 调用时触发
+- 只检查本次变更涉及的 API 调用与字段契约
 - 不自动修改代码，只提供建议
 - `.api-config.json` 不存在时静默跳过
 - 不阻塞正常编辑操作

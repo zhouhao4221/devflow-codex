@@ -27,7 +27,7 @@ description: 测试引导助手。在执行 /req:test、/req:test-regression 或
 - 文件不存在 → 回退从 AGENTS.md 读取（兼容旧项目）
 
 补充注入（存在则读，缺失静默跳过）：
-- 运行 / 回归测试（`/req:test`、`/req:test-regression`）→ Read `docs/prompt/testing.md`（运行命令、文件位置、环境依赖）
+- 运行 / 回归测试（`/req:test`、`/req:test-regression`）→ 复用已读取的 `docs/prompt/testing.md`
 - 创建新用例（`/req:test-new`）→ Read `docs/prompt/test-generation.md`（用例编写规范、覆盖要求）
 
 从项目 AGENTS.md 的「测试规范」章节获取（architecture.md 不存在时的兜底）：
@@ -50,7 +50,7 @@ description: 测试引导助手。在执行 /req:test、/req:test-regression 或
 - **primary 仓库**：读取本仓配置的 `<requirementsDir>/specs/`。
 - **readonly 仓库**：读取 `requirementSource.path` 指向主仓自身配置的 `<requirementsDir>/specs/`。未绑定时提示 `/req:use`，不读全局缓存，不回写主仓。
 
-目录存在且有文件 → 全部读取，作为测试约束注入上下文，不打印提示。  
+目录存在且有文件 → 根据被测模块、变更符号和接口契约筛选相关规约，再读取必要内容；已加载且未变化的内容直接复用，不全量注入。
 目录不存在或为空 → 静默跳过。
 
 ---
