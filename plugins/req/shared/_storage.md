@@ -1,0 +1,119 @@
+# 公共逻辑参考 - 存储与配置
+
+> 此文档定义 settings 文件写入、存储路径、需求编号、元信息等共用规则。
+>
+
+## settings 文件写入规范
+
+DevFlow 配置存储在项目根的 `.devflow/` 目录，按是否含密钥分两个文件：
+
+| 字段 | 文件 | 纳入 git | 说明 |
+|------|------|----------|------|
+| `requirementProject` | `.devflow/settings.json` | ✅ | 团队共享配置 |
+| `requirementRole` | `.devflow/settings.json` | ✅ | 团队共享配置 |
+| `requirementsDir` | `.devflow/settings.json` | ✅ | 需求文档根目录，省略时默认 `docs/requirements` |
+| `branchStrategy`（不含 token） | `.devflow/settings.json` | ✅ | 团队共享配置 |
+| `giteaToken` | `.devflow/settings.local.json` | ❌ | 个人密钥，禁止提交 |
+
+> **`.devflow/` 与 `.claude/` 的分工**：`.devflow/` 只放 DevFlow 业务配置（上表字段）；Claude Code 自身的 hooks、permissions 仍在 `.claude/settings.json`，两者互不迁移。项目级窄知识 skill 优先放在 `.agents/skills/`，旧 Claude Code 项目可 legacy fallback 到 `.claude/skills/`。
+
+**写入规则（强制）**：
+
+1. **禁止独立配置文件**：DevFlow 字段一律合并进 `.devflow/settings.json` 或 `.devflow/settings.local.json`，禁止另建 `devflow.json`、`branchStrategy.json` 等
+2. **合并写入**：先读取已有文件内容，合并需要更新的字段后写回，**不得覆盖已有字段**
+3. **目录检查**：`.devflow/` 目录不存在时先创建
+4. **读取合并顺序**：命令读配置时先读 `.devflow/settings.json`，再用 `.devflow/settings.local.json` 覆盖同名字段（`giteaToken` 以 local 为准）
+5. **无写入权限的回退**：当 Write/Edit 工具被拒绝时，**不得**改写到其他文件，而应直接输出可复制执行的 shell 命令：
+
+   ```bash
+   # 写入 .devflow/settings.json（团队配置）
+   python3 -c "import json,os; p='.devflow/settings.json'; os.makedirs('.devflow',exist_ok=True); d=json.load(open(p)) if os.path.exists(p) else {}; d['requirementProject']='my-project'; d['requirementRole']='primary'; json.dump(d,open(p,'w'),indent=2,ensure_ascii=False)"
+   # 写入 .devflow/settings.local.json（本地密钥）
+   python3 -c "import json,os; p='.devflow/settings.local.json'; os.makedirs('.devflow',exist_ok=True); d=json.load(open(p)) if os.path.exists(p) else {}; d['giteaToken']='YOUR_TOKEN'; json.dump(d,open(p,'w'),indent=2,ensure_ascii=False)"
+   ```
+
+```python
+# 写入团队配置（.devflow/settings.json）
+import json, os
+
+path = ".devflow/settings.json"
+os.makedirs(".devflow", exist_ok=True)
+existing = json.load(open(path)) if os.path.exists(path) else {}
+existing["requirementProject"] = "..."  # 只更新需要的字段
+with open(path, "w") as f:
+    json.dump(existing, f, indent=2, ensure_ascii=False)
+
+# 写入本地密钥（.devflow/settings.local.json）
+path = ".devflow/settings.local.json"
+existing = json.load(open(path)) if os.path.exists(path) else {}
+existing["giteaToken"] = "YOUR_TOKEN"
+with open(path, "w") as f:
+    json.dump(existing, f, indent=2, ensure_ascii=False)
+```
+
+### 读取惯例
+
+命令读取 `requirementProject` / `requirementRole` / `requirementsDir` / `branchStrategy` 时，统一按以下顺序合并：
+
+```
+config = merge(.devflow/settings.json, .devflow/settings.local.json)
+# .devflow/settings.local.json 中的同名字段覆盖 settings.json
+```
+
+**Legacy 兼容**：仅在 `.devflow` 中缺少对应 DevFlow 配置时，才兼容读取旧 `.claude/settings.local.json` 中的相关字段，并提示 `/req:migrate`。所有新增或修改配置写入 `.devflow`，不写旧路径。配置检查在用户调用相关命令时执行，不假定 SessionStart hook 存在。
+
+---
+
+## 存储路径解析
+
+```
+需求存储（唯一源，在 primary 仓库）: <requirementsDir>/   默认 docs/requirements/
+modules/      # 模块文档
+specs/        # 规范文档（数据类型、接口契约等，跨仓库共享）
+active/       # 进行中需求
+completed/    # 已完成需求
+INDEX.md      # 索引
+```
+
+**无全局缓存**：需求文档只存在于 primary 仓库的 `requirementsDir`，是唯一事实源。readonly 仓库不复制、不缓存，直接读 primary 仓库目录。
+
+**解析规则**：
+1. 读 `.devflow/settings.json` 的 `requirementRole` / `requirementsDir` / `requirementSource`，再用 `.devflow/settings.local.json` 覆盖同名字段
+2. `primary`：需求根目录 = 本仓 `requirementsDir`（省略时默认 `docs/requirements/`；下文 `docs/requirements/` 均指此解析结果）
+3. `readonly`：需求根目录 = `requirementSource.path` 指向的主仓根 + 该主仓的 `requirementsDir`；未配置 `requirementSource` 时报错，提示先 `/req:use <primary-repo-path>` 绑定
+
+**仓库角色**（`requirementRole` 字段）：
+
+| 角色 | 值 | 说明 |
+|------|------|------|
+| 主仓库 | `primary` | 拥有本地 `requirementsDir`，可读写，写入即生效 |
+| 只读仓库 | `readonly` | 无本地需求目录，经 `requirementSource.path` 直接读主仓，不可创建/编辑/变更状态 |
+
+**读取策略**：
+- `primary`：读写本仓 `requirementsDir`
+- `readonly`：直接读 `requirementSource.path` 下的需求目录（实时，无副本）
+
+## 写入规则（无缓存，主仓唯一源）
+
+**核心原则**：需求文档**只有一份**，位于 primary 仓库的 `requirementsDir`。不存在缓存层，因此没有同步动作。
+
+- **primary**：所有修改需求的命令（new、new-quick、edit、review、dev、test、done、upgrade、modules/specs/prd 编辑）直接写本仓 `requirementsDir`，写完即生效，**无任何后续同步或 cp**。
+- **readonly**：禁止一切写操作（创建、编辑、状态更新）。仅读取 `requirementSource.path`。
+
+> **历史说明（v2.x → v3 breaking change）**：v2.x 曾用 `~/.claude-requirements/` 全局缓存 + PostToolUse `sync-cache.sh` 单向同步，readonly 从缓存读。v3 起**移除缓存**：readonly 改为经 `requirementSource.path` 直读主仓，`sync-cache.sh` 不再注册。命令内**不应再有任何缓存读写、cp 到缓存、或全局索引（`~/.claude-requirements/index.json`）操作**。
+
+## 需求编号生成
+
+扫描 active/ 和 completed/ 目录，找最大编号 +1，格式 `REQ-XXX`
+
+## 元信息字段
+
+| 字段 | 说明 |
+|------|------|
+| 编号 | REQ-XXX |
+| 类型 | 后端/前端/全栈 |
+| 状态 | 当前状态 |
+| 模块 | 所属模块 |
+| 关联需求 | 前后端对应需求 |
+| branch | 开发分支名（/req:dev 首次进入时生成） |
+| issue | 关联的 Git 平台 issue 编号（如 `#123`），无关联为 `-`。`/req:new --from-issue` 自动填充，`/req:done` 读取后可选关闭 |

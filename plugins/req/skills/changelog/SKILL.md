@@ -29,6 +29,8 @@ description: 生成版本说明 - 基于 Git 记录生成 Changelog
 
 ---
 
+> 涉及子代理的步骤先按需读取 [_delegate.md](../../shared/_delegate.md)：按运行环境能力和任务独立性决定委派，不可用时主会话完成同一工作。用户已有授权和分支偏好优先，不重复询问已确认方案。
+
 ## 执行流程
 
 ### 1. 参数校验
@@ -54,6 +56,8 @@ description: 生成版本说明 - 基于 Git 记录生成 Changelog
 ### 3. 读取 Git 提交记录
 
 从 `FROM_REF..TO_REF` 范围内（不含 merge commit）提取：短 hash、提交日期、提交消息。
+
+> 区间内提交**超过 50 条**时，把第 3~4 步（取记录 + 按前缀分类）委派给 `doc-writer` subagent：prompt 内联 `FROM_REF..TO_REF`、下一节的前缀分类表和分类规则、目标章节骨架，主会话只核对它返回的分类草稿，`git log` 原文不进主会话。规则见 [`_delegate.md`](../../shared/_delegate.md)。
 
 ### 4. 按提交前缀分类
 

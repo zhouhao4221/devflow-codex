@@ -20,7 +20,7 @@ description: 开发引导助手。仅在执行 /req:dev 命令时触发。按项
 
 ### 1. 加载模块上下文
 
-需求元信息指定了模块时，读取 `docs/requirements/modules/<模块名>.md`，提取：职责边界、已有数据模型和 API、相关需求列表。
+需求元信息指定了模块时，按 [_storage.md](../../shared/_storage.md) 解析需求根目录，再读取其 `modules/<模块名>.md`，提取：职责边界、已有数据模型和 API、相关需求列表。
 
 ### 2. 识别需求类型
 
@@ -35,14 +35,14 @@ description: 开发引导助手。仅在执行 /req:dev 命令时触发。按项
 
 | 角色 | 行为 |
 |------|------|
-| `primary` | 本地读写，修改后同步缓存 |
-| `readonly` | 从缓存读取，可基于已完成需求开发，不写入 |
+| `primary` | 本仓需求根目录读写，写入即生效 |
+| `readonly` | 直读已绑定主仓自身配置的需求根目录，可基于已完成需求开发，不写入 |
 
 ### 5. 加载项目知识
 
-- **架构文件**：Read `docs/prompt/architecture.md`（不存在时打印非阻塞警告，建议 `/req:init --reinit`）
+- **架构文件**：Read `docs/prompt/architecture.md`（不存在时回退 AGENTS.md 的架构章节；都缺失时提示 `/req:init --reinit`）
 - **代码生成规范**：Read `docs/prompt/code-generation.md`，存在则按其 5 节注入生成约束（必备输入、输出标准、失败模式）；缺失静默跳过
-- **项目 Skills**：扫描 `.agents/skills/` 下所有 `.md` 文件，legacy fallback 到 `.agents/skills/`，静默注入
+- **项目 Skills**：按名称与描述选择 `.agents/skills/<skill>/SKILL.md` 中相关的项目技能，不全量注入；旧项目仅按需兼容 `.claude/skills/`
 
 ---
 
@@ -66,6 +66,8 @@ description: 开发引导助手。仅在执行 /req:dev 命令时触发。按项
 ---
 
 ## 二-B、分支管理（仅 primary）
+
+用户和项目 AGENTS.md 的明确分支约定优先，已授权直接在主分支工作时不创建分支。
 
 ### 1. 工作区检查
 

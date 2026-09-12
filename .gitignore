@@ -16,6 +16,7 @@ Thumbs.db
 .devflow/settings.local.json
 
 # Generated adaptor output
+dist/
 .agents/skills/
 .codex/commands/
 skills.json

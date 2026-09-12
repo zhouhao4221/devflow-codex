@@ -7,7 +7,7 @@ description: 更新模板 - 将插件最新模板同步到项目本地
 
 将插件 `templates/` 目录下的最新模板同步到项目本地 `docs/requirements/`，覆盖旧版本。
 
-> 存储路径规则见 _storage.md（见附录：_storage.md）
+> 存储路径规则见 _storage.md（按需读取 [_storage.md](../../shared/_storage.md)）
 
 ## 命令格式
 

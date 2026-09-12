@@ -28,7 +28,7 @@ description: 迁移需求 - 调整需求目录位置或从旧布局迁移到 .de
 
 ### 2A. 配置迁移（检测到 `.claude/` 旧 DevFlow 配置）
 
-> 等价于运行 [`scripts/migrate-config.sh`](../scripts/migrate-config.sh)。
+> 按下列步骤迁移配置；不依赖额外迁移脚本。先读取并合并现有 `.devflow` 配置，保留已有值与无关字段。
 
 - 把 `.claude/settings.json(.local)` 中的 DevFlow 字段搬到 `.devflow/`：
   - `requirementProject` / `requirementRole` / `requirementsDir` / `branchStrategy` -> `.devflow/settings.json`

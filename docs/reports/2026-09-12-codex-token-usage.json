@@ -1,0 +1,86 @@
+{
+  "root_turn_id": "01a09440-6824-7731-8463-e0c9a4bc358c",
+  "measurement": "actual per-response usage, globally deduplicated by response_id; completed optimization turn only",
+  "rows": [
+    {
+      "agent": "/root",
+      "requests": 35,
+      "input_tokens": 3209656,
+      "cached_input_tokens": 3106688,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 19844,
+      "reasoning_output_tokens": 3562,
+      "total_tokens": 3229500,
+      "first_usage_at": "2026-09-12T06:14:14.036Z",
+      "last_usage_at": "2026-09-12T06:28:21.415Z"
+    },
+    {
+      "agent": "/root/codex_parallel_eval",
+      "requests": 16,
+      "input_tokens": 599925,
+      "cached_input_tokens": 572928,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3975,
+      "reasoning_output_tokens": 159,
+      "total_tokens": 603900,
+      "first_usage_at": "2026-09-12T06:20:40.419Z",
+      "last_usage_at": "2026-09-12T06:24:23.888Z"
+    },
+    {
+      "agent": "/root/codex_acceptance_eval",
+      "requests": 9,
+      "input_tokens": 340618,
+      "cached_input_tokens": 326656,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 4973,
+      "reasoning_output_tokens": 158,
+      "total_tokens": 345591,
+      "first_usage_at": "2026-09-12T06:24:36.922Z",
+      "last_usage_at": "2026-09-12T06:27:45.346Z"
+    },
+    {
+      "agent": "/root/codex_parallel_eval/ranges_impl",
+      "requests": 7,
+      "input_tokens": 240226,
+      "cached_input_tokens": 232704,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2233,
+      "reasoning_output_tokens": 33,
+      "total_tokens": 242459,
+      "first_usage_at": "2026-09-12T06:21:36.361Z",
+      "last_usage_at": "2026-09-12T06:23:25.236Z"
+    },
+    {
+      "agent": "/root/codex_parallel_eval/records_impl",
+      "requests": 6,
+      "input_tokens": 203766,
+      "cached_input_tokens": 196352,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2132,
+      "reasoning_output_tokens": 14,
+      "total_tokens": 205898,
+      "first_usage_at": "2026-09-12T06:21:50.345Z",
+      "last_usage_at": "2026-09-12T06:23:12.576Z"
+    }
+  ],
+  "total": {
+    "input_tokens": 4594191,
+    "cached_input_tokens": 4435328,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 33157,
+    "reasoning_output_tokens": 3926,
+    "total_tokens": 4627348
+  },
+  "subagents_total": {
+    "input_tokens": 1384535,
+    "cached_input_tokens": 1328640,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 13313,
+    "reasoning_output_tokens": 364,
+    "total_tokens": 1397848
+  },
+  "cached_input_fraction_percent": 96.5421,
+  "uncached_input_tokens": 158863,
+  "comparable_baseline_available": false,
+  "savings_rate_percent": null
+}

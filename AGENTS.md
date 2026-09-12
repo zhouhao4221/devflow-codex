@@ -1,8 +1,12 @@
 # Repository Guidelines
 
+## Repository Relationship
+
+The maintainer owns both [devflow-codex](https://github.com/zhouhao4221/devflow-codex) (this repository) and [devflow-claude](https://github.com/zhouhao4221/devflow-claude). They are parallel implementations of DevFlow, with workflows and conventions tailored to Codex and Claude respectively. Do not assume an upstream/downstream or fork relationship. When referencing or porting behavior between them, preserve the target repository's platform-specific style and conventions.
+
 ## Project Structure & Module Organization
 
-This repository distributes DevFlow as Codex marketplace plugins. Each plugin lives under `plugins/<plugin>/` with `.codex-plugin/plugin.json`, `commands/*.md`, and `skills/<skill>/SKILL.md`. Skill directory names must match their frontmatter `name`. Plugin templates live in `plugins/<plugin>/templates/`. Adapter, generation, and validation scripts are in `scripts/`. Project docs and requirement/design notes are in `docs/`. `skill-bindings.json` maps plugins, commands, and skills and must stay synchronized with `plugins/`.
+This repository distributes DevFlow as Codex marketplace plugins. Each plugin lives under `plugins/<plugin>/` with `.codex-plugin/plugin.json`, generated `commands/*.md`, and authored `skills/<skill>/SKILL.md`. Skill directory names must match their frontmatter `name`. Plugin templates live in `plugins/<plugin>/templates/`; shared instructions belong in `shared/` and are loaded through direct relative links. Keep plugin-specific maintenance rules in that plugin's `AGENTS.md`. Adapter, generation, and validation scripts are in `scripts/`. Project docs and requirement/design notes are in `docs/`. `skill-bindings.json` maps plugins, commands, and skills and must stay synchronized with `plugins/`.
 
 DevFlow project state is tool-neutral. Use `.devflow/settings.json` for shared project configuration and `.devflow/settings.local.json` for machine-private values. Do not introduce new default behavior that depends on `.claude/settings.local.json` or `~/.claude-requirements`; those paths are legacy compatibility fallbacks only. The canonical project instructions for Codex and other agents live in `AGENTS.md`; do not add a tool-specific duplicate instructions file in this repository.
 
@@ -10,8 +14,10 @@ DevFlow project state is tool-neutral. Use `.devflow/settings.json` for shared p
 
 - `python3 scripts/generate-codex-marketplace.py` - regenerate `.codex-plugin/plugin.json`, plugin `commands/*.md`, and `.agents/plugins/marketplace.json`.
 - `./scripts/validate-skills.sh --ci` - run the required consistency checks used by CI.
-- `./scripts/setup-claude.sh . ../devflow-claude` - generate Claude Code's layered layout.
-- `./scripts/setup-opencode.sh . ~/.agents/skills` - generate flat-layout skills for OpenCode-compatible tools.
+- `./scripts/setup-claude.sh . ./dist/claude` - generate an isolated layered compatibility export; never use the separately maintained `devflow-claude` repository as the default output.
+- `./scripts/setup-opencode.sh . ./dist/opencode` - generate flat-layout skills for OpenCode-compatible tools.
+- `python3 scripts/check-layout.py` - check shared references and authoring layout.
+- `python3 scripts/test-export-skills.py` - verify both export layouts, linked resources, and output protection in temporary directories.
 
 ## Coding Style & Naming Conventions
 
@@ -19,7 +25,7 @@ Use Python 3 for generation/validation helpers and POSIX-oriented Bash for shell
 
 ## Testing Guidelines
 
-There is no separate unit test suite. Treat `./scripts/validate-skills.sh --ci` as the minimum required test before committing. When adding or changing a command, update `skill-bindings.json`, regenerate marketplace artifacts, and verify both the new file and bindings pass validation. Do not reintroduce npm package distribution unless explicitly requested.
+Treat `./scripts/validate-skills.sh --ci` as the minimum required test before committing. Run `python3 scripts/test-export-skills.py` when changing shared resources or adapters. When adding or changing a command, update `skill-bindings.json`, regenerate marketplace artifacts, and verify both the new file and bindings pass validation. Do not reintroduce npm package distribution unless explicitly requested.
 
 ## Commit & Contribution Guidelines
 

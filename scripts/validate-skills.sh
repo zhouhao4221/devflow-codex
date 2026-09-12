@@ -222,6 +222,11 @@ for plugin, plugin_data in data.get('plugins', {}).items():
         if expected_ref not in text:
             print(f'ERROR: plugins/{plugin}/commands/{command}.md — missing skill reference {plugin}:{primary}')
             errs += 1
+        hint = plugin_data['commands'][command].get('argumentHint', '[arguments]')
+        expected_hint = 'argument-hint: ' + json.dumps(hint, ensure_ascii=False)
+        if expected_hint not in text:
+            print(f'ERROR: plugins/{plugin}/commands/{command}.md — argument hint differs from bindings')
+            errs += 1
 sys.exit(errs)
 " > "$TMP_ERR" 2>&1 || true
   while IFS= read -r line; do
@@ -316,6 +321,13 @@ sys.exit(errs)
   ok "Codex marketplace valid"
 
   rm -f "$TMP_NAMES" "$TMP_ERR"
+fi
+
+# Shared references must survive both plugin installation and adapter export.
+echo ""
+echo "=== 11. Shared references and layout ==="
+if ! python3 scripts/check-layout.py; then
+  errors=$((errors + 1))
 fi
 
 # Summary

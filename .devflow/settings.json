@@ -4,6 +4,6 @@
   "requirementsDir": "docs/requirements",
   "branchStrategy": {
     "type": "github-flow",
-    "mainBranch": "main"
+    "mainBranch": "master"
   }
 }

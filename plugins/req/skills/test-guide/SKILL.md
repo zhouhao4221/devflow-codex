@@ -14,14 +14,14 @@ description: 测试引导助手。在执行 /req:test、/req:test-regression 或
 | `/req:test` | 综合测试 | 先运行回归，再补充新测试 |
 
 > **重要**：本 skill 不内置任何项目测试细节。测试目录、测试框架、运行命令、
-> 代码示例均从项目 AGENTS.md 的「测试规范」章节读取。
-> 如 AGENTS.md 缺少测试规范，会发出警告并建议补充。
+> 代码示例优先从项目 `docs/prompt/testing.md` 读取，缺失时回退 `architecture.md` / AGENTS.md 的测试规范。
+> 上述来源都缺少必要规范时说明缺失并建议补充。
 
 ---
 
 ## 前置准备：读取项目测试配置
 
-Read `docs/prompt/architecture.md`，从「测试规范」章节获取测试目录、框架、运行命令。
+优先 Read `docs/prompt/testing.md`，获取测试目录、框架、运行命令；缺失字段再从 `docs/prompt/architecture.md` 的测试规范补充。
 
 - 文件存在 → 读取，静默注入
 - 文件不存在 → 回退从 AGENTS.md 读取（兼容旧项目）
@@ -46,18 +46,19 @@ Read `docs/prompt/architecture.md`，从「测试规范」章节获取测试目�
 
 读取 AGENTS.md 后，检查项目是否存在领域规约：
 
-- **primary 仓库**：扫描 `docs/requirements/specs/` 目录，读取所有 `.md` 文件
-- **readonly 仓库**：读取 `.devflow` 中 `requirementSource.path` 指向主仓的 `docs/requirements/specs/`；legacy fallback 到 `~/.claude-requirements/projects/<requirementProject>/specs/`
+- 按 [_storage.md](../../shared/_storage.md) 合并 `.devflow/settings.json` 与 `settings.local.json`，解析需求根目录。
+- **primary 仓库**：读取本仓配置的 `<requirementsDir>/specs/`。
+- **readonly 仓库**：读取 `requirementSource.path` 指向主仓自身配置的 `<requirementsDir>/specs/`。未绑定时提示 `/req:use`，不读全局缓存，不回写主仓。
 
 目录存在且有文件 → 全部读取，作为测试约束注入上下文，不打印提示。  
 目录不存在或为空 → 静默跳过。
 
 ---
 
-**AGENTS.md 缺少测试规范时**：
+**所有来源均缺少测试规范时**：
 
 ```
-⚠️ AGENTS.md 中未检测到测试规范
+⚠️ 项目中未检测到测试规范
 
    /req:test 需要以下信息来定位和生成测试：
    - 测试文件位置和命名规则
@@ -75,20 +76,20 @@ Read `docs/prompt/architecture.md`，从「测试规范」章节获取测试目�
 
 ### 测试类型识别
 
-根据 AGENTS.md 测试规范自动识别：
+根据已加载的项目测试规范自动识别：
 
 | 类型 | 识别方式 | 说明 |
 |-----|---------|------|
-| UT | AGENTS.md 中定义的 UT 位置和文件模式 | 单元测试 |
-| API | AGENTS.md 中定义的 API 测试位置 | 集成测试 |
-| E2E | AGENTS.md 中定义的 E2E 测试位置 | 端到端测试 |
+| UT | 测试规范中定义的 UT 位置和文件模式 | 单元测试 |
+| API | 测试规范中定义的 API 测试位置 | 集成测试 |
+| E2E | 测试规范中定义的 E2E 测试位置 | 端到端测试 |
 
 ### 执行流程
 
 ```
-1. 读取 AGENTS.md 测试规范
+1. 读取 testing.md（缺失时回退架构文档或 AGENTS.md）的测试规范
 2. 识别测试范围（全量/增量/指定模块）
-3. 按 AGENTS.md 中的运行命令执行测试
+3. 按已加载的测试规范中的运行命令执行测试
 4. 收集测试结果
 5. 生成测试报告
 ```
@@ -256,7 +257,7 @@ Read `docs/prompt/architecture.md`，从「测试规范」章节获取测试目�
 
 ### 步骤 4：运行验证
 
-使用 AGENTS.md 中定义的测试运行命令执行新创建的测试。
+使用 测试规范中定义的测试运行命令执行新创建的测试。
 
 ---
 

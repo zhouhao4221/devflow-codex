@@ -2,6 +2,8 @@
 
 DevFlow 是面向 Codex marketplace 的工作流插件集合，包含 79 个 skills 和 64 个 plugin-scoped slash commands。
 
+[devflow-codex](https://github.com/zhouhao4221/devflow-codex) 与 [devflow-claude](https://github.com/zhouhao4221/devflow-claude) 均由同一维护者维护，分别采用 Codex 和 Claude 风格。两者是平行实现，功能适配记录见 [2026 年 9 月更新](docs/changes/2026-09-12-claude-adaptation.md)。
+
 ## 安装手册
 
 ### 前置条件
@@ -87,6 +89,8 @@ plugins/<plugin>/
   commands/*.md               # Codex marketplace slash commands
   skills/<skill>/SKILL.md     # Codex skills
   skills/<skill>/agents/openai.yaml # Codex App UI metadata
+  shared/                     # 按需读取的公共规则和子任务角色
+  AGENTS.md                   # 插件专属维护约定
   templates/                  # 插件模板资源，可选
 
 .agents/plugins/marketplace.json
@@ -114,7 +118,16 @@ python3 scripts/generate-codex-marketplace.py
 
 ```bash
 ./scripts/setup-opencode.sh . ~/.agents/skills
-./scripts/setup-claude.sh . ../devflow-claude
+./scripts/setup-claude.sh . ./dist/claude
+```
+
+导出会携带共享参考和模板，并重写扁平布局的相对链接。输出目录必须为空或由本导出器创建；已有非导出目录请使用新路径。分层导出只生成兼容资源，不会更新另一个平行实现仓库。
+
+验证共享引用及两种导出：
+
+```bash
+python3 scripts/check-layout.py
+python3 scripts/test-export-skills.py
 ```
 
 ## Codex 行为约定

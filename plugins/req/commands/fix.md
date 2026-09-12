@@ -1,6 +1,6 @@
 ---
 description: "轻量修复 - 无文档的 bug 修复流程，AI 辅助定位问题"
-argument-hint: "[arguments]"
+argument-hint: "<问题描述> [--from-issue=#编号] [--auto]"
 ---
 
 Use the `req:fix` skill and follow its `SKILL.md` instructions.

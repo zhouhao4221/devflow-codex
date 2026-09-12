@@ -1,6 +1,6 @@
 ---
 description: "PR 审查与合并 - AI 代码审查、提交评论、合并 PR"
-argument-hint: "[arguments]"
+argument-hint: "[review|merge|fetch-comments] [REQ-XXX] [--level=low|medium|high] [--auto]"
 ---
 
 Use the `req:review-pr` skill and follow its `SKILL.md` instructions.

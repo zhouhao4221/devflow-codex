@@ -13,9 +13,9 @@ description: 规范提交 - 生成 Conventional Commits 格式的 Git 提交
 
 ---
 
-## 绝对禁止：在保护分支上执行 git commit
+## 分支约定
 
-**执行本命令时，第一件事是检查当前分支。如果在保护分支上，绝对不允许执行 git add 或 git commit。必须先切换到功能分支。**
+先遵循用户及项目 AGENTS.md 的分支要求。明确授权直接提交主分支时沿用该约定；否则按下述保护分支流程执行。
 
 保护分支 = `branchStrategy.mainBranch`（如 main/master）或 `branchStrategy.developBranch`（如 develop）。
 
@@ -39,7 +39,7 @@ description: 规范提交 - 生成 Conventional Commits 格式的 Git 提交
 
 ### 1. 分支检查（在任何 git 操作之前）
 
-读取 `.devflow/settings.local.json` / `.devflow/settings.json` 的 `branchStrategy`，legacy fallback 到 `.claude/settings.local.json`，未配置时跳过。获取当前分支名，判断是否等于 `mainBranch` 或 `developBranch`：
+按 [_storage.md](../../shared/_storage.md) 合并配置并读取 `branchStrategy`；用户明确授权直接提交主分支时跳到步骤 2，其余情况未配置策略则跳过分支检查。获取当前分支名，判断是否等于 `mainBranch` 或 `developBranch`：
 
 - **否（feat/*、fix/*、hotfix/* 等）** → 当前分支是安全的，直接跳到步骤 2 正常提交。
 - **是** → 当前在保护分支，**禁止提交**，执行以下操作：
@@ -122,10 +122,10 @@ description: 规范提交 - 生成 Conventional Commits 格式的 Git 提交
 ```
 
 **有未暂存变更时：**
-自动将所有变更暂存（`git add -A`），展示暂存结果：
+仅暂存本次任务相关变更；已有暂存区包含无关改动时先核对提交范围，不能混入提交。展示暂存结果：
 
 ```
-已暂存所有变更：
+已暂存本次变更：
   M  internal/sys/biz/dept_channel.go
   A  internal/sys/model/sys_dept_channel_model.go
   M  internal/sys/controller/v1/sys_dept.go
@@ -143,20 +143,22 @@ description: 规范提交 - 生成 Conventional Commits 格式的 Git 提交
 
 ### 4. 检测当前需求
 
-优先从分支名提取 `REQ-XXX` / `QUICK-XXX` 编号；未匹配时回退扫描活跃需求（按 `requirementRole` 决定读本地还是缓存）：命中 1 个自动关联，命中多个列出让用户选，未命中则不关联。
+优先从分支名提取 `REQ-XXX` / `QUICK-XXX` 编号；未匹配时回退扫描活跃需求（按共享存储规则读取本仓或已绑定主仓需求根目录）：命中 1 个自动关联，命中多个列出让用户选，未命中则不关联。
 
 ### 5. 分析变更内容
 
-读取 `git diff --cached` 的内容，分析暂存的代码变更：
+先用 `git diff --cached --numstat` 统计规模；超过 10 个文件或 800 行时按 [_delegate.md](../../shared/_delegate.md) 用 diff-digest 读取摘要，其他情况读取全量 diff。二进制行数未知要明确说明。分析暂存变更：
 
 - 变更性质（新增功能、修复问题、重构等）
 - 变更描述（从代码差异中提炼）
+
+已有同一代码状态的验证结果可复用；如暂存内容、依赖或相关配置已经改变，按 [_verify.md](../../shared/_verify.md) 重新验证受影响范围。
 
 ### 6. 生成提交信息
 
 #### 6.1 选择提交类型
 
-**auto 模式**：若项目内存在 `.devflow/.req-auto` 且 mtime 在 10 分钟内（由上游 `/req:fix --auto` 等命令创建），**跳过交互式选择**，AI 根据 `git diff --cached` 的变更内容自动推断类型（如上游是 `/req:fix` 则固定为"修复"）。
+**auto 模式**：若当前会话明确由用户授权的 `/req:fix --auto` 等工作流调用，**跳过交互式选择**，AI 根据 `git diff --cached` 的变更内容自动推断类型（如上游是 `/req:fix` 则固定为"修复"）。
 
 非 auto 模式下，如果用户未提供消息，交互式选择：
 
@@ -200,7 +202,7 @@ description: 规范提交 - 生成 Conventional Commits 格式的 Git 提交
 | `构建` | 构建/工具/依赖 | 其他变更 (Others) |
 | `样式` | 代码格式 | 其他变更 (Others) |
 
-**Issue 关联：** 按 _issue.md 的 Issue 读取优先级（见附录：_issue.md） 获取 issue 编号：先查需求文档 `issue` 字段，再查分支名 `-iN` 后缀。检测到 issue 编号时，在 commit message 末尾追加 `closes #N`。
+**Issue 关联：** 按 _issue.md 的 Issue 读取优先级（按需读取 [_issue.md](../../shared/_issue.md)） 获取 issue 编号：先查需求文档 `issue` 字段，再查分支名 `-iN` 后缀。检测到 issue 编号时，在 commit message 末尾追加 `closes #N`。
 
 **示例：**
 ```
@@ -235,7 +237,7 @@ description: 规范提交 - 生成 Conventional Commits 格式的 Git 提交
 
 ```
 
-展示预览后直接执行提交（默认直通；仅当项目内存在 `.devflow/.req-confirm-commit` marker 时，启用确认标记时才会弹出确认提示——该 marker 由 Codex 按用户自然语言意图维护）。
+展示预览后在用户授权范围内执行提交；不以本地 marker 模拟或绕过 Codex 权限审批。
 
 ### 8. 提交结果
 
