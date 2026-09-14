@@ -88,8 +88,9 @@ Codex 支持在这些层级选择不同模型：
 - CLI 一次性覆盖：例如 `codex --model gpt-5.4` 或 `codex --config model='"gpt-5.4"'`。
 - `~/.codex/profile-name.config.toml`：保存不同模型/推理力度 profile。
 - 自定义 subagent 文件：可包含 `model`、`model_reasoning_effort`、`sandbox_mode`、`mcp_servers` 和 `skills.config`。
+- 原生子代理工具：当前接口支持时，派发时显式传入模型与推理强度；参数名与上下文继承限制以会话暴露的工具说明为准。
 
-因此本仓库的优化策略是：skill 只描述工作流和依赖；如未来某类 DevFlow 工作确实需要固定模型，应新增 Codex custom agent/profile 文档或配置，而不是在 skill 元数据里写未支持字段。
+本仓库通过[共享委派规则](../plugins/req/shared/_delegate.md)按任务复杂度选择可用的执行模型，由主会话保留方案设计和最终验收。模型选择通过原生工具的实际参数生效，不向 skill 元数据添加未支持字段，不自动修改用户会话模型或安装 custom agent。具体支持方式参见 [OpenAI Subagents 文档](https://learn.chatgpt.com/docs/agent-configuration/subagents#choosing-models-and-reasoning)。
 
 ## 本仓库已对齐项
 

@@ -27,6 +27,10 @@ Use Python 3 for generation/validation helpers and POSIX-oriented Bash for shell
 
 Treat `./scripts/validate-skills.sh --ci` as the minimum required test before committing. Run `python3 scripts/test-export-skills.py` when changing shared resources or adapters. When adding or changing a command, update `skill-bindings.json`, regenerate marketplace artifacts, and verify both the new file and bindings pass validation. Do not reintroduce npm package distribution unless explicitly requested.
 
+## Subagent Model Selection
+
+Delegate concrete, independent execution tasks when doing so reduces total work or cost. Keep planning, cross-file decisions, and final acceptance in the primary session; when the user selects Astra, it retains those responsibilities. Follow [the shared delegation rules](plugins/req/shared/_delegate.md) to choose an economical available worker model and reasoning effort for the task. Simple work should use a cheaper capable model or a direct tool call; do not automatically inherit the primary model for every worker. Respect explicit user model choices and runtime constraints, and check the actual changes and validation evidence before accepting a worker's result.
+
 ## Commit & Contribution Guidelines
 
 Recent history uses concise release numbers and Chinese conventional-style messages, for example `重构: 精简技能文档并引入插件模板`. Prefer short, imperative commits that describe the changed behavior or release version. For this repository, do not add `Co-Authored-By` lines. Do not create PRs or feature branches unless explicitly requested; commit and push directly to the main branch according to the maintainer workflow.
