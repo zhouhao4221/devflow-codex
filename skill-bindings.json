@@ -25,7 +25,7 @@
         "projects":      { "primarySkill": "projects",                 "additionalSkills": [], "executionTier": "economy" },
         "release":       { "primarySkill": "release",                  "additionalSkills": ["version-bumper", "changelog-generator", "release-rationale"], "executionTier": "economy" },
         "req":           { "primarySkill": "req",                      "additionalSkills": [], "executionTier": "economy" },
-        "review":        { "primarySkill": "review",                   "additionalSkills": [], "executionTier": "economy" },
+        "review":        { "primarySkill": "review",                   "additionalSkills": [], "argumentHint": "[REQ-XXX] [pass|reject]", "executionTier": "economy" },
         "review-pr":     { "primarySkill": "review-pr",                "additionalSkills": ["natural-language-dispatcher"], "argumentHint": "[review|merge|fetch-comments] [REQ-XXX] [--level=low|medium|high] [--auto]", "executionTier": "primary" },
         "show":          { "primarySkill": "show",                     "additionalSkills": [], "executionTier": "economy" },
         "specs":         { "primarySkill": "specs",                    "additionalSkills": [], "executionTier": "economy" },

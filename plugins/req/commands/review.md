@@ -1,6 +1,6 @@
 ---
 description: "需求评审 - 提交或记录评审结果"
-argument-hint: "[arguments]"
+argument-hint: "[REQ-XXX] [pass|reject]"
 ---
 
 Before executing, read [command model routing](../shared/_command-models.md) for `req:review` (execution tier: `economy`). An already delegated executor must not route again.

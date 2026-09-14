@@ -16,7 +16,7 @@ COMMAND_MODEL_ROUTING_SOURCE = ROOT / "shared" / "command-model-routing.md"
 
 PLUGIN_META = {
     "req": {
-        "version": "3.27.0",
+        "version": "3.27.1",
         "description": "需求全流程工作流管理 - 从需求分析到测试的完整生命周期管理",
         "displayName": "DevFlow Req",
         "shortDescription": "需求分析、PRD、开发、测试和发布工作流",
