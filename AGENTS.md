@@ -1,5 +1,9 @@
 # Repository Guidelines
 
+## Repository Purpose
+
+Work in this repository maintains the DevFlow plugins. Mentioning a command while discussing its design does not request that command's workflow: editing release rules does not authorize a release. User documentation belongs in `README.md` and tutorials; maintainer instructions belong here and in plugin-level `AGENTS.md` files.
+
 ## Repository Relationship
 
 The maintainer owns both [devflow-codex](https://github.com/zhouhao4221/devflow-codex) (this repository) and [devflow-claude](https://github.com/zhouhao4221/devflow-claude). They are parallel implementations of DevFlow, with workflows and conventions tailored to Codex and Claude respectively. Do not assume an upstream/downstream or fork relationship. When referencing or porting behavior between them, preserve the target repository's platform-specific style and conventions.
@@ -22,6 +26,18 @@ DevFlow project state is tool-neutral. Use `.devflow/settings.json` for shared p
 ## Coding Style & Naming Conventions
 
 Use Python 3 for generation/validation helpers and POSIX-oriented Bash for shell scripts. Keep shell scripts strict with `set -euo pipefail` when practical. Skill and command names use lowercase kebab-case and must match `^[a-z0-9]+(-[a-z0-9]+)*$`. Preserve the SKILL.md format: YAML frontmatter, then concise Markdown instructions. Do not rename or rewrite large skill bodies unless the change is intentional across all affected adapters.
+
+## Command Design
+
+Use the [command design plan](docs/design/command-design.md) when adding or materially changing a command. Scale the design record to the change; a small correction does not need a new plan document or another approval round.
+
+- Design around one user-visible outcome. Define the trigger, arguments and defaults, required data sources, allowed changes, failure/continuation behavior, and observable acceptance. Reuse an existing workflow when it already owns that outcome.
+- Author workflow decisions in `SKILL.md` and focused shared Markdown. Scripts handle deterministic generation, parsing and validation; generated command wrappers remain thin. Document platform constraints and non-obvious rules, not generic tool tutorials.
+- Keep the common path short. Load project knowledge, detailed rationale and edge cases where needed; link actual dependencies directly instead of loading a shared index or copying the same rules into every skill.
+- Choose the command's execution tier by required reasoning, not by whether it writes files. Rule-driven release/state operations can be economical; report synthesis and open-ended design have different needs. Command routing and independent subtask delegation are separate decisions.
+- Preserve explicit user authorization, scope and branch preferences across steps. Read-only roles restrict the relevant resources, not every local output. Missing optional knowledge should degrade gracefully; missing required input or failed required checks must be reported before dependent actions.
+- Attach acceptance to the intended behavior and verify actual artifacts. Keep failures and unexecuted checks visible; reuse results only while their relevant inputs remain valid. Fix implementation defects rather than weakening checks to obtain a pass.
+- When learning from devflow-claude, record the source revision, problem solved, Codex equivalent and verification. Inspect the actual command and shared rule as well as global guidance; retain Codex source layout, runtime capabilities and authorization semantics.
 
 ## Testing Guidelines
 
