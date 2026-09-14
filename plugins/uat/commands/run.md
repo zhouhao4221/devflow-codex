@@ -3,6 +3,8 @@ description: "执行 UAT 测试 - 按流程文档逐场景验收"
 argument-hint: "[arguments]"
 ---
 
+Before executing, read [command model routing](../shared/_command-models.md) for `uat:run` (execution tier: `primary`). An already delegated executor must not route again.
+
 Use the `uat:run` skill and follow its `SKILL.md` instructions.
 Related helper skills: `uat:uat-executor`.
 

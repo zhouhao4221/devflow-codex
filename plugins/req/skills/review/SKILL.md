@@ -5,6 +5,8 @@ description: 需求评审 - 提交或记录评审结果
 
 # 需求评审
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:review` 的档位执行；已作为执行子代理时不再次路由。
+
 提交需求评审或记录评审结果。
 
 > **Audience:** Product Manager

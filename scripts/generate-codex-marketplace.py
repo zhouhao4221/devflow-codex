@@ -11,10 +11,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY = "https://github.com/zhouhao4221/devflow-codex"
 AUTHOR = {"name": "zhouhao4221", "url": "https://github.com/zhouhao4221"}
+EXECUTION_TIERS = frozenset({"economy", "standard", "primary"})
+COMMAND_MODEL_ROUTING_SOURCE = ROOT / "shared" / "command-model-routing.md"
 
 PLUGIN_META = {
     "req": {
-        "version": "3.26.0",
+        "version": "3.27.0",
         "description": "需求全流程工作流管理 - 从需求分析到测试的完整生命周期管理",
         "displayName": "DevFlow Req",
         "shortDescription": "需求分析、PRD、开发、测试和发布工作流",
@@ -30,7 +32,7 @@ PLUGIN_META = {
         "brandColor": "#10A37F",
     },
     "api": {
-        "version": "0.4.3",
+        "version": "0.5.0",
         "description": "前端 API 对接工具 - Swagger 解析、字段映射、代码生成",
         "displayName": "DevFlow API",
         "shortDescription": "Swagger/OpenAPI 搜索、映射和前端代码生成",
@@ -46,7 +48,7 @@ PLUGIN_META = {
         "brandColor": "#2563EB",
     },
     "pm": {
-        "version": "0.5.2",
+        "version": "0.6.0",
         "description": "项目管理助手 - 从 PRD、需求文档和 Git 记录生成汇报、统计、方案",
         "displayName": "DevFlow PM",
         "shortDescription": "项目周报、月报、风险、进度和里程碑总结",
@@ -62,7 +64,7 @@ PLUGIN_META = {
         "brandColor": "#7C3AED",
     },
     "diag": {
-        "version": "0.2.2",
+        "version": "0.3.0",
         "description": "生产诊断 - 只读拉日志、AI 解析堆栈、关联代码、给修复建议",
         "displayName": "DevFlow Diag",
         "shortDescription": "生产日志诊断、堆栈分析和代码关联",
@@ -78,7 +80,7 @@ PLUGIN_META = {
         "brandColor": "#DC2626",
     },
     "uat": {
-        "version": "1.3.2",
+        "version": "1.4.0",
         "description": "用户验收测试（UAT）- AI 驱动的 UI 验收测试",
         "displayName": "DevFlow UAT",
         "shortDescription": "创建、执行和上报用户验收测试流程",
@@ -135,7 +137,82 @@ def write_json(path: Path, data: dict) -> None:
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n")
 
 
-def command_body(plugin: str, command: str, primary: str, extras: list[str], argument_hint: str = "[arguments]") -> str:
+def validate_command_routes(bindings: dict) -> None:
+    """Reject missing or unsupported execution tiers before generation writes files."""
+    if not isinstance(bindings, dict):
+        raise ValueError("Invalid command model routing: bindings must be an object")
+    errors = []
+    plugins = bindings.get("plugins")
+    if not isinstance(plugins, dict):
+        raise ValueError("Invalid command model routing: plugins must be an object")
+    for plugin, plugin_data in plugins.items():
+        if not isinstance(plugin_data, dict):
+            errors.append(f"{plugin} command bindings must be an object")
+            continue
+        commands = plugin_data.get("commands")
+        if not isinstance(commands, dict):
+            errors.append(f"{plugin} commands must be an object")
+            continue
+        for command, command_data in commands.items():
+            if not isinstance(command_data, dict):
+                errors.append(f"{plugin}:{command} command binding must be an object")
+                continue
+            tier = command_data.get("executionTier")
+            if not isinstance(tier, str) or tier not in EXECUTION_TIERS:
+                errors.append(
+                    f"{plugin}:{command} has invalid executionTier {tier!r}; "
+                    f"expected one of {sorted(EXECUTION_TIERS)}"
+                )
+    if errors:
+        raise ValueError("Invalid command model routing:\n" + "\n".join(errors))
+
+
+def validate_generation_bindings(bindings: dict) -> None:
+    """Validate all data main() needs before it starts writing generated files."""
+    validate_command_routes(bindings)
+    plugins = bindings["plugins"]
+    all_skills = bindings.get("allSkills")
+    errors = []
+    if not isinstance(all_skills, dict):
+        errors.append("allSkills must be an object")
+    for plugin in PLUGIN_META:
+        if plugin not in plugins:
+            errors.append(f"missing plugin bindings for {plugin}")
+        if not isinstance(all_skills, dict) or not isinstance(all_skills.get(plugin), list):
+            errors.append(f"missing allSkills list for {plugin}")
+    unexpected = sorted(set(plugins) - set(PLUGIN_META))
+    if unexpected:
+        errors.append(f"unsupported plugin bindings: {', '.join(unexpected)}")
+    if errors:
+        raise ValueError("Invalid generation bindings:\n" + "\n".join(errors))
+
+
+def command_models_body(plugin: str, commands: dict, policy_text: str) -> str:
+    """Render the self-contained command-routing document installed with a plugin."""
+    rows = [
+        f"| `{plugin}:{command}` | `{data['executionTier']}` |"
+        for command, data in commands.items()
+    ]
+    return (
+        "<!-- Generated from shared/command-model-routing.md. Do not edit directly. -->\n\n"
+        + policy_text.rstrip()
+        + "\n\n## Command routing\n\n"
+        + "| Command | Execution tier |\n"
+        + "| --- | --- |\n"
+        + "\n".join(rows)
+        + "\n"
+    )
+
+
+def command_body(
+    plugin: str,
+    command: str,
+    primary: str,
+    extras: list[str],
+    argument_hint: str = "[arguments]",
+    *,
+    execution_tier: str,
+) -> str:
     description = skill_description(plugin, primary)
     skill_ref = f"{plugin}:{primary}"
     extra_line = ""
@@ -147,6 +224,8 @@ def command_body(plugin: str, command: str, primary: str, extras: list[str], arg
 description: {json.dumps(description, ensure_ascii=False)}
 argument-hint: {json.dumps(argument_hint, ensure_ascii=False)}
 ---
+
+Before executing, read [command model routing](../shared/_command-models.md) for `{plugin}:{command}` (execution tier: `{execution_tier}`). An already delegated executor must not route again.
 
 Use the `{skill_ref}` skill and follow its `SKILL.md` instructions.{extra_line}
 
@@ -162,6 +241,8 @@ If no arguments are supplied, follow the skill's no-argument behavior.
 
 def main() -> None:
     bindings = json.loads((ROOT / "skill-bindings.json").read_text())
+    validate_generation_bindings(bindings)
+    command_model_policy = COMMAND_MODEL_ROUTING_SOURCE.read_text()
 
     marketplace = {
         "name": "devflow",
@@ -204,7 +285,26 @@ def main() -> None:
         for command, data in bindings["plugins"][plugin]["commands"].items():
             primary = data["primarySkill"]
             extras = data.get("additionalSkills", [])
-            (commands_dir / f"{command}.md").write_text(command_body(plugin, command, primary, extras, data.get("argumentHint", "[arguments]")))
+            (commands_dir / f"{command}.md").write_text(
+                command_body(
+                    plugin,
+                    command,
+                    primary,
+                    extras,
+                    data.get("argumentHint", "[arguments]"),
+                    execution_tier=data["executionTier"],
+                )
+            )
+
+        shared_dir = plugin_root / "shared"
+        shared_dir.mkdir(parents=True, exist_ok=True)
+        (shared_dir / "_command-models.md").write_text(
+            command_models_body(
+                plugin,
+                bindings["plugins"][plugin]["commands"],
+                command_model_policy,
+            )
+        )
 
         for skill in bindings["allSkills"][plugin]:
             skill_dir = plugin_root / "skills" / skill

@@ -3,6 +3,8 @@ description: "轻量修复 - 无文档的 bug 修复流程，AI 辅助定位问�
 argument-hint: "<问题描述> [--from-issue=#编号] [--auto]"
 ---
 
+Before executing, read [command model routing](../shared/_command-models.md) for `req:fix` (execution tier: `primary`). An already delegated executor must not route again.
+
 Use the `req:fix` skill and follow its `SKILL.md` instructions.
 Related helper skills: `req:quick-fix-guide`.
 

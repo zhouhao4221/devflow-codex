@@ -7,6 +7,8 @@ description: 创建测试 - 为需求或指定源文件编写测试，支持无�
 
 # 创建测试
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:test-new` 的档位执行；已作为执行子代理时不再次路由。
+
 为新开发的功能创建自动化测试用例，包括 UT、API 测试和 E2E 测试。
 
 > 存储路径规则见 [`_storage.md`](../../shared/_storage.md)

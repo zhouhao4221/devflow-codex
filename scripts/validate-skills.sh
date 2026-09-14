@@ -330,6 +330,13 @@ if ! python3 scripts/check-layout.py; then
   errors=$((errors + 1))
 fi
 
+# Command model routing is generated from bindings and must remain self-contained.
+echo ""
+echo "=== 12. Command model routing ==="
+if ! python3 scripts/check-command-models.py; then
+  errors=$((errors + 1))
+fi
+
 # Summary
 echo ""
 echo "============================================"

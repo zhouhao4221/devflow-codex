@@ -5,6 +5,8 @@ description: PR 审查与合并 - AI 代码审查、提交评论、合并 PR
 
 # PR 审查与合并
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:review-pr` 的档位执行；已作为执行子代理时不再次路由。
+
 对已创建的 PR 进行 AI 代码审查，可将审查意见提交到平台，审查通过后合并 PR。
 
 > 不受仓库角色限制，readonly 可执行。

@@ -3,6 +3,8 @@ description: "创建测试 - 为需求或指定源文件编写测试，支持无
 argument-hint: "[REQ-XXX] [--files=a.go,b.go] [--type=ut|api|e2e|all|manual] [--dry-run]"
 ---
 
+Before executing, read [command model routing](../shared/_command-models.md) for `req:test-new` (execution tier: `primary`). An already delegated executor must not route again.
+
 Use the `req:test-new` skill and follow its `SKILL.md` instructions.
 Related helper skills: `req:test-guide`.
 

@@ -5,6 +5,8 @@ description: 搜索接口 - 按关键词搜索 Swagger 中的 API 接口
 
 # 搜索接口
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `api:search` 的档位执行；已作为执行子代理时不再次路由。
+
 从 Swagger 文档中按关键词搜索匹配的 API 接口。
 
 ## 命令格式

@@ -5,6 +5,8 @@ description: 项目管理助手 - 项目概况仪表盘和子命令入口
 
 # 项目管理助手
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `pm:pm` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** Product Manager
 
 项目管理主入口，展示项目概况仪表盘，或路由到子命令。

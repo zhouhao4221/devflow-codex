@@ -5,6 +5,8 @@ description: 生产诊断插件 - 列出 init / diagnose / audit 子命令
 
 # Diag - 生产诊断插件
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `diag:diag` 的档位执行；已作为执行子代理时不再次路由。
+
 **只读拉日志 · AI 解析堆栈 · 关联代码 · 给修复建议**
 
 与 [claude-safe-ops](https://github.com/zhouhao4221/claude-safe-ops) 互补：它管**执行类**运维动作，本插件管**只读诊断**。

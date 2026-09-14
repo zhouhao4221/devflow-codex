@@ -5,6 +5,8 @@ description: 创建 PR - 根据仓库类型自动创建 Pull Request
 
 # 创建 Pull Request
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:pr` 的档位执行；已作为执行子代理时不再次路由。
+
 根据分支策略中的仓库类型，自动推送分支并创建 PR。
 
 > **Audience:** Engineer

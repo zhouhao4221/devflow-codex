@@ -5,6 +5,8 @@ description: 导出内容 - 将 pm 生成的内容保存到 docs/reports/
 
 # 导出内容
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `pm:export` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** Product Manager
 
 将最近一次 pm 命令生成的内容保存到 `docs/reports/` 目录。

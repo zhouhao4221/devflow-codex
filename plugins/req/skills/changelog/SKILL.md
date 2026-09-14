@@ -5,6 +5,8 @@ description: 生成版本说明 - 基于 Git 记录生成 Changelog
 
 # 生成版本说明
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:changelog` 的档位执行；已作为执行子代理时不再次路由。
+
 根据 Git 提交记录和已完成需求，生成版本升级说明文档。
 
 > 此命令**不受仓库角色限制**，readonly 仓库也可执行。

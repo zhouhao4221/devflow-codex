@@ -5,6 +5,8 @@ description: 查看测试报告 - 展示最近一次执行结果
 
 # 查看测试报告
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `uat:report` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** QA
 
 读取并展示最近一次 `/uat:run` 生成的测试报告。

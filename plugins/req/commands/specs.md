@@ -3,6 +3,8 @@ description: "规范文档管理 - 项目级公共知识层，集中沉淀散落
 argument-hint: "[arguments]"
 ---
 
+Before executing, read [command model routing](../shared/_command-models.md) for `req:specs` (execution tier: `economy`). An already delegated executor must not route again.
+
 Use the `req:specs` skill and follow its `SKILL.md` instructions.
 
 User arguments:

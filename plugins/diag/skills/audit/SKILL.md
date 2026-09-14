@@ -5,6 +5,8 @@ description: 查询 Diag 审计日志 - 按主机/服务/时间过滤
 
 # /diag:audit - 审计查询
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `diag:audit` 的档位执行；已作为执行子代理时不再次路由。
+
 查询 Diag 插件的 SSH 命令审计日志。审计记录按日切分，保留 30 天。
 
 ---

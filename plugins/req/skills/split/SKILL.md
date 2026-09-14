@@ -5,6 +5,8 @@ description: 需求拆分分析 - 判断需求粒度并给出拆分建议
 
 # 需求拆分分析
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:split` 的档位执行；已作为执行子代理时不再次路由。
+
 纯分析命令，帮助用户在创建需求前判断粒度是否合适，给出拆分或合并建议。
 
 > **Audience:** Product Manager

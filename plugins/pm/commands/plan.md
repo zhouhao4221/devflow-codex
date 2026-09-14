@@ -3,6 +3,8 @@ description: "生成方案文档 - 排期方案、技术方案、资源评估等
 argument-hint: "[arguments]"
 ---
 
+Before executing, read [command model routing](../shared/_command-models.md) for `pm:plan` (execution tier: `primary`). An already delegated executor must not route again.
+
 Use the `pm:plan` skill and follow its `SKILL.md` instructions.
 Related helper skills: `pm:report-generator`.
 

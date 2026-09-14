@@ -5,6 +5,8 @@ description: 初始化需求项目 - 创建本地存储和主仓需求目录
 
 # 初始化需求项目
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:init` 的档位执行；已作为执行子代理时不再次路由。
+
 初始化需求项目，创建本地存储目录和主仓需求目录，并绑定当前仓库。
 
 > 模板源文件：`plugins/req/templates/`，写入规范：`_storage.md`（按需读取 [_storage.md](../../shared/_storage.md)），索引格式：[`index-template.md`](../../templates/index-template.md)，架构片段：[`agent-snippets/`](../../templates/agent-snippets/)，release 模板：[`release-prompt-template.md`](../../templates/release-prompt-template.md)，Prompt 库骨架：[`prompt-snippets/`](../../templates/prompt-snippets/)

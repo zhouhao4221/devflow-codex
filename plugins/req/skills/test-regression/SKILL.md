@@ -7,6 +7,8 @@ description: 回归测试 - 运行已有自动化测试用例
 
 # 回归测试
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:test-regression` 的档位执行；已作为执行子代理时不再次路由。
+
 运行项目中已存在的自动化测试用例，验证功能正确性。
 
 > 存储路径和缓存同步规则见 _storage.md（按需读取 [_storage.md](../../shared/_storage.md)）

@@ -5,6 +5,8 @@ description: 分支管理 - 配置分支策略、查看分支状态、创建紧�
 
 # 分支管理
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:branch` 的档位执行；已作为执行子代理时不再次路由。
+
 管理项目的 Git 分支策略，与需求流程（dev/commit/done）联动。
 
 > 不受仓库角色限制，readonly 可执行。不触发缓存同步。写入规范见 `_storage.md`（按需读取 [_storage.md](../../shared/_storage.md)）。

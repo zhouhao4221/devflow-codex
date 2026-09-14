@@ -3,6 +3,8 @@ description: "编辑需求 - 修改已有需求文档"
 argument-hint: "[arguments]"
 ---
 
+Before executing, read [command model routing](../shared/_command-models.md) for `req:edit` (execution tier: `primary`). An already delegated executor must not route again.
+
 Use the `req:edit` skill and follow its `SKILL.md` instructions.
 Related helper skills: `req:requirement-analyzer`.
 

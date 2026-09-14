@@ -5,6 +5,8 @@ description: 初始化 Diag 插件 - 创建 ~/.devflow-diag/ 配置目录 + 服�
 
 # /diag:init - 初始化 Diag 插件
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `diag:init` 的档位执行；已作为执行子代理时不再次路由。
+
 首次使用 Diag 插件时执行，完成以下事项：
 
 1. **依赖检查**：`python3`、`jq`、`ssh`、`yq` 或 `pyyaml`

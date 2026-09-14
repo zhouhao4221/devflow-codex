@@ -5,6 +5,8 @@ description: 里程碑总结 - 版本发布总结报告
 
 # 里程碑总结
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `pm:milestone` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** Product Manager
 
 基于 Git Tag 和需求完成记录，生成版本发布总结报告。

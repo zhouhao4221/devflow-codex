@@ -5,6 +5,8 @@ description: 初始化 UAT 插件 - 创建目录结构并安装 skill 到项目
 
 # 初始化 UAT 插件
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `uat:init` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** Engineer
 
 将 uat-executor skill 安装到项目的 `.agents/skills/`，使 Codex 能在执行测试时自动加载。

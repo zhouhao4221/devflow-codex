@@ -3,6 +3,8 @@ description: "代码生成 - 根据接口定义生成 TypeScript 类型和请求
 argument-hint: "[arguments]"
 ---
 
+Before executing, read [command model routing](../shared/_command-models.md) for `api:gen` (execution tier: `standard`). An already delegated executor must not route again.
+
 Use the `api:gen` skill and follow its `SKILL.md` instructions.
 
 User arguments:

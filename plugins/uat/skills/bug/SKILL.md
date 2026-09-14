@@ -5,6 +5,8 @@ description: 上报测试失败项 - 将失败场景创建为 Gitea issue
 
 # 上报测试 Bug
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `uat:bug` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** QA
 
 将最近一次测试的失败场景上报为 Gitea issue。

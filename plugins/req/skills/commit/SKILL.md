@@ -5,6 +5,8 @@ description: 规范提交 - 生成 Conventional Commits 格式的 Git 提交
 
 # 规范提交
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:commit` 的档位执行；已作为执行子代理时不再次路由。
+
 生成符合 Conventional Commits 规范的 Git 提交，自动关联当前需求编号，便于后续 `/req:changelog` 生成版本说明。
 
 > **Audience:** Engineer

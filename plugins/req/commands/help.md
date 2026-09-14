@@ -3,6 +3,8 @@ description: "使用教程 - 查看插件完整使用指南"
 argument-hint: "[arguments]"
 ---
 
+Before executing, read [command model routing](../shared/_command-models.md) for `req:help` (execution tier: `economy`). An already delegated executor must not route again.
+
 Use the `req:help` skill and follow its `SKILL.md` instructions.
 
 User arguments:

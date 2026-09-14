@@ -5,6 +5,8 @@ description: 周报 - 基于项目数据自动生成本周工作汇报
 
 # 生成周报
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `pm:weekly` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** Product Manager
 
 从需求文档和 Git 记录自动提取本周工作内容，生成结构化周报。

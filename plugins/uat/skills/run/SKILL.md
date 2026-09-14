@@ -5,6 +5,8 @@ description: 执行 UAT 测试 - 按流程文档逐场景验收
 
 # 执行 UAT 测试
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `uat:run` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** QA
 
 读取测试流程文档，调用 uat-executor skill 逐场景执行，输出报告。

@@ -5,6 +5,8 @@ description: 创建新需求 - 基于模板创建需求文档
 
 # 创建新需求
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:new` 的档位执行；已作为执行子代理时不再次路由。
+
 基于模板创建新的需求文档，引导用户完成需求分析。
 
 > **Audience:** Product Manager

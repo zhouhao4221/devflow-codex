@@ -5,6 +5,8 @@ description: 编辑 PRD - 修改和完善产品需求文档
 
 # 编辑 PRD
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:prd-edit` 的档位执行；已作为执行子代理时不再次路由。
+
 AI 辅助分析和修改产品需求文档（PRD），支持按章节编辑和从现有需求反推内容。
 
 > **Audience:** Product Manager

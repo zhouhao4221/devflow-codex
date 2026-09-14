@@ -5,6 +5,8 @@ description: 查看 PRD 状态 - 产品需求文档概览和章节填充分析
 
 # 查看 PRD 状态
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:prd` 的档位执行；已作为执行子代理时不再次路由。
+
 查看产品需求文档（PRD）的填充情况、各章节完成度、需求追踪统计。
 
 > **Audience:** Product Manager

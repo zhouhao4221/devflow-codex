@@ -5,6 +5,8 @@ description: Issue 工作流 - 创建/编辑/关闭/列表/查看/评论 issue
 
 # Issue 工作流
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:issue` 的档位执行；已作为执行子代理时不再次路由。
+
 统一管理 GitHub / Gitea issue 的全生命周期：创建、编辑、关闭、重开、列表、查看、评论。
 
 > 不受仓库角色限制，readonly 也可执行。不触发缓存同步。

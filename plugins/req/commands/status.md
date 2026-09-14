@@ -3,6 +3,8 @@ description: "查看需求状态 - 详细状态和进度"
 argument-hint: "[arguments]"
 ---
 
+Before executing, read [command model routing](../shared/_command-models.md) for `req:status` (execution tier: `economy`). An already delegated executor must not route again.
+
 Use the `req:status` skill and follow its `SKILL.md` instructions.
 
 User arguments:

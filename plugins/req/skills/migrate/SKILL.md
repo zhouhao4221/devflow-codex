@@ -5,6 +5,8 @@ description: 迁移需求 - 调整需求目录位置或从旧布局迁移到 .de
 
 # 迁移需求
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:migrate` 的档位执行；已作为执行子代理时不再次路由。
+
 支持两类迁移：
 1. **配置迁移**：从 v2.x 旧布局（`.claude/` 配置 + `~/.claude-requirements/` 全局缓存）迁到 v3（`.devflow/` + 无缓存）
 2. **目录迁移**：调整需求文档存放目录（`requirementsDir`）

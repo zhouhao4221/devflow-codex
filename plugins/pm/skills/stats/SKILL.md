@@ -5,6 +5,8 @@ description: 项目数据统计 - 需求、代码、贡献者等多维度统计�
 
 # 项目数据统计
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `pm:stats` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** Product Manager
 
 生成项目多维度统计数据，包括需求进度、代码活动、贡献者分布等。

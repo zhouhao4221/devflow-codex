@@ -5,6 +5,8 @@ description: 生成方案文档 - 排期方案、技术方案、资源评估等
 
 # 生成方案文档
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `pm:plan` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** Product Manager
 
 根据当前项目数据和用户指定的主题，AI 生成方案文档。

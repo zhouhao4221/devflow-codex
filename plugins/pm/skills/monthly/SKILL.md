@@ -5,6 +5,8 @@ description: 月报 - 月度工作总结与统计分析
 
 # 生成月报
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `pm:monthly` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** Product Manager
 
 从需求文档和 Git 记录生成月度工作总结，包含本月成果、数据统计、趋势分析和下月计划。

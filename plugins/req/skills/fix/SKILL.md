@@ -5,6 +5,8 @@ description: 轻量修复 - 无文档的 bug 修复流程，AI 辅助定位问�
 
 # 轻量修复
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:fix` 的档位执行；已作为执行子代理时不再次路由。
+
 定位并修复 bug，验证结果。不创建需求文档；分支、提交、推送与 PR 按用户实际授权处理。
 
 > **Audience:** Engineer

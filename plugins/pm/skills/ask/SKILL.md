@@ -5,6 +5,8 @@ description: 自由提问 - 基于项目数据回答任何项目相关问题
 
 # 自由提问
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `pm:ask` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** Product Manager
 
 基于项目的 PRD、需求文档、Git 记录等数据，回答任何项目相关问题。

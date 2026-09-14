@@ -5,6 +5,8 @@ description: 导入 Swagger - 解析 OpenAPI 文档并展示接口概览
 
 # 导入 Swagger
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `api:import` 的档位执行；已作为执行子代理时不再次路由。
+
 从配置的数据源解析 Swagger/OpenAPI 文档，展示接口概览。
 
 ## 命令格式

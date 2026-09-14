@@ -5,6 +5,8 @@ description: API 配置管理 - 初始化和管理 Swagger 数据源配置
 
 # API 配置管理
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `api:config` 的档位执行；已作为执行子代理时不再次路由。
+
 管理 `.api-config.json` 配置文件，包括初始化、添加/删除数据源、查看配置。
 
 ## 命令格式

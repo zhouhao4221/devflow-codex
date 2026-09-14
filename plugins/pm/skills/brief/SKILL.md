@@ -5,6 +5,8 @@ description: 项目简介 - 生成面向新人或客户的项目概述
 
 # 项目简介
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `pm:brief` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** Product Manager
 
 生成项目概述文档，适合给新成员、客户或外部合作方了解项目全貌。

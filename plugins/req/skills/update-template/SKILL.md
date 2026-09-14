@@ -5,6 +5,8 @@ description: 更新模板 - 将插件最新模板同步到项目本地
 
 # 更新模板文件
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:update-template` 的档位执行；已作为执行子代理时不再次路由。
+
 将插件 `templates/` 目录下的最新模板同步到项目本地 `docs/requirements/`，覆盖旧版本。
 
 > 存储路径规则见 _storage.md（按需读取 [_storage.md](../../shared/_storage.md)）

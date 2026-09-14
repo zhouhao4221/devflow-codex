@@ -5,6 +5,8 @@ description: 项目总进度 - 全局视角展示需求进度和里程碑
 
 # 项目总进度
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `pm:progress` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** Product Manager
 
 从全局视角展示所有需求的进度、里程碑节点和交付时间线。适合给上级看项目全貌。

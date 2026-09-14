@@ -3,6 +3,8 @@ description: "分支管理 - 配置分支策略、查看分支状态、创建紧
 argument-hint: "[arguments]"
 ---
 
+Before executing, read [command model routing](../shared/_command-models.md) for `req:branch` (execution tier: `economy`). An already delegated executor must not route again.
+
 Use the `req:branch` skill and follow its `SKILL.md` instructions.
 
 User arguments:

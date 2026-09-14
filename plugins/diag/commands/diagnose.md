@@ -3,6 +3,8 @@ description: "生产报错定位 - SSH 拉日志 → AI 解析堆栈 → 本地�
 argument-hint: "[arguments]"
 ---
 
+Before executing, read [command model routing](../shared/_command-models.md) for `diag:diagnose` (execution tier: `primary`). An already delegated executor must not route again.
+
 Use the `diag:diagnose` skill and follow its `SKILL.md` instructions.
 Related helper skills: `diag:stack-analyzer`.
 

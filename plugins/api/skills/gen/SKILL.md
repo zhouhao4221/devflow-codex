@@ -5,6 +5,8 @@ description: 代码生成 - 根据接口定义生成 TypeScript 类型和请求�
 
 # 代码生成
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `api:gen` 的档位执行；已作为执行子代理时不再次路由。
+
 根据 Swagger 接口定义，自动生成 TypeScript 类型定义和请求函数代码。
 
 ## 命令格式

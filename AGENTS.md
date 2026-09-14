@@ -31,6 +31,8 @@ Treat `./scripts/validate-skills.sh --ci` as the minimum required test before co
 
 Delegate concrete, independent execution tasks when doing so reduces total work or cost. Keep planning, cross-file decisions, and final acceptance in the primary session; when the user selects Astra, it retains those responsibilities. Follow [the shared delegation rules](plugins/req/shared/_delegate.md) to choose an economical available worker model and reasoning effort for the task. Simple work should use a cheaper capable model or a direct tool call; do not automatically inherit the primary model for every worker. Respect explicit user model choices and runtime constraints, and check the actual changes and validation evidence before accepting a worker's result.
 
+Command execution tiers belong in `skill-bindings.json` (`executionTier`: `economy`, `standard`, or `primary`). Author the common routing policy in `shared/command-model-routing.md`; the marketplace generator packages it with each plugin's command table as `shared/_command-models.md`. Keep the direct skill entrypoint linked to that policy, and run `python3 scripts/test-command-models.py` after changing routing or its generation. Do not put model fields in skill or UI frontmatter.
+
 ## Commit & Contribution Guidelines
 
 Recent history uses concise release numbers and Chinese conventional-style messages, for example `重构: 精简技能文档并引入插件模板`. Prefer short, imperative commits that describe the changed behavior or release version. For this repository, do not add `Co-Authored-By` lines. Do not create PRs or feature branches unless explicitly requested; commit and push directly to the main branch according to the maintainer workflow.

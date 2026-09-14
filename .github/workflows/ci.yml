@@ -19,6 +19,7 @@ jobs:
         with:
           python-version: '3.x'
       - run: ./scripts/validate-skills.sh --ci
+      - run: python3 scripts/test-command-models.py
       - run: python3 scripts/test-export-skills.py
       - name: Verify generated marketplace artifacts
         run: |

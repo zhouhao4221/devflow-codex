@@ -5,6 +5,8 @@ description: 颁布版本 - 合并 SQL、生成回滚、打 tag、创建 Release
 
 # 颁布版本
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:release` 的档位执行；已作为执行子代理时不再次路由。
+
 准备发版产物（SQL 合并、回滚脚本、changelog、commit、PR）并**默认创建 draft Release**。加 `--tag` 额外创建 annotated git tag；加 `--no-draft` 直接正式发布。
 
 > **Audience:** Engineer

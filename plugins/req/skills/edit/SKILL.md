@@ -5,6 +5,8 @@ description: 编辑需求 - 修改已有需求文档
 
 # 编辑需求
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `req:edit` 的档位执行；已作为执行子代理时不再次路由。
+
 编辑已有需求文档，仅修改内容，不触发开发流程。
 
 > 存储路径按 [_storage.md](../../shared/_storage.md) 解析；仅 primary 可修改，readonly 不回写主仓。

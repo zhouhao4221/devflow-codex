@@ -5,6 +5,8 @@ description: UAT 测试工作流 - 列出测试模块和上次执行状态
 
 # UAT 测试工作流
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `uat:uat` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** QA
 
 列出所有测试流程模块及其上次执行状态。

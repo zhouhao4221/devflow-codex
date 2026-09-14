@@ -5,6 +5,8 @@ description: 创建测试流程文档 - 多轮对话引导生成
 
 # 创建测试流程文档
 
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `uat:new` 的档位执行；已作为执行子代理时不再次路由。
+
 > **Audience:** QA
 
 通过多轮对话收集测试场景，生成结构化的 flow 文档。
