@@ -31,7 +31,7 @@
         "specs":         { "primarySkill": "specs",                    "additionalSkills": [], "executionTier": "economy" },
         "split":         { "primarySkill": "split",                    "additionalSkills": [], "executionTier": "primary" },
         "status":        { "primarySkill": "status",                   "additionalSkills": [], "executionTier": "economy" },
-        "test":          { "primarySkill": "test",                     "additionalSkills": ["test-guide", "test-new", "test-regression"], "executionTier": "primary" },
+        "test":          { "primarySkill": "test",                     "additionalSkills": ["test-guide", "test-new", "test-regression"], "argumentHint": "[REQ-XXX] [--failed] [--skip-ut|--skip-api|--skip-e2e|--skip-walkthrough] [--force]", "executionTier": "primary" },
         "test-new":      { "primarySkill": "test-new",                 "additionalSkills": ["test-guide"], "argumentHint": "[REQ-XXX] [--files=a.go,b.go] [--type=ut|api|e2e|all|manual] [--dry-run]", "executionTier": "primary" },
         "test-regression": { "primarySkill": "test-regression",        "additionalSkills": ["test-guide"], "executionTier": "economy" },
         "update":        { "primarySkill": "update",                   "additionalSkills": [], "executionTier": "economy" },

@@ -5,13 +5,13 @@ description: 执行 UAT 测试 - 按流程文档逐场景验收
 
 # 执行 UAT 测试
 
-执行模型：按[命令模型路由](../../shared/_command-models.md)中 `uat:run` 的档位执行；已作为执行子代理时不再次路由。
+执行模型：按[命令模型路由](../../shared/_command-models.md)中 `uat:run` 的 `primary` 档执行；已作为执行子代理时不再次路由。界面操作、视觉断言和最终验收留在当前主会话，不降档给经济模型；保留用户当前选择的模型。
 
 > **Audience:** QA
 
 读取测试流程文档，调用 uat-executor skill 逐场景执行，输出报告。
 
-> **运行环境要求**：操作方式为 `browser` 时，必须在 **Codex Chrome** 或 **Codex 桌面端** 中运行，否则无法调用浏览器工具。
+> **运行环境要求**：以当前会话实际可调用的浏览器或 Computer Use 能力为准，不仅凭客户端名称判断。能力不可用时降级为手动验证，未执行的步骤不得记为通过。
 
 ## 命令格式
 
@@ -55,7 +55,7 @@ description: 执行 UAT 测试 - 按流程文档逐场景验收
 
 读取 flow 文档后，按 `.agents/skills/uat-executor/SKILL.md` 的指导执行：
 
-- 检查运行环境（browser 模式下确认浏览器工具可用）
+- 检查运行环境与实际 UI 控制能力，按目标平台和会话状态选择浏览器或 Computer Use
 - 逐场景执行并记录结果
 
 ### 3. 写入报告

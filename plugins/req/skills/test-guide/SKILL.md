@@ -11,7 +11,7 @@ description: 测试引导助手。在执行 /req:test、/req:test-regression 或
 |-----|------|------|
 | `/req:test-regression` | 运行已有测试 | 执行现有自动化测试用例，回归验证 |
 | `/req:test-new` | 创建新测试 | 为新功能编写 UT/API/E2E 测试用例 |
-| `/req:test` | 综合测试 | 先运行回归，再补充新测试 |
+| `/req:test` | 综合测试 | 先运行回归、补充新测试，再对未覆盖项做能力感知交互走查 |
 
 > **重要**：本 skill 不内置任何项目测试细节。测试目录、测试框架、运行命令、
 > 代码示例优先从项目 `docs/prompt/testing.md` 读取，缺失时回退 `architecture.md` / AGENTS.md 的测试规范。
