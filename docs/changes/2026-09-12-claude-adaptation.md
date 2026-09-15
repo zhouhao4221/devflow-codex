@@ -14,7 +14,7 @@
 
 ## Codex 行为差异
 
-角色说明是可传给当前子代理工具的任务约束，不是自动安装的 custom agent。不可委派时由主会话完成同一工作，不修改模型配置。Claude 的 `/code-review`、Agent/Skill 工具、固定模型和 hook 配置不照搬。
+角色说明是可传给当前子代理工具的任务约束，不是自动安装的 custom agent。不可委派时由主会话完成同一工作，不修改模型配置。Claude 的 `/code-review`、Agent/Skill 工具、固定模型和 hook 配置不照搬；后续增加的原生审查使用 Codex 自己的非交互 review 入口与固定 SHA 适配，见 [Codex 原生代码审查适配](./2026-09-15-codex-native-review.md)。
 
 后续按 Codex 原生多代理运行方式进一步调整：按需继承上下文、共享目录内按行为单元分配实现与测试、区分运行中消息和空闲代理续接、消费完成通知并避免重复派发。任务状态和测试结论分开，复用验证时核对相关工作区内容。详见 [子任务委派](../../plugins/req/shared/_delegate.md) 和 [证据契约](../../plugins/req/shared/_evidence.md)。
 

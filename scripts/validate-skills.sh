@@ -337,6 +337,13 @@ if ! python3 scripts/check-command-models.py; then
   errors=$((errors + 1))
 fi
 
+# Native review adapter must preserve the caller's worktree and fixed PR scope.
+echo ""
+echo "=== 13. Codex review backend ==="
+if ! python3 scripts/test-codex-review-backend.py; then
+  errors=$((errors + 1))
+fi
+
 # Summary
 echo ""
 echo "============================================"
