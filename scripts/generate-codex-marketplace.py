@@ -16,7 +16,7 @@ COMMAND_MODEL_ROUTING_SOURCE = ROOT / "shared" / "command-model-routing.md"
 
 PLUGIN_META = {
     "req": {
-        "version": "3.28.0",
+        "version": "3.29.0",
         "description": "需求全流程工作流管理 - 从需求分析到测试的完整生命周期管理",
         "displayName": "DevFlow Req",
         "shortDescription": "需求分析、PRD、开发、测试和发布工作流",
@@ -80,7 +80,7 @@ PLUGIN_META = {
         "brandColor": "#DC2626",
     },
     "uat": {
-        "version": "1.4.0",
+        "version": "1.5.0",
         "description": "用户验收测试（UAT）- AI 驱动的 UI 验收测试",
         "displayName": "DevFlow UAT",
         "shortDescription": "创建、执行和上报用户验收测试流程",
