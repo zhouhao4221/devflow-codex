@@ -27,7 +27,7 @@ class CommandModelTests(unittest.TestCase):
             shutil.copy2(ROOT / "scripts" / name, self.root / "scripts" / name)
         (self.root / "shared").mkdir()
         shutil.copy2(ROOT / "shared/command-model-routing.md", self.root / "shared/command-model-routing.md")
-        selected = {"req": ("release", "dev"), "pm": ("weekly",), "api": ("search",),
+        selected = {"rd": ("release", "dev"), "pm": ("weekly",), "api": ("search",),
                     "diag": ("audit",), "uat": ("run",)}
         original = json.loads((ROOT / "skill-bindings.json").read_text())
         self.bindings = {"plugins": {}, "allSkills": {}}
@@ -38,8 +38,8 @@ class CommandModelTests(unittest.TestCase):
             for command, data in commands.items():
                 self.write_skill(plugin, data["primarySkill"],
                                  f"[Route](../../shared/_command-models.md) `{plugin}:{command}`\n")
-        self.bindings["allSkills"]["req"].append("fixture-helper")
-        self.write_skill("req", "fixture-helper", "Use the caller's execution context.\n")
+        self.bindings["allSkills"]["rd"].append("fixture-helper")
+        self.write_skill("rd", "fixture-helper", "Use the caller's execution context.\n")
         self.save_bindings()
         self.generate()
 
@@ -65,7 +65,7 @@ class CommandModelTests(unittest.TestCase):
                 for p in (self.root / "plugins").rglob("*") if p.is_file()}
 
     def test_command_tiers_and_helper_inheritance(self):
-        expected = {("req", "release"): "economy", ("req", "dev"): "primary",
+        expected = {("rd", "release"): "economy", ("rd", "dev"): "primary",
                     ("pm", "weekly"): "standard"}
         for (plugin, command), tier in expected.items():
             self.assertEqual(self.bindings["plugins"][plugin]["commands"][command]["executionTier"], tier)
@@ -90,7 +90,7 @@ class CommandModelTests(unittest.TestCase):
         entry["executionTier"] = original
 
     def test_route_change_requires_regeneration(self):
-        self.bindings["plugins"]["req"]["commands"]["release"]["executionTier"] = "standard"
+        self.bindings["plugins"]["rd"]["commands"]["release"]["executionTier"] = "standard"
         self.save_bindings()
         self.assertTrue(checker.check(self.root))
         self.generate()
@@ -104,13 +104,13 @@ class CommandModelTests(unittest.TestCase):
         self.assertEqual(self.snapshot(), before)
 
     def test_direct_skill_entrypoint_is_required(self):
-        self.write_skill("req", "release", "Execute release.\n")
+        self.write_skill("rd", "release", "Execute release.\n")
         errors = checker.check(self.root)
         self.assertTrue(any("release/SKILL.md" in error for error in errors), errors)
 
     def test_missing_packaged_policy_and_command_are_reported(self):
         policy = self.root / "plugins/pm/shared/_command-models.md"
-        command = self.root / "plugins/req/commands/release.md"
+        command = self.root / "plugins/rd/commands/release.md"
         policy.unlink()
         command.unlink()
         errors = checker.check(self.root)
@@ -118,7 +118,7 @@ class CommandModelTests(unittest.TestCase):
         self.assertTrue(any(str(command) in error for error in errors), errors)
 
     def test_model_fields_are_rejected_only_in_frontmatter(self):
-        helper = self.root / "plugins/req/skills/fixture-helper/SKILL.md"
+        helper = self.root / "plugins/rd/skills/fixture-helper/SKILL.md"
         text = helper.read_text()
         helper.write_text(text + "\nExample body text:\nmodel: example\n")
         self.assertEqual(checker.check(self.root), [])

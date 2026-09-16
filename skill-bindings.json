@@ -2,7 +2,7 @@
   "version": "1.0",
   "description": "命令-技能映射关系。声明每个插件命令引用的技能名称，供 CI 校验名称一致性。",
   "plugins": {
-    "req": {
+    "rd": {
       "commands": {
         "branch":        { "primarySkill": "branch",                   "additionalSkills": [], "executionTier": "economy" },
         "changelog":     { "primarySkill": "changelog",                "additionalSkills": ["changelog-generator"], "executionTier": "economy" },
@@ -10,7 +10,7 @@
         "dev":           { "primarySkill": "dev",                      "additionalSkills": ["dev-guide"], "argumentHint": "[REQ-XXX|QUICK-XXX] [--reset]", "executionTier": "primary" },
         "do":            { "primarySkill": "do",                       "additionalSkills": ["code-impact-analyzer"], "argumentHint": "<描述> [--from-issue=#编号]", "executionTier": "primary" },
         "done":          { "primarySkill": "done",                     "additionalSkills": [], "executionTier": "economy" },
-        "edit":          { "primarySkill": "edit",                     "additionalSkills": ["requirement-analyzer"], "executionTier": "primary" },
+        "edit":          { "primarySkill": "edit",                     "additionalSkills": ["requirement-analyzer"], "executionTier": "standard" },
         "fix":           { "primarySkill": "fix",                      "additionalSkills": ["quick-fix-guide"], "argumentHint": "<问题描述> [--from-issue=#编号] [--auto]", "executionTier": "primary" },
         "help":          { "primarySkill": "help",                     "additionalSkills": [], "executionTier": "economy" },
         "init":          { "primarySkill": "init",                     "additionalSkills": [], "executionTier": "primary" },
@@ -18,18 +18,17 @@
         "migrate":       { "primarySkill": "migrate",                  "additionalSkills": [], "executionTier": "economy" },
         "modules":       { "primarySkill": "modules",                  "additionalSkills": [], "executionTier": "economy" },
         "new":           { "primarySkill": "new",                      "additionalSkills": ["requirement-analyzer"], "executionTier": "primary" },
-        "new-quick":     { "primarySkill": "new-quick",                "additionalSkills": ["quick-fix-guide"], "argumentHint": "[标题] [--from-issue=#编号]", "executionTier": "primary" },
-        "pr":            { "primarySkill": "pr",                       "additionalSkills": [], "executionTier": "economy" },
+        "new-quick":     { "primarySkill": "new-quick",                "additionalSkills": ["quick-fix-guide"], "argumentHint": "[标题] [--from-issue=#编号]", "executionTier": "standard" },
+        "pr":            { "primarySkill": "pr",                       "additionalSkills": ["natural-language-dispatcher"], "argumentHint": "[status|review|comments|merge] [PR-ID|REQ-XXX|QUICK-XXX] [--level=low|medium|high] [--auto]", "executionTier": "primary" },
         "prd":           { "primarySkill": "prd",                      "additionalSkills": [], "executionTier": "economy" },
-        "prd-edit":      { "primarySkill": "prd-edit",                 "additionalSkills": ["prd-analyzer"], "executionTier": "primary" },
+        "prd-edit":      { "primarySkill": "prd-edit",                 "additionalSkills": ["prd-analyzer"], "executionTier": "standard" },
         "projects":      { "primarySkill": "projects",                 "additionalSkills": [], "executionTier": "economy" },
         "release":       { "primarySkill": "release",                  "additionalSkills": ["version-bumper", "changelog-generator", "release-rationale"], "executionTier": "economy" },
-        "req":           { "primarySkill": "req",                      "additionalSkills": [], "executionTier": "economy" },
+        "req":          { "primarySkill": "req",                      "additionalSkills": [], "executionTier": "economy" },
         "review":        { "primarySkill": "review",                   "additionalSkills": [], "argumentHint": "[REQ-XXX] [pass|reject]", "executionTier": "economy" },
-        "review-pr":     { "primarySkill": "review-pr",                "additionalSkills": ["natural-language-dispatcher"], "argumentHint": "[review|merge|fetch-comments] [REQ-XXX] [--level=low|medium|high] [--auto]", "executionTier": "primary" },
         "show":          { "primarySkill": "show",                     "additionalSkills": [], "executionTier": "economy" },
         "specs":         { "primarySkill": "specs",                    "additionalSkills": [], "executionTier": "economy" },
-        "split":         { "primarySkill": "split",                    "additionalSkills": [], "executionTier": "primary" },
+        "split":         { "primarySkill": "split",                    "additionalSkills": [], "executionTier": "standard" },
         "status":        { "primarySkill": "status",                   "additionalSkills": [], "executionTier": "economy" },
         "test":          { "primarySkill": "test",                     "additionalSkills": ["test-guide", "test-new", "test-regression"], "argumentHint": "[REQ-XXX] [--failed] [--skip-ut|--skip-api|--skip-e2e|--skip-walkthrough] [--force]", "executionTier": "primary" },
         "test-new":      { "primarySkill": "test-new",                 "additionalSkills": ["test-guide"], "argumentHint": "[REQ-XXX] [--files=a.go,b.go] [--type=ut|api|e2e|all|manual] [--dry-run]", "executionTier": "primary" },
@@ -88,13 +87,13 @@
     }
   },
   "allSkills": {
-    "req": [
+    "rd": [
       "branch", "changelog", "changelog-generator", "code-impact-analyzer",
       "commit", "dev", "dev-guide", "do", "done", "edit", "fix", "help", "init",
       "issue", "issue-guide", "migrate", "modules", "natural-language-dispatcher",
       "new", "new-quick", "pr", "prd", "prd-analyzer", "prd-edit", "projects",
       "quick-fix-guide", "release", "release-rationale", "req",
-      "requirement-analyzer", "review", "review-pr", "show", "specs", "split",
+      "requirement-analyzer", "review", "show", "specs", "split",
       "status", "test", "test-guide", "test-new", "test-regression", "update",
       "update-template", "upgrade", "use", "version-bumper"
     ],

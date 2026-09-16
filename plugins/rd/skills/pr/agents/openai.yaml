@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow RD: PR"
+  short_description: "创建、查看、审查、处理评论和合并 Pull Request"
+  default_prompt: "使用 $pr 处理：创建、查看、审查、处理评论和合并 Pull Request。"

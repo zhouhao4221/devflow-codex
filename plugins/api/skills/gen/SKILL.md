@@ -40,6 +40,8 @@ description: 代码生成 - 根据接口定义生成 TypeScript 类型和请求�
 
    调用 `swagger-parser.py`（`mode=detail`，传入接口路径），获取接口完整 schema。
 
+脚本调用参数见 [Swagger 解析脚本](../../shared/_parser.md)，显式传入 `--mode`。
+
 2. **检测请求库**
 
    按 `_common.md`「请求库自动检测」规则检测，确定代码风格。

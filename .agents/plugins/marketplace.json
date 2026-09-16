@@ -5,10 +5,10 @@
   },
   "plugins": [
     {
-      "name": "req",
+      "name": "rd",
       "source": {
         "source": "local",
-        "path": "./plugins/req"
+        "path": "./plugins/rd"
       },
       "policy": {
         "installation": "AVAILABLE",

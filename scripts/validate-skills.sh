@@ -344,6 +344,13 @@ if ! python3 scripts/test-codex-review-backend.py; then
   errors=$((errors + 1))
 fi
 
+# The requirement source directory, when present, must agree with document status.
+echo ""
+echo "=== 14. Requirement directory consistency ==="
+if ! python3 plugins/rd/scripts/check-requirements.py --check --root .; then
+  errors=$((errors + 1))
+fi
+
 # Summary
 echo ""
 echo "============================================"

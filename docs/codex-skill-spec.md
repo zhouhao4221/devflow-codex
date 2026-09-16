@@ -90,7 +90,7 @@ Codex 支持在这些层级选择不同模型：
 - 自定义 subagent 文件：可包含 `model`、`model_reasoning_effort`、`sandbox_mode`、`mcp_servers` 和 `skills.config`。
 - 原生子代理工具：当前接口支持时，派发时显式传入模型与推理强度；参数名与上下文继承限制以会话暴露的工具说明为准。
 
-本仓库通过[共享委派规则](../plugins/req/shared/_delegate.md)按任务复杂度选择可用的执行模型，由主会话保留方案设计和最终验收。模型选择通过原生工具的实际参数生效，不向 skill 元数据添加未支持字段，不自动修改用户会话模型或安装 custom agent。具体支持方式参见 [OpenAI Subagents 文档](https://learn.chatgpt.com/docs/agent-configuration/subagents#choosing-models-and-reasoning)。
+本仓库通过[共享委派规则](../plugins/rd/shared/_delegate.md)按任务复杂度选择可用的执行模型，由主会话保留方案设计和最终验收。模型选择通过原生工具的实际参数生效，不向 skill 元数据添加未支持字段，不自动修改用户会话模型或安装 custom agent。具体支持方式参见 [OpenAI Subagents 文档](https://learn.chatgpt.com/docs/agent-configuration/subagents#choosing-models-and-reasoning)。
 
 命令级分配由 `skill-bindings.json` 的 `executionTier` 声明，这是 DevFlow 自有生成配置，不是 Codex 原生元数据。生成器将[统一策略](../shared/command-model-routing.md)和本插件命令表打包进各插件 `shared/_command-models.md`；命令包装和对应的直接 skill 入口都先读取它。`release` 等规则化命令用经济档，报告与常规生成用标准档，需求与开发决策保留主会话。执行子代理和内部 helper 不重复路由；发布等外部操作仍由主会话按授权处理，因此不能把执行模型分配描述为整个会话自动换模型。
 

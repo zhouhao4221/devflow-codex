@@ -1,4 +1,0 @@
-interface:
-  display_name: "DevFlow Req: New Quick"
-  short_description: "创建 QUICK 文档并完成小型修复或功能开发"
-  default_prompt: "使用 $new-quick 处理：创建 QUICK 文档并完成小型修复或功能开发。"

@@ -25,9 +25,9 @@ description: 使用教程 - 查看 API 对接插件完整使用指南
 
 | lang | 文件路径 |
 |------|---------|
-| `zh`（默认） | `<plugin-path>/docs/tutorial.zh.md` |
-| `en` | `<plugin-path>/docs/tutorial.en.md` |
-| `ko` | `<plugin-path>/docs/tutorial.ko.md` |
+| `zh`（默认） | [中文教程](../../docs/tutorial.zh.md) |
+| `en` | [English tutorial](../../docs/tutorial.en.md) |
+| `ko` | [한국어 튜토리얼](../../docs/tutorial.ko.md) |
 
 ### 3. 决定输出范围
 
@@ -115,7 +115,7 @@ API 플러그인 - 튜토리얼
 }
 ```
 
-后续 `/req:help`、`/api:help`、`/pm:help` 都会默认用该语言。
+后续 `/rd:help`、`/api:help`、`/pm:help` 都会默认用该语言。
 
 ## 用户输入
 

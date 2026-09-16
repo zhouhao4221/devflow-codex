@@ -15,12 +15,12 @@ EXECUTION_TIERS = frozenset({"economy", "standard", "primary"})
 COMMAND_MODEL_ROUTING_SOURCE = ROOT / "shared" / "command-model-routing.md"
 
 PLUGIN_META = {
-    "req": {
-        "version": "3.29.0",
+    "rd": {
+        "version": "4.0.0",
         "description": "需求全流程工作流管理 - 从需求分析到测试的完整生命周期管理",
-        "displayName": "DevFlow Req",
+        "displayName": "DevFlow RD",
         "shortDescription": "需求分析、PRD、开发、测试和发布工作流",
-        "longDescription": "DevFlow Req provides Codex-native requirement workflows for PRDs, branching, requirement docs, development, testing, review, release notes, and project status tracking.",
+        "longDescription": "DevFlow RD provides Codex-native requirement workflows for PRDs, branching, requirement docs, development, testing, review, release notes, and project status tracking.",
         "category": "Productivity",
         "capabilities": ["Interactive", "Read", "Write"],
         "keywords": ["requirements", "prd", "workflow", "release", "project-management"],
@@ -32,7 +32,7 @@ PLUGIN_META = {
         "brandColor": "#10A37F",
     },
     "api": {
-        "version": "0.5.0",
+        "version": "0.6.0",
         "description": "前端 API 对接工具 - Swagger 解析、字段映射、代码生成",
         "displayName": "DevFlow API",
         "shortDescription": "Swagger/OpenAPI 搜索、映射和前端代码生成",

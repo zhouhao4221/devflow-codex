@@ -9,7 +9,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-ADAPTER = ROOT / "plugins" / "req" / "skills" / "review-pr" / "scripts" / "run-codex-review.sh"
+ADAPTER = ROOT / "plugins" / "rd" / "skills" / "pr" / "scripts" / "run-codex-review.sh"
 
 
 class CodexReviewBackendTests(unittest.TestCase):

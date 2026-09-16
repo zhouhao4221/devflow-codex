@@ -27,10 +27,14 @@ def local_links(text: str):
 
 def check(root: Path) -> list[str]:
     errors = []
+    stale_refs = ("/req:", "plugins/req/", "<plugin-path>", "rd:review-pr", "$CACHE_ACTIVE", "$CACHE_COMPLETED")
     for path in sorted(root.rglob("*.md")):
         if any(p.startswith(".") for p in path.relative_to(root).parts) or "templates" in path.relative_to(root).parts:
             continue
         text = path.read_text()
+        for stale in stale_refs:
+            if stale in text:
+                errors.append(f"{path}: stale workflow reference {stale}")
         for target in local_links(text):
             resolved = (path.parent / target).resolve()
             if not resolved.exists():

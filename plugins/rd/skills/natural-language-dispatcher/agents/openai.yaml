@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow RD: Natural Language Dispatcher"
+  short_description: "将自然语言开发、需求和 Git 操作映射到 DevFlow 命令"
+  default_prompt: "使用 $natural-language-dispatcher 处理：将自然语言开发、需求和 Git 操作映射到 DevFlow 命令。"

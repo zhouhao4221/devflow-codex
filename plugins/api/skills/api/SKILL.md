@@ -48,6 +48,8 @@ API 对接工具
 1. 读取 `.api-config.json`
 2. 对每个数据源调用 `swagger-parser.py`（`mode=summary`）获取接口总数和分组概览。
 
+脚本调用参数见 [Swagger 解析脚本](../../shared/_parser.md)，显式传入 `--mode`。
+
 3. 展示概览：
 
    ```

@@ -27,7 +27,7 @@ class ExportTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.base = Path(self.temp.name)
         self.source = self.base / "source with spaces"
-        self.plugin = self.source / "plugins" / "req"
+        self.plugin = self.source / "plugins" / "rd"
         self.write("skills/do/SKILL.md", "---\nname: do\ndescription: Test\n---\n\n[Verify](../../shared/verify.md#steps)\n")
         self.write("skills/do/agents/openai.yaml", 'interface:\n  default_prompt: "使用 $do 处理"\n')
         self.write("skills/test-new/SKILL.md", "---\nname: test-new\ndescription: Test\n---\n\nTests\n")
@@ -51,8 +51,8 @@ class ExportTests(unittest.TestCase):
             roles = list(out.rglob("test runner.md"))
             self.assertTrue(roles)
             self.assertTrue(all("Keep failing assertions." in p.read_text() for p in roles))
-            skill = out / ("req-do" if layout == "flat" else "plugins/req/skills/do")
-            expected = "req-do" if layout == "flat" else "do"
+            skill = out / ("rd-do" if layout == "flat" else "plugins/rd/skills/do")
+            expected = "rd-do" if layout == "flat" else "do"
             self.assertIn(f"name: {expected}\n", (skill / "SKILL.md").read_text())
             self.assertIn(f"${expected} ", (skill / "agents/openai.yaml").read_text())
             self.assertTrue((skill / "scripts/check.sh").stat().st_mode & 0o111)
@@ -72,12 +72,12 @@ class ExportTests(unittest.TestCase):
     def test_failed_refresh_preserves_previous_export(self):
         out = self.base / "bundle"
         exporter.export(self.source, out, "flat")
-        previous = (out / "req-do/SKILL.md").read_text()
+        previous = (out / "rd-do/SKILL.md").read_text()
         self.write("shared/verify.md", "[Missing](missing.md)\n")
         self.assertTrue(checker.check(self.source / "plugins"))
         with self.assertRaises(ValueError):
             exporter.export(self.source, out, "flat")
-        self.assertEqual((out / "req-do/SKILL.md").read_text(), previous)
+        self.assertEqual((out / "rd-do/SKILL.md").read_text(), previous)
 
     def test_refresh_removes_stale_export_only(self):
         out = self.base / "bundle"
@@ -102,6 +102,8 @@ class ExportTests(unittest.TestCase):
             self.assertEqual(exporter.export(ROOT, out, layout), expected)
             self.assertEqual(len(list(out.rglob("SKILL.md"))), expected)
             self.assertEqual(checker.check(out), [])
+            self.assertTrue(list(out.rglob("swagger-parser.py")))
+            self.assertTrue(list(out.rglob("check-requirements.py")))
 
 
 if __name__ == "__main__":

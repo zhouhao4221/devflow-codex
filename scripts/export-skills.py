@@ -94,9 +94,10 @@ def export(source: Path, output: Path, layout: str) -> int:
                     rel = path.relative_to(plugins)
                     text = re.sub(r"^name:.*$", f"name: {rel.parts[0]}-{rel.parts[2]}", text, count=1, flags=re.M)
                     if (plugins / rel.parts[0] / "templates").is_dir():
-                        resource_root = target_for(plugins / rel.parts[0] / "templates").parent
-                        relative = os.path.relpath(resource_root, dest.parent).replace(os.sep, "/")
-                        note = f"\n\n> 兼容导出资源：本 skill 中的 `<plugin-path>` 指 `{relative}`，模板位于其 `templates/`。\n"
+                        template_root = target_for(plugins / rel.parts[0] / "templates")
+                        relative = os.path.relpath(template_root, dest.parent).replace(os.sep, "/")
+                        text = text.replace("../../templates/", f"{relative}/")
+                        note = f"\n\n> 扁平导出：本 skill 所述的插件模板目录位于 `{relative}/`。\n"
                         sections = text.split("---", 2)
                         text = "---" + sections[1] + "---" + note + sections[2]
                 dest.write_text(text)

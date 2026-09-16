@@ -36,6 +36,8 @@ description: 字段映射 - 分析接口请求/响应字段并映射到前端类
 
    调用 `swagger-parser.py`（`mode=detail`，传入接口路径），获取该接口的完整 schema（参数、请求体、响应体、$ref 解析后的结构）。
 
+脚本调用参数见 [Swagger 解析脚本](../../shared/_parser.md)，显式传入 `--mode`。
+
 2. **AI 分析字段映射**
 
    读取 Python 脚本输出的 JSON，按 `_common.md` 中的「字段映射规则」和「类型映射」进行分析。

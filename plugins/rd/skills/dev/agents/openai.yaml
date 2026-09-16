@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow RD: Dev"
+  short_description: "按 DevFlow 需求启动或继续开发，完成实现与相关验证"
+  default_prompt: "使用 $dev 处理：按 DevFlow 需求启动或继续开发，完成实现与相关验证。"

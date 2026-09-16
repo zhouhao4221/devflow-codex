@@ -1,4 +1,0 @@
-interface:
-  display_name: "DevFlow Req: Quick Fix Guide"
-  short_description: "为 DevFlow fix 或 new-quick 流程分析修复方案与验收方式"
-  default_prompt: "使用 $quick-fix-guide 处理：为 DevFlow fix 或 new-quick 流程分析修复方案与验收方式。"

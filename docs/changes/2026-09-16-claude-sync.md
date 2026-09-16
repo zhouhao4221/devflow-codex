@@ -1,0 +1,15 @@
+# 2026-09-16 Claude 平行实现对照
+
+本轮对照 `zhouhao4221/devflow-claude` 的 `main`，前次基准为 [`94b1bc7e74779342f6610da12287190fd84dd257`](https://github.com/zhouhao4221/devflow-claude/commit/94b1bc7e74779342f6610da12287190fd84dd257)，本轮固定到 [`525bf60bfbfcca07218ba0ca9e6f51f13c7d534b`](https://github.com/zhouhao4221/devflow-claude/commit/525bf60bfbfcca07218ba0ca9e6f51f13c7d534b)（提交时间 `2026-09-16T19:10:32+09:30`，即北京时间 17:40:32）。[比较区间](https://github.com/zhouhao4221/devflow-claude/compare/94b1bc7e74779342f6610da12287190fd84dd257...525bf60bfbfcca07218ba0ca9e6f51f13c7d534b)。两仓是同一维护者的平行实现；此 SHA 仅标记本轮对照终点，不声明命令逐字等同。后续同步以此 SHA 为起点，先核对远端当前 HEAD。
+
+| 来源提交及文件 | 原问题 | Codex 处理 | 验证 |
+|---|---|---|---|
+| [`1c9f5cc`](https://github.com/zhouhao4221/devflow-claude/commit/1c9f5cc84b)、`plugins/rd/`；[`37e3fd2`](https://github.com/zhouhao4221/devflow-claude/commit/37e3fd2380)、`commands/pr.md` 与 `shared/pr-ops.md` | `req` 名称和分离的 PR 操作入口不再与 Claude 版一致 | Codex 插件改名 `rd`，保留 `req` 作为列表子命令；创建、状态、审查、评论、合并合入 `rd:pr`，原生 Codex review 适配器移到 `pr/scripts/`；用户迁移见 README | 生成器、绑定校验、原生 review 适配器测试、导出测试 |
+| [`d79e24f`](https://github.com/zhouhao4221/devflow-claude/commit/d79e24f2b3)、`commands/pr.md`；[`5538d67`](https://github.com/zhouhao4221/devflow-claude/commit/5538d67729)、`shared/pr-ops.md` | 无需求编号分支无法建 PR；`gh` 未登录时操作可能失败或误报成功 | 无需求模式用当前工作分支及提交生成标题和正文，未配置主分支时核对远端默认分支；GitHub 先检验 `gh auth status`，不可用时显示 compare 链接，查询可回退公开 REST，写操作说明手动路径；合并后核实平台状态 | 命令路径与生成产物检查；真实平台 PR 操作未在本仓执行 |
+| [`e7c8b0c`](https://github.com/zhouhao4221/devflow-claude/commit/e7c8b0c33f437028dac7f4cba858dc674f1af04d)、`new-quick/dev/test/done/req`、`scripts/check-requirements.py` | QUICK 曾由创建命令直接实施和归档，缺测试状态；索引文件可能过期 | QUICK 统一为草稿→开发中→测试中→已完成；`new-quick` 负责文档与方案，`dev/test/done` 负责后续状态；需求列表实时扫描；移除索引模板，增加目录一致性守卫；修正 REQ 草稿模板勾选，并允许有明确「升级自 QUICK、未经评审」记录的合法评审空档 | 临时 REQ/QUICK 文档的有效、冲突及升级空档样例；`validate-skills.sh --ci` |
+| [`2370515`](https://github.com/zhouhao4221/devflow-claude/commit/23705150c4)、`shared/_granularity.md` | 文件数阈值导致 REQ/QUICK 选型不一致 | 统一为“是否需留痕、是否需他人确认”两问；`do`、`split`、`new-quick` 引用同一规则 | 共享引用与布局校验 |
+| [`3e2e0c0`](https://github.com/zhouhao4221/devflow-claude/commit/3e2e0c04b1)、配置和脚本引用；[`be20877`](https://github.com/zhouhao4221/devflow-claude/commit/be20877381)、API/PM/Diag 约定 | 旧缓存、索引和占位路径残留；API 脚本参数语义不明确 | 清理活跃需求命令的缓存与索引操作；API 加入实际解析脚本、教程和明确 `--mode` 的共享调用说明。Codex 仍保留 `.claude` 配置读取作为迁移回退，不作为默认配置源；PM 输出授权和 Diag 只读边界沿用 Codex 现有指令 | API 解析器 summary/search/detail 样例；导出与链接校验 |
+| [`1d4a631`](https://github.com/zhouhao4221/devflow-claude/commit/1d4a6319f798cdc71fcbd6baef07c6d7e490a2a7)、模型档位；`525bf60` 仅版本准备 | Claude 的 frontmatter 模型名不适用于 Codex | `new-quick` 缩为文档与方案后，将其与有界编辑、分析命令调到 `standard`；综合测试保留 `primary`，因为 Codex 版含交互走查；不复制 Claude 模型字段或发版号 | `test-command-models.py` 与生成校验 |
+| [`162ef76`](https://github.com/zhouhao4221/devflow-claude/commit/162ef76f22)、UAT 删除；Diag hooks 变更 | Claude CLI 难以进行 UI 验收，且其 hooks 是 Claude 专属 | Codex 保留 UAT；Diag 不安装或宣称 Claude hook 生效。交互能力仍按实际会话探测，缺能力时报告未执行 | UAT 既有绑定及目录保留，Diag 规则审阅 |
+
+本轮不执行发布命令，也不把 Claude 仓库的版本号写入 Codex 插件。项目内尚有带历史说明的 legacy 文本；运行路径以 `.devflow/` 和主仓唯一需求目录为准。

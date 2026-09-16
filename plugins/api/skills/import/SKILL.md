@@ -40,6 +40,8 @@ description: 导入 Swagger - 解析 OpenAPI 文档并展示接口概览
 
    对每个 source 调用 `swagger-parser.py`（`mode=summary`；URL 数据源用 `--url`，本地文件用 `--file`）。
 
+脚本调用参数见 [Swagger 解析脚本](../../shared/_parser.md)，显式传入 `--mode`。
+
 3. **展示解析结果**
 
    ```

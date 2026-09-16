@@ -6,7 +6,7 @@
 
 - 主分发：Codex plugin marketplace
 - 主结构：`plugins/<plugin>/.codex-plugin/plugin.json`
-- 主入口：plugin-scoped slash commands，例如 `/req:init`
+- 主入口：plugin-scoped slash commands，例如 `/rd:init`
 - 底层能力：`plugins/<plugin>/skills/<skill>/SKILL.md`
 - 兼容能力：保留 `setup-opencode.sh` 和 `setup-claude.sh`，但不作为主路径
 
@@ -50,7 +50,7 @@ npx codex-marketplace add zhouhao4221/devflow-codex --plugins
 安装单个插件：
 
 ```bash
-npx codex-marketplace add zhouhao4221/devflow-codex/plugins/req --plugin
+npx codex-marketplace add zhouhao4221/devflow-codex/plugins/rd --plugin
 ```
 
 ## 本地开发流程

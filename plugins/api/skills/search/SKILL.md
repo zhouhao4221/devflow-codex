@@ -36,6 +36,8 @@ description: 搜索接口 - 按关键词搜索 Swagger 中的 API 接口
 
 2. **调用 `swagger-parser.py`**（`mode=search`，传入关键词）搜索匹配接口。
 
+脚本调用参数见 [Swagger 解析脚本](../../shared/_parser.md)，显式传入 `--mode`。
+
 3. **展示搜索结果**
 
    ```

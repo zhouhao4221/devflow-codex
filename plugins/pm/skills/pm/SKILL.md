@@ -63,7 +63,7 @@ git = collect_git_stats(from_date=thirty_days_ago)
 modules = collect_modules()
 
 # 插件版本
-version = read_plugin_json("version")  # <plugin-path>/.codex-plugin/plugin.json
+version = read_plugin_json("version")  # ../../.codex-plugin/plugin.json
 ```
 
 ### 3. 计算统计指标
@@ -150,9 +150,9 @@ PRD 完善度：X/X 章节
 未检测到需求数据
 
 可能原因：
-1. 尚未初始化需求项目 → /req:init <project-name>
-2. 尚未创建任何需求 → /req:new <标题>
-3. 未绑定需求项目 → /req:use <project-name>
+1. 尚未初始化需求项目 → /rd:init <project-name>
+2. 尚未创建任何需求 → /rd:new <标题>
+3. 未绑定需求项目 → /rd:use <project-name>
 
 Git 仓库数据仍可使用：
 - /pm:stats   查看 Git 统计

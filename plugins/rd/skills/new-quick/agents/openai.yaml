@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow RD: New Quick"
+  short_description: "创建 QUICK 需求文档和可执行方案，后续由 dev、test、done 完成生命周期"
+  default_prompt: "使用 $new-quick 处理：创建 QUICK 需求文档和可执行方案，后续由 dev、test、done 完成生命周期。"

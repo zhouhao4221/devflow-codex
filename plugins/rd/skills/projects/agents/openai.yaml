@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow RD: Projects"
+  short_description: "查看当前仓库的需求项目配置和可读需求目录"
+  default_prompt: "使用 $projects 处理：查看当前仓库的需求项目配置和可读需求目录。"

@@ -1,0 +1,4 @@
+interface:
+  display_name: "DevFlow RD: Update Template"
+  short_description: "更新项目需求模板并保留差异预览"
+  default_prompt: "使用 $update-template 处理：更新项目需求模板并保留差异预览。"

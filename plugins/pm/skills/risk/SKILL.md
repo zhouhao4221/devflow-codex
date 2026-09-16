@@ -43,7 +43,7 @@ for req in active_reqs:
         risks.append({
             "level": "critical",
             "type": "stale",
-            "req": req["id"],
+            "rd": req["id"],
             "title": req["title"],
             "detail": f"已 {days_inactive} 天未更新，状态停留在 {req['status']}",
         })
@@ -53,7 +53,7 @@ for req in active_reqs:
         risks.append({
             "level": "warning",
             "type": "slow",
-            "req": req["id"],
+            "rd": req["id"],
             "title": req["title"],
             "detail": f"已 {days_inactive} 天未更新",
         })
@@ -63,7 +63,7 @@ for req in active_reqs:
         risks.append({
             "level": "warning",
             "type": "draft_stuck",
-            "req": req["id"],
+            "rd": req["id"],
             "title": req["title"],
             "detail": f"草稿已创建 {days_since(req['created'])} 天，建议尽快评审",
         })
@@ -73,7 +73,7 @@ for req in active_reqs:
         risks.append({
             "level": "critical",
             "type": "no_progress",
-            "req": req["id"],
+            "rd": req["id"],
             "title": req["title"],
             "detail": "状态为开发中但功能进度为 0，可能被阻塞",
         })
@@ -119,7 +119,7 @@ for req in reqs:
             risks.append({
                 "level": "warning",
                 "type": "skip_review",
-                "req": req["id"],
+                "rd": req["id"],
                 "detail": "未找到评审记录，可能跳过了评审环节",
             })
 ```
@@ -181,7 +181,7 @@ for req in reqs:
 
 **建议操作：**
 - /pm:stats --from=2026-03-01  查看本月详细统计
-- /req:status REQ-003          查看停滞需求详情
+- /rd:status REQ-003          查看停滞需求详情
 - /pm:weekly                   生成周报梳理进展
 ```
 

@@ -6,7 +6,7 @@
 
 [OpenAI Subagents 文档](https://learn.chatgpt.com/docs/agent-configuration/subagents)说明了原生委派、上下文隔离、模型配置和沙箱继承。具体 `fork_turns`、`send_message`、`followup_task`、等待通知和共享文件系统行为，依据本次会话实际暴露的 `collaboration` 工具说明；不假定所有 Codex 客户端都有相同参数。
 
-对应改动在 [_delegate.md](../../plugins/req/shared/_delegate.md)、[_evidence.md](../../plugins/req/shared/_evidence.md) 和五个角色文件，调用方包括 do/dev/fix/test/review-pr 与共享验证规则。保留简短返回，内容快照只在并发、可变审查或结果复用需要时使用。
+对应改动在 [_delegate.md](../../plugins/rd/shared/_delegate.md)、[_evidence.md](../../plugins/rd/shared/_evidence.md) 和五个角色文件，调用方包括 do/dev/fix/test/review-pr 与共享验证规则。保留简短返回，内容快照只在并发、可变审查或结果复用需要时使用。
 
 ## 真实并行实施与续接
 
