@@ -15,7 +15,7 @@
         "help":          { "primarySkill": "help",                     "additionalSkills": [], "executionTier": "economy" },
         "init":          { "primarySkill": "init",                     "additionalSkills": [], "executionTier": "primary" },
         "issue":         { "primarySkill": "issue",                    "additionalSkills": ["issue-guide"], "executionTier": "economy" },
-        "migrate":       { "primarySkill": "migrate",                  "additionalSkills": [], "executionTier": "economy" },
+        "migrate":       { "primarySkill": "migrate",                  "additionalSkills": [], "argumentHint": "--to=<new-requirementsDir>", "executionTier": "economy" },
         "modules":       { "primarySkill": "modules",                  "additionalSkills": [], "executionTier": "economy" },
         "new":           { "primarySkill": "new",                      "additionalSkills": ["requirement-analyzer"], "executionTier": "primary" },
         "new-quick":     { "primarySkill": "new-quick",                "additionalSkills": ["quick-fix-guide"], "argumentHint": "[标题] [--from-issue=#编号]", "executionTier": "standard" },

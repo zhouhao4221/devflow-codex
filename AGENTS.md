@@ -12,7 +12,7 @@ The maintainer owns both [devflow-codex](https://github.com/zhouhao4221/devflow-
 
 This repository distributes DevFlow as Codex marketplace plugins. Each plugin lives under `plugins/<plugin>/` with `.codex-plugin/plugin.json`, generated `commands/*.md`, and authored `skills/<skill>/SKILL.md`. Skill directory names must match their frontmatter `name`. Plugin templates live in `plugins/<plugin>/templates/`; shared instructions belong in `shared/` and are loaded through direct relative links. Keep plugin-specific maintenance rules in that plugin's `AGENTS.md`. Adapter, generation, and validation scripts are in `scripts/`. Project docs and requirement/design notes are in `docs/`. `skill-bindings.json` maps plugins, commands, and skills and must stay synchronized with `plugins/`.
 
-DevFlow project state is tool-neutral. Use `.devflow/settings.json` for shared project configuration and `.devflow/settings.local.json` for machine-private values. Do not introduce new default behavior that depends on `.claude/settings.local.json` or `~/.claude-requirements`; those paths are legacy compatibility fallbacks only. The canonical project instructions for Codex and other agents live in `AGENTS.md`; do not add a tool-specific duplicate instructions file in this repository.
+DevFlow project state is tool-neutral. Use `.devflow/settings.json` for shared project configuration and `.devflow/settings.local.json` for machine-private values. Do not read `.claude/settings.local.json` or `~/.claude-requirements` as DevFlow configuration or storage. The canonical project instructions for Codex and other agents live in `AGENTS.md`; do not add a tool-specific duplicate instructions file in this repository.
 
 ## Build, Test, and Development Commands
 

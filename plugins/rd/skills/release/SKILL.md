@@ -58,7 +58,7 @@ description: 颁布版本 - 合并 SQL、生成回滚、打 tag、创建 Release
 
 文件不存在时三个变量均为空，跳过对应行为，不打印任何提示。
 
-读取 `.devflow/settings.local.json` / `.devflow/settings.json` 中的 `requirementRole`，legacy fallback 到 `.claude/settings.local.json`：
+读取 `.devflow/settings.local.json` / `.devflow/settings.json` 中的 `requirementRole`：
 
 - **readonly**：
   - 从主仓需求目录 `<requirementSource.path>/<requirementsDir>/` 读取需求文档

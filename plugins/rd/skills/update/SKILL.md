@@ -15,7 +15,7 @@ description: 热更新插件 - 拉取最新命令文件和技能，所有项目�
 
 ### 1. 定位插件目录
 
-**优先级**：当前插件安装目录 > Codex marketplace 缓存目录 > 本地目录源 > Claude Code legacy 缓存目录
+**优先级**：当前插件安装目录 > Codex marketplace 缓存目录
 
 ```bash
 # 1a. Codex 场景优先使用当前插件安装目录（由运行环境提供）
@@ -25,33 +25,6 @@ SOURCE_PATH="${CODEX_PLUGIN_ROOT:-}"
 if [ -z "$SOURCE_PATH" ] && [ -d "$HOME/.codex/plugins/cache" ]; then
     SOURCE_PATH=$(find "$HOME/.codex/plugins/cache" -path '*/devflow-skills/.git' -prune -print 2>/dev/null | head -1)
     SOURCE_PATH="${SOURCE_PATH%/.git}"
-fi
-
-# 1c. 查找 directory 类型源（本地开发安装，兼容旧配置）
-if [ -z "$SOURCE_PATH" ]; then
-    SOURCE_PATH=$(jq -r '
-  .extraKnownMarketplaces | to_entries[] |
-  select(.value.source.source == "directory") |
-  .value.source.path
-' ~/.claude/settings.json .claude/settings.local.json 2>/dev/null | head -1)
-fi
-
-# 1d. Claude Code legacy：查找缓存克隆目录（GitHub/远程源安装）
-if [ -z "$SOURCE_PATH" ]; then
-    # 旧 Claude Code 将远程 marketplace 克隆到 ~/.claude/plugins/marketplaces/<name>/
-    # 从 settings 取 marketplace 名称，映射到缓存目录
-    MARKETPLACE_NAME=$(jq -r '
-      .extraKnownMarketplaces | to_entries[] |
-      select(.value.source.source != "directory") |
-      .key
-    ' ~/.claude/settings.json .claude/settings.local.json 2>/dev/null | head -1)
-
-    if [ -n "$MARKETPLACE_NAME" ]; then
-        CACHE_PATH="$HOME/.claude/plugins/marketplaces/$MARKETPLACE_NAME"
-        if [ -d "$CACHE_PATH/.git" ]; then
-            SOURCE_PATH="$CACHE_PATH"
-        fi
-    fi
 fi
 ```
 

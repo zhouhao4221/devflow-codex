@@ -34,7 +34,7 @@ issue 编号支持 `#42` 和 `42` 两种写法。所有子命令都先执行前�
 
 ## §1 前置检查
 
-读取 `.devflow/settings.local.json` / `.devflow/settings.json` 的 `branchStrategy`，legacy fallback 到 `.claude/settings.local.json`：
+读取 `.devflow/settings.local.json` / `.devflow/settings.json` 的 `branchStrategy`：
 
 | repoType | 要求 | 失败时 |
 |---------|------|-------|

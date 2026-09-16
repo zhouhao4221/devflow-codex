@@ -11,7 +11,7 @@ description: Issue 操作引导助手。在执行 /rd:issue 命令，或需要�
 
 ## 一、前置：读取平台配置
 
-所有操作开始前，读取 `.devflow/settings.local.json` / `.devflow/settings.json` 的 `branchStrategy`，legacy fallback 到 `.claude/settings.local.json`：
+所有操作开始前，读取 `.devflow/settings.local.json` / `.devflow/settings.json` 的 `branchStrategy`：
 
 | 字段 | 用途 |
 |------|------|

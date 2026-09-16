@@ -20,7 +20,7 @@ description: 使用帮助 - 查看项目管理助手所有命令
 按以下优先级：
 
 1. 命令参数 `--lang=zh|en|ko`（显式覆盖）
-2. `.devflow/settings.local.json` 的 `language` 字段，legacy fallback 到 `.claude/settings.local.json`
+2. `.devflow/settings.local.json` 的 `language` 字段
 3. 默认 `zh`
 
 ### 2. 读取版本

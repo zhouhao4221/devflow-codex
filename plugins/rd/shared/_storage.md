@@ -15,7 +15,7 @@ DevFlow 配置存储在项目根的 `.devflow/` 目录，按是否含密钥分�
 | `branchStrategy`（不含 token） | `.devflow/settings.json` | ✅ | 团队共享配置 |
 | `giteaToken` | `.devflow/settings.local.json` | ❌ | 个人密钥，禁止提交 |
 
-> **`.devflow/` 与 `.claude/` 的分工**：`.devflow/` 只放 DevFlow 业务配置（上表字段）；Claude Code 自身的 hooks、permissions 仍在 `.claude/settings.json`，两者互不迁移。项目级窄知识 skill 优先放在 `.agents/skills/`，旧 Claude Code 项目可 legacy fallback 到 `.claude/skills/`。
+项目级窄知识 skill 放在 `.agents/skills/`。
 
 **写入规则（强制）**：
 
@@ -60,8 +60,6 @@ config = merge(.devflow/settings.json, .devflow/settings.local.json)
 # .devflow/settings.local.json 中的同名字段覆盖 settings.json
 ```
 
-**Legacy 兼容**：仅在 `.devflow` 中缺少对应 DevFlow 配置时，才兼容读取旧 `.claude/settings.local.json` 中的相关字段，并提示 `/rd:migrate`。所有新增或修改配置写入 `.devflow`，不写旧路径。配置检查在用户调用相关命令时执行，不假定 SessionStart hook 存在。
-
 ---
 
 ## 存储路径解析
@@ -101,8 +99,6 @@ superseded/   # 已升级为 REQ 的 QUICK，保留升级前状态
 
 - **primary**：所有修改需求的命令（new、new-quick、edit、review、dev、test、done、upgrade、modules/specs/prd 编辑）直接写本仓 `requirementsDir`，写完即生效，**无任何后续同步或 cp**。
 - **readonly**：禁止一切写操作（创建、编辑、状态更新）。仅读取 `requirementSource.path`。
-
-> **历史说明（v2.x → v3 breaking change）**：v2.x 曾用 `~/.claude-requirements/` 全局缓存 + PostToolUse `sync-cache.sh` 单向同步，readonly 从缓存读。v3 起**移除缓存**：readonly 改为经 `requirementSource.path` 直读主仓，`sync-cache.sh` 不再注册。命令内**不应再有任何缓存读写、cp 到缓存、或全局索引（`~/.claude-requirements/index.json`）操作**。
 
 ## 双轨状态机
 

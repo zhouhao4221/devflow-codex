@@ -1,53 +1,26 @@
 ---
 name: migrate
-description: 迁移需求 - 调整需求目录位置或从旧布局迁移到 .devflow
+description: 迁移需求 - 调整需求文档目录并更新配置
 ---
 
-# 迁移需求
+# 迁移需求目录
 
 执行模型：按[命令模型路由](../../shared/_command-models.md)中 `rd:migrate` 的档位执行；已作为执行子代理时不再次路由。
-
-支持两类迁移：
-1. **配置迁移**：从 v2.x 旧布局（`.claude/` 配置 + `~/.claude-requirements/` 全局缓存）迁到 v3（`.devflow/` + 无缓存）
-2. **目录迁移**：调整需求文档存放目录（`requirementsDir`）
 
 ## 命令格式
 
 ```
-/rd:migrate [--to=<new-requirementsDir>]
+/rd:migrate --to=<new-requirementsDir>
 ```
 
-- 无参数：执行配置迁移（旧布局 -> `.devflow/`）
-- `--to=<dir>`：把需求目录迁移到新位置并更新 `requirementsDir`
-
----
+无参数或缺少 `--to` 时显示用法，停止执行，不扫描其他配置位置。
 
 ## 执行流程
 
-### 1. 识别当前布局
-
-读 `.devflow/settings.json`（新）或 `.claude/settings.json(.local)`（旧）。检测是否存在旧全局缓存 `~/.claude-requirements/projects/<project>/`。
-
-### 2A. 配置迁移（检测到 `.claude/` 旧 DevFlow 配置）
-
-> 按下列步骤迁移配置；不依赖额外迁移脚本。先读取并合并现有 `.devflow` 配置，保留已有值与无关字段。
-
-- 把 `.claude/settings.json(.local)` 中的 DevFlow 字段搬到 `.devflow/`：
-  - `requirementProject` / `requirementRole` / `requirementsDir` / `branchStrategy` -> `.devflow/settings.json`
-  - `giteaToken` -> `.devflow/settings.local.json`
-- **不搬** Claude Code 自身的 hooks/permissions（留在 `.claude/settings.json`）
-- readonly 仓库：提示改用 `/rd:use <primary-repo-path>` 重新绑定（旧缓存寻址已废弃）
-
-> **旧全局缓存的数据**：primary 仓库的需求文档本就在本地 `docs/requirements/`，缓存只是副本。迁移确认本地完整后，可手动删除 `~/.claude-requirements/projects/<project>/`。若出现本地缺失、仅缓存有的异常，先从缓存 `mv` 回本地需求目录再删缓存。
-
-### 2B. 目录迁移（提供 `--to`）
-
-- 将当前 `requirementsDir` 下全部内容 `mv` 到 `--to` 指定的新目录
-- 更新 `.devflow/settings.json` 的 `requirementsDir` 为新值
-
-### 3. 输出结果
-
-显示迁移类型、搬运的字段/文件、新配置位置与后续提示（如 readonly 重绑定、删除旧缓存）。
+1. 按[存储与配置规则](../../shared/_storage.md)合并 `.devflow/settings.json` 和 `.devflow/settings.local.json`。仅 `primary` 仓库可迁移；其他角色报告原因并停止。
+2. 确定当前 `requirementsDir`（省略时为 `docs/requirements`）和目标目录。目标必须是仓库内相对路径，不能与源目录相同、互相包含，也不能已含文件。源目录不存在时报错。
+3. 将源目录全部内容移动到目标目录，更新 `.devflow/settings.json` 中的 `requirementsDir`，保留其他配置字段。移动或写入失败时报告已完成的步骤和当前路径，避免误报成功。
+4. 显示原目录、目标目录和更新后的配置位置。
 
 ---
 
