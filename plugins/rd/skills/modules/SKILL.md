@@ -35,6 +35,7 @@ modules/           # 模块文档目录
   ...
 active/           # 进行中的需求
 completed/        # 已完成的需求
+superseded/       # 已升级为 REQ 的 QUICK
 ```
 
 ---
@@ -179,7 +180,7 @@ completed/        # 已完成的需求
 
 ---
 
-需求列表由 `/rd:req` 实时扫描 `active/`、`completed/`，不维护索引文件。
+需求列表由 `/rd:req` 实时扫描 `active/`、`completed/`、`superseded/`，不维护索引文件。
 
 ---
 

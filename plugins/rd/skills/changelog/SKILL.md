@@ -83,7 +83,7 @@ description: 生成版本说明 - 基于 Git 记录生成 Changelog
 
 ### 5. 关联已完成需求
 
-按 [_storage.md](../../shared/_storage.md) 确定唯一需求目录（readonly 直读主仓；primary 读本仓）。从提交消息提取 `REQ-XXX` / `QUICK-XXX`，在 `active/` 和 `completed/` 读取对应文档标题和类型；文档缺失时只使用提交消息中的可证实信息。
+按 [_storage.md](../../shared/_storage.md) 确定唯一需求目录（readonly 直读主仓；primary 读本仓）。从提交消息提取 `REQ-XXX` / `QUICK-XXX`，在 `active/`、`completed/` 和 `superseded/` 读取对应文档标题和类型；文档缺失时只使用提交消息中的可证实信息。
 
 ### 6. 检查目标文件
 

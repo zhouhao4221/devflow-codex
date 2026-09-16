@@ -351,6 +351,13 @@ if ! python3 plugins/rd/scripts/check-requirements.py --check --root .; then
   errors=$((errors + 1))
 fi
 
+# Parsing and lifecycle regressions affect generated code and requirement history.
+echo ""
+echo "=== 15. Swagger parser and requirement lifecycle ==="
+if ! python3 scripts/test-swagger-parser.py || ! python3 scripts/test-check-requirements.py; then
+  errors=$((errors + 1))
+fi
+
 # Summary
 echo ""
 echo "============================================"

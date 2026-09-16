@@ -72,9 +72,10 @@ modules/      # 模块文档
 specs/        # 规范文档（数据类型、接口契约等，跨仓库共享）
 active/       # 进行中需求
 completed/    # 已完成需求
+superseded/   # 已升级为 REQ 的 QUICK，保留升级前状态
 ```
 
-列表不落盘：`/rd:req` 从 `active/`、`completed/` 实时渲染。旧项目若仍有 `INDEX.md`，不再把它当作事实源。
+列表不落盘：`/rd:req` 从 `active/`、`completed/`、`superseded/` 实时渲染；superseded 单列为已升级，不计入已完成。旧项目若仍有 `INDEX.md`，不再把它当作事实源。
 
 **无全局缓存**：需求文档只存在于 primary 仓库的 `requirementsDir`，是唯一事实源。readonly 仓库不复制、不缓存，直接读 primary 仓库目录。
 
@@ -117,9 +118,11 @@ completed/    # 已完成需求
 
 两类需求均需测试记录；尚未实测的项目明确标注待观察及原因。状态、生命周期和目录须一致，可用[需求目录守卫](../scripts/check-requirements.py)执行 `--check --root <项目根>` 核查。
 
+QUICK 升级为 REQ 时，将原文档移入 `superseded/`，保留升级前状态和生命周期，并记录「已升级为 REQ-XXX」。该目录不表示测试或开发完成。
+
 ## 需求编号生成
 
-扫描 active/ 和 completed/ 目录，找最大编号 +1，格式 `REQ-XXX`
+扫描 active/、completed/ 和 superseded/ 目录，找最大编号 +1，格式 `REQ-XXX`
 
 ## 元信息字段
 

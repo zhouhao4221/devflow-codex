@@ -119,7 +119,8 @@ def resolve_schema(spec, schema, depth=0):
         merged = {}
         merged_props = {}
         merged_required = []
-        for sub in schema["allOf"]:
+        # 同级约束也属于最终 schema；放在最后以保留其覆盖顺序。
+        for sub in [*schema["allOf"], {k: v for k, v in schema.items() if k != "allOf"}]:
             resolved_sub = resolve_schema(spec, sub, depth + 1)
             if "properties" in resolved_sub:
                 merged_props.update(resolved_sub["properties"])
@@ -128,8 +129,7 @@ def resolve_schema(spec, schema, depth=0):
             merged.update(resolved_sub)
         merged["properties"] = merged_props
         if merged_required:
-            merged["required"] = list(set(merged_required))
-        merged.pop("allOf", None)
+            merged["required"] = list(dict.fromkeys(merged_required))
         return merged
 
     # 解析 oneOf / anyOf
@@ -276,18 +276,26 @@ def get_api_detail(spec, method, path):
         "responses": {},
     }
 
-    # 解析参数（OpenAPI 3.x）
+    # 操作级参数按 (name, in) 覆盖路径级参数，先展开引用再比较。
     params = detail.get("parameters", [])
-    # 合并 path-level 参数
     path_params = path_detail.get("parameters", [])
-    all_params = path_params + params
-
-    for param in all_params:
+    all_params = []
+    param_positions = {}
+    for param in [*path_params, *params]:
         if not isinstance(param, dict):
             continue
-        # 解析 $ref
         if "$ref" in param:
             param = resolve_ref(spec, param["$ref"])
+        if not isinstance(param, dict):
+            continue
+        key = (param.get("name"), param.get("in"))
+        if key in param_positions:
+            all_params[param_positions[key]] = param
+        else:
+            param_positions[key] = len(all_params)
+            all_params.append(param)
+
+    for param in all_params:
         p = {
             "name": param.get("name", ""),
             "in": param.get("in", ""),

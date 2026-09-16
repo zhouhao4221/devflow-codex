@@ -84,7 +84,7 @@ Bug 分析：登录超时后 token 未清除
 
 **流程**（实时目录列表 + 按需读正文）：
 
-1. 按 [_storage.md](../../shared/_storage.md) 解析需求根目录，仅列出 `active/`、`completed/` 的文件名
+1. 按 [_storage.md](../../shared/_storage.md) 解析需求根目录，仅列出 `active/`、`completed/`、`superseded/` 的文件名
 2. 用 bug 相关文件路径 + 关键词匹配标题和模块；需要模块信息时定点读取候选文档元信息
 3. 命中时仅读该需求的「十一、实现方案 - 文件改动清单」（~1k token/个，最多 2 个）；未命中静默跳过
 

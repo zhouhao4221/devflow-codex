@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 """check-requirements.py — 需求目录一致性守卫。
 
-需求文档分别放在 `<requirementsDir>/active/`（进行中）与
-`<requirementsDir>/completed/`（已完成），文件名以 `REQ-XXX-` 或
+需求文档分别放在 `<requirementsDir>/active/`（进行中）、
+`<requirementsDir>/completed/`（已完成）与 `<requirementsDir>/superseded/`（已升级），文件名以 `REQ-XXX-` 或
 `QUICK-XXX-` 开头（XXX 为三位数字）。本脚本校验：
 
   1. `completed/` 内文档状态必须为「已完成」。
   2. `active/` 内文档状态不得为「已完成」。
   3. 元信息「状态」与「## 生命周期」复选框最后一个已勾项一致
      （「评审驳回」特例：最后已勾应为「待评审」，模板无对应复选框）。
-  4. 编号（REQ-XXX / QUICK-XXX）在 active + completed 中唯一。
+  4. 编号（REQ-XXX / QUICK-XXX）在三个目录中唯一。
   5. 状态值必须是合法状态之一。
+  6. superseded/ 中保留升级前状态，并记录升级后的 REQ 编号。
 
 用法：check-requirements.py [--check] [--root ROOT]
   --check   只报告，发现任何问题退出码 1（与默认行为相同，保留以对齐 check-layout 用法）
@@ -27,7 +28,8 @@ import sys
 VALID_STATUSES = ["草稿", "待评审", "评审通过", "评审驳回", "开发中", "测试中", "已完成"]
 STATUS_RE = re.compile(r"^\| 状态 \| (.+?) \|")
 CHECKBOX_RE = re.compile(r"^- \[([ x])\] (.+)$")
-NUM_RE = re.compile(r"^(REQ|QUICK)-(\d+)(?:-|\.md$)")
+NUM_RE = re.compile(r"^(REQ|QUICK)-(\d{3})-.+\.md$")
+UPGRADE_RE = re.compile(r"已升级为 REQ-\d{3}\b")
 
 
 def load_settings(root):
@@ -136,8 +138,16 @@ def check_file(relpath, location, text):
             problems.append(f"completed/ 内状态应为「已完成」，实际为「{status}」")
         if location == "active" and status == "已完成":
             problems.append("active/ 内状态不应为「已完成」")
+        if location == "superseded" and status == "已完成":
+            problems.append("superseded/ 内应保留升级前状态")
         if status not in VALID_STATUSES:
             problems.append(f"非法状态值「{status}」")
+
+    if location == "superseded":
+        if not os.path.basename(relpath).startswith("QUICK-"):
+            problems.append("superseded/ 仅存放已升级的 QUICK")
+        if not UPGRADE_RE.search(text):
+            problems.append("superseded/ 内缺少「已升级为 REQ-XXX」记录")
 
     if status is not None and lifecycle is not None:
         last = last_checked(lifecycle)
@@ -168,17 +178,19 @@ def main():
     req_root = resolve_requirements_root(root, settings)
     active_dir = os.path.join(req_root, "active")
     completed_dir = os.path.join(req_root, "completed")
+    superseded_dir = os.path.join(req_root, "superseded")
 
     if not os.path.isdir(req_root) or (
-            not os.path.isdir(active_dir) and not os.path.isdir(completed_dir)):
+            not any(os.path.isdir(path) for path in (active_dir, completed_dir, superseded_dir))):
         print("未找到需求目录，跳过")
         return 0
 
     problems = []
     numbers = {}
-    counts = {"active": 0, "completed": 0}
+    counts = {"active": 0, "completed": 0, "superseded": 0}
 
-    for location, dirpath in (("active", active_dir), ("completed", completed_dir)):
+    for location, dirpath in (("active", active_dir), ("completed", completed_dir),
+                              ("superseded", superseded_dir)):
         if not os.path.isdir(dirpath):
             continue
         for fn in sorted(os.listdir(dirpath)):
@@ -211,6 +223,7 @@ def main():
         return 1
 
     print(f"[OK] 需求目录一致：active {counts['active']} 个，completed {counts['completed']} 个，"
+          f"superseded {counts['superseded']} 个，"
           f"编号唯一，状态与目录 / 生命周期一致")
     return 0
 

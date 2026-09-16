@@ -31,7 +31,7 @@ description: 初始化需求项目 - 创建本地存储和主仓需求目录
 
 ### 2. 创建目录结构
 
-**primary**：`docs/requirements/` 下创建 `active/`、`completed/`、`modules/`、`templates/`
+**primary**：`docs/requirements/` 下创建 `active/`、`completed/`、`superseded/`、`modules/`、`templates/`
 
 **readonly**：仅 `docs/requirements/templates/`
 
