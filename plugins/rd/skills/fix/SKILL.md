@@ -277,7 +277,7 @@ AI 按确认的方案修改代码。
   commit abc1234: 修复: 登录超时后 token 未清除 closes #42
   PR: <url>
 
-下一步：/rd:pr review 审查 PR
+下一步：/rd:review 审查 PR
 ```
 
 ---

@@ -1,4 +1,4 @@
 interface:
   display_name: "DevFlow RD: Review"
-  short_description: "需求评审"
-  default_prompt: "使用 $review 处理：需求评审。"
+  short_description: "代码审查"
+  default_prompt: "使用 $review 处理：代码审查。"

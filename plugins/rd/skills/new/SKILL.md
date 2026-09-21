@@ -137,7 +137,7 @@ description: 创建新需求 - 基于模板创建需求文档
 
 下一步：
 - /rd:edit REQ-XXX - 继续完善
-- /rd:review REQ-XXX - 提交评审
+- /rd:req-review REQ-XXX - 提交评审
 ```
 
 ---

@@ -1,13 +1,13 @@
 ---
 name: pr
-description: 创建、查看、审查、处理评论和合并 Pull Request
+description: 创建、查看状态、只读查看评论和合并 Pull Request
 ---
 
 # Pull Request 工作流
 
 执行模型：按[命令模型路由](../../shared/_command-models.md)中 `rd:pr` 的档位执行；已作为执行子代理时不再次路由。
 
-无子命令时按仓库类型创建 PR；`status`、`review`、`comments`、`merge` 按需读取 [PR 子命令流程](../../shared/pr-ops.md)。审查或合并前确认用户本次授权范围，不从创建 PR 推断评论或合并授权。
+无子命令时按仓库类型创建 PR；`status`、`comments`、`merge` 按需读取 [PR 子命令流程](../../shared/pr-ops.md)。AI 代码审查与按评论修改代码由 `/rd:review` 负责。合并前确认用户本次授权范围，不从创建 PR 推断合并授权。
 
 > **Audience:** Engineer
 > 不受仓库角色限制，readonly 也可执行。不触发缓存同步。
@@ -17,11 +17,12 @@ description: 创建、查看、审查、处理评论和合并 Pull Request
 ## 命令格式
 
 ```
-/rd:pr [status|review|comments|merge] [PR-ID|REQ-XXX|QUICK-XXX] [--title=自定义标题] [--base=目标分支] [--level=low|medium|high] [--auto]
+/rd:pr [status|comments|merge] [PR-ID|REQ-XXX|QUICK-XXX] [--title=自定义标题] [--base=目标分支]
 ```
 
 - 无子命令时创建 PR；省略编号时使用当前分支，允许分支没有需求编号
 - `--title`、`--base` 覆盖自动值
+- 旧写法 `/rd:pr review ...` 不执行，只提示改用 `/rd:review ...`
 
 ---
 
@@ -129,7 +130,7 @@ Gitea 与 GitHub 创建成功或复用已有 PR 时统一输出：
 ✅ PR 已创建
    <url>
 已请求审核：@user1, @user2     ← reviewers 非空时输出
-改动 <N> 文件 <M> 行 → 建议 /rd:pr review（<小 PR：主会话内联审查 | 大 PR：按复杂度分级审查，支持时委派独立审查任务>）
+改动 <N> 文件 <M> 行 → 建议 /rd:review（按文件类型与复杂度选择审查路由）
 审查通过后 /rd:pr merge，或 /rd:done 归档
 ```
 
@@ -149,7 +150,7 @@ Gitea 与 GitHub 创建成功或复用已有 PR 时统一输出：
 
 `targets` 包含多个分支时（当前仅 git-flow hotfix 场景），对每个 target 各执行一次步骤 6，输出对应 PR 链接 / 命令。
 
-无论 GitHub 或 Gitea，创建成功均输出 PR 链接、文件数/增删行数和 `/rd:pr review` 下一步；按同一阈值说明小 PR 内联或大 PR 分级审查。
+无论 GitHub 或 Gitea，创建成功均输出 PR 链接、文件数/增删行数和 `/rd:review` 下一步。
 
 ### 8. 分支清理提示
 

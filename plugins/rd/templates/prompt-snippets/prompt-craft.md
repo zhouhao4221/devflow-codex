@@ -16,7 +16,7 @@ Prompt 文件是**项目特有的知识库**，供 req 插件的命令在运行�
 | `test-generation.md` | 测试用例生成规范 | `/rd:test-new` |
 | `testing.md` | 测试运行规范 | `/rd:test`、`/rd:test-regression` |
 | `error-diagnosis.md` | 错误根因分析规范 | `/rd:fix` |
-| `pr-review.md` | PR 评审规范 | `/rd:pr` |
+| `pr-review.md` | PR 评审规范 | `/rd:review` |
 | `requirement-structuring.md` | 模糊需求结构化规范 | `/rd:new`、`/rd:edit` |
 | `release.md` | 发版规则 | `/rd:release` |
 
