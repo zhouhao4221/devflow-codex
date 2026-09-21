@@ -60,13 +60,14 @@
 | `rd:modules` | `economy` |
 | `rd:new` | `primary` |
 | `rd:new-quick` | `standard` |
-| `rd:pr` | `primary` |
+| `rd:pr` | `economy` |
 | `rd:prd` | `economy` |
 | `rd:prd-edit` | `standard` |
 | `rd:projects` | `economy` |
 | `rd:release` | `economy` |
 | `rd:req` | `economy` |
-| `rd:review` | `economy` |
+| `rd:req-review` | `economy` |
+| `rd:review` | `primary` |
 | `rd:show` | `economy` |
 | `rd:specs` | `economy` |
 | `rd:split` | `standard` |

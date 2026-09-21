@@ -1,9 +1,9 @@
 ---
-description: "需求评审 - 提交或记录评审结果"
-argument-hint: "[REQ-XXX] [pass|reject]"
+description: "代码审查 - AI 审查 PR 并按授权提交评论，或按人工评审评论修改代码"
+argument-hint: "[comments] [PR-ID|REQ-XXX|QUICK-XXX] [--level=low|medium|high] [--auto]"
 ---
 
-Before executing, read [command model routing](../shared/_command-models.md) for `rd:review` (execution tier: `economy`). An already delegated executor must not route again.
+Before executing, read [command model routing](../shared/_command-models.md) for `rd:review` (execution tier: `primary`). An already delegated executor must not route again.
 
 Use the `rd:review` skill and follow its `SKILL.md` instructions.
 

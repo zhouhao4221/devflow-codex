@@ -66,8 +66,9 @@ description: 将自然语言开发、需求和 Git 操作映射到 DevFlow 命�
 |---------|------|
 | "开发/开始开发" + 编号 | `/rd:dev` |
 | "测试/开始测试" + 编号 | `/rd:test` |
-| "评审通过" + 编号 | `/rd:review pass` |
-| "评审驳回/驳回" + 编号 | `/rd:review reject` |
+| "提审/提交评审" + 编号 | `/rd:req-review` |
+| "评审通过" + 编号 | `/rd:req-review pass` |
+| "评审驳回/驳回" + 编号 | `/rd:req-review reject` |
 | "完成/归档/做完了" + 编号 | `/rd:done` |
 
 ---
@@ -78,13 +79,16 @@ description: 将自然语言开发、需求和 Git 操作映射到 DevFlow 命�
 |---------|------|
 | "规范提交"、"提交代码" | `/rd:commit` |
 | "创建 PR"、"提 PR" | `/rd:pr` |
-| "审 PR"、"审查 PR" | `/rd:pr review` |
+| "审 PR"、"审查 PR"、"审代码" | `/rd:review` |
+| "拉 PR 评论"、"看看 PR 评论" | `/rd:pr comments`（只读） |
+| "处理 PR 反馈"、"按评论改"、"照评论改代码" | `/rd:review comments` |
 | "合并 PR" | `/rd:pr merge` |
-| "拉 PR 评论"、"处理 PR 反馈" | `/rd:pr comments` |
 
 仅用户显式指定 `review --auto` 或明确授权发布审查评论时传入 `--auto`。"自动审查"、"不用确认"仍只输出审查结果，不授权评论或合并；"提交"对象不清时先完成审查，再澄清外部操作。
 
-> `merge` 和 `fetch-comments` 各自交互点不走 `--auto`。
+> "评审" + 需求编号是需求评审，"审查/审" + PR 是代码审查。两者都没带、只说"评审一下"时询问。
+
+> `/rd:pr merge` 和 `/rd:review comments` 各自交互点不走 `--auto`。
 
 ---
 
@@ -122,7 +126,7 @@ description: 将自然语言开发、需求和 Git 操作映射到 DevFlow 命�
 
 从 URL 解析 PR 编号并获取实际元数据；审查按目标 PR 的 base/head 读取，不要求当前分支匹配或切换工作区。
 
-- **仅 URL** → 展示选项（查看状态 / 审查 / 拉评论 / 合并）
+- **仅 URL** → 展示选项（查看状态 `/rd:pr status` / 审查 `/rd:review` / 看评论 `/rd:pr comments` / 按评论改 `/rd:review comments` / 合并 `/rd:pr merge`）
 - **URL + 动词** → 直接映射
 
 ### 优先级

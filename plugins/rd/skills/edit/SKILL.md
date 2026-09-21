@@ -170,7 +170,7 @@ description: 编辑需求 - 修改已有需求文档
 
 下一步：
 - /rd:edit REQ-XXX - 继续编辑
-- /rd:review - 提交评审
+- /rd:req-review - 提交评审
 ```
 
 ---

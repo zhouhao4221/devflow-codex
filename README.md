@@ -67,7 +67,7 @@ rm -rf .agents/skills .codex/commands
 
 本仓库的项目说明已迁移到 `AGENTS.md`。根目录不再保留工具专属说明文件。
 
-从 `req` 插件升级时，安装 `rd` 插件并停用旧的 `req` 插件。命令前缀改为 `/rd:`；PR 创建、状态、审查、评论和合并统一由 `/rd:pr` 及其子命令处理。项目需求文档和 `.devflow/` 配置保持原路径；QUICK 文档现在按 `new-quick → dev → test → done` 流转。
+从 `req` 插件升级时，安装 `rd` 插件并停用旧的 `req` 插件。命令前缀改为 `/rd:`；PR 创建、状态、评论查看和合并由 `/rd:pr` 处理，代码审查与按评论改代码用 `/rd:review`，需求评审用 `/rd:req-review`。项目需求文档和 `.devflow/` 配置保持原路径；QUICK 文档现在按 `new-quick → dev → test → done` 流转。
 
 ### 更新插件
 
